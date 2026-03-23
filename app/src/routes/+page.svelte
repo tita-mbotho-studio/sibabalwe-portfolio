@@ -107,7 +107,6 @@
   let isSticky = false;
   let showScrollTop = false;
   let activeSection = 'home';
-  let isDarkTheme = false;
 
   const navLinks = [
     { id: 'home', label: 'Home' },
@@ -125,16 +124,6 @@
 
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function toggleTheme() {
-    isDarkTheme = !isDarkTheme;
-
-    if (typeof document !== 'undefined') {
-      document.body.classList.toggle('dark-theme', isDarkTheme);
-      localStorage.setItem('saved-theme', isDarkTheme ? 'dark' : 'light');
-      localStorage.setItem('saved-icon', isDarkTheme ? 'sun' : 'moon');
-    }
   }
 
   function syncScrollState() {
@@ -207,7 +196,7 @@
       delay: 0
     });
 
-    srWindow.ScrollReveal().reveal('.home .info h1, .section-title-01, .section-title-02', {
+    srWindow.ScrollReveal().reveal('.home .info h1, .section-title', {
       delay: 500,
       origin: 'left'
     });
@@ -262,10 +251,6 @@
   onMount(() => {
     const cleanupFns: Cleanup[] = [];
 
-    const savedTheme = localStorage.getItem('saved-theme');
-    isDarkTheme = savedTheme === 'dark';
-    document.body.classList.toggle('dark-theme', isDarkTheme);
-
     syncScrollState();
 
     const onScroll = () => syncScrollState();
@@ -315,16 +300,6 @@
 >
   <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
 </div>
-
-<button
-  type="button"
-  class="theme-btn flex-center {isDarkTheme ? 'sun' : ''}"
-  aria-label="Toggle theme"
-  on:click={toggleTheme}
->
-  <i class="fa-solid fa-moon" aria-hidden="true"></i>
-  <i class="fa-solid fa-sun" aria-hidden="true"></i>
-</button>
 
 <header class:sticky={isSticky}>
   <div class="nav-bar">
@@ -419,8 +394,7 @@
 
   <section class="about section" id="about" aria-label="About">
     <div class="container flex-centre">
-      <h1 class="section-title-01">About Me</h1>
-      <h2 class="section-title-02">About Me</h2>
+      <h2 class="section-title">About Me</h2>
 
       <div class="content flex-centre">
         <div class="about-img">
@@ -468,8 +442,7 @@
 
   <section class="skills section" id="skills" aria-label="Skills">
     <div class="container flex-centre">
-      <h1 class="section-title-01">Skills</h1>
-      <h2 class="section-title-02">Skills</h2>
+      <h2 class="section-title">Skills</h2>
 
       <div class="content">
         <div class="skills-description">
@@ -586,8 +559,7 @@
 
   <section class="services section" id="services" aria-label="Services">
     <div class="container flex-centre">
-      <h1 class="section-title-01">Services</h1>
-      <h2 class="section-title-02">Services</h2>
+      <h2 class="section-title">Services</h2>
 
       <div class="content">
         <div class="services-description">
@@ -653,8 +625,7 @@
 
   <section class="portfolio section" id="portfolio" aria-label="Portfolio">
     <div class="container flex-centre">
-      <h1 class="section-title-01">Portfolio</h1>
-      <h2 class="section-title-02">Portfolio</h2>
+      <h2 class="section-title">Portfolio</h2>
 
       <div class="content">
         <div class="portfolio-list">
@@ -728,8 +699,7 @@
 
   <section class="contact section" id="contact" aria-label="Contact">
     <div class="container flex-centre">
-      <h1 class="section-title-01">Contact Me</h1>
-      <h2 class="section-title-02">Contact Me</h2>
+      <h2 class="section-title">Contact Me</h2>
 
       <div class="content">
         <div class="contact-left">
