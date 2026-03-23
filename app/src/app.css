@@ -1,56 +1,73 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* app/src/app.css */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 :root {
-  --first-color: #0e2431;
-  --second-color: #6a59d1;
-  --third-color: #777;
+  --bg-dark: oklch(0.1 0.075 20);
+  --bg: oklch(0.15 0.075 20);
+  --bg-light: oklch(0.2 0.075 20);
+  --text: oklch(0.96 0.1 20);
+  --text-muted: oklch(0.76 0.1 20);
+  --highlight: oklch(0.5 0.15 20);
+  --border: oklch(0.4 0.15 20);
+  --border-muted: oklch(0.3 0.15 20);
+  --primary: oklch(0.76 0.15 20);
+  --secondary: oklch(0.76 0.15 200);
+  --danger: oklch(0.7 0.15 30);
+  --warning: oklch(0.7 0.15 100);
+  --success: oklch(0.7 0.15 160);
+  --info: oklch(0.7 0.15 260);
 
-  --hover-color: #614fd0;
+  --first-color: var(--text);
+  --second-color: var(--primary);
+  --third-color: var(--text-muted);
 
-  --body-bg-color: #fefefe;
-  --card-bg-color: #fff;
-  --modal-bg-color: #fff;
-  --bg-transparent-color: rgba(0, 0, 0, 0.1);
-  --transparent-color-01: rgba(0, 0, 0, 0.1);
-  --transparent-color-02: rgba(106, 89, 209, 0.1);
-  --line-color: #d7d7d7;
+  --hover-color: var(--highlight);
+
+  --body-bg-color: var(--bg-dark);
+  --card-bg-color: var(--bg);
+  --modal-bg-color: var(--bg-light);
+  --bg-transparent-color: oklch(0.1 0.075 20 / 0.72);
+  --transparent-color-01: oklch(0.2 0.075 20 / 0.55);
+  --transparent-color-02: oklch(0.5 0.15 20 / 0.14);
+  --line-color: var(--border-muted);
 
   --color-filter: invert(1);
 
-  --box-shadow: 0px 0px 20px rgb(0 0 0 / 10%);
+  --box-shadow: 0px 0px 20px oklch(0.02 0.02 20 / 0.35);
 
   --small-font-size: 0.9em;
   --normal-font-size: 1em;
 
-  --scroll-bar-color: #c5cadf;
-  --scroll-thumb-color: #70768a;
-  --scroll-thumb-hover-color: #454f6b;
+  --scroll-bar-color: var(--bg-light);
+  --scroll-thumb-color: var(--border);
+  --scroll-thumb-hover-color: var(--highlight);
 }
 
 .dark-theme {
-  --first-color: #fff;
-  --second-color: #6a59d1;
-  --third-color: #a9afc3;
+  --first-color: var(--text);
+  --second-color: var(--primary);
+  --third-color: var(--text-muted);
 
-  --body-bg-color: #0e1b31;
-  --card-bg-color: #132347;
-  --modal-bg-color: #102048;
-  --bg-transparent-color: rgba(255, 255, 255, 0.1);
-  --transparent-color-01: rgba(255, 255, 255, 0.1);
-  --line-color: #454f6b;
+  --body-bg-color: var(--bg-dark);
+  --card-bg-color: var(--bg);
+  --modal-bg-color: var(--bg-light);
+  --bg-transparent-color: oklch(0.1 0.075 20 / 0.72);
+  --transparent-color-01: oklch(0.2 0.075 20 / 0.55);
+  --line-color: var(--border-muted);
 
-  --color-filter: invert(0);
+  --color-filter: invert(1);
 
-  --scroll-bar-color: #c1ceff;
-  --scroll-thumb-color: #282f4e;
-  --scroll-thumb-hover-color: #454f6b;
+  --scroll-bar-color: var(--bg-light);
+  --scroll-thumb-color: var(--border);
+  --scroll-thumb-hover-color: var(--highlight);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 html {
@@ -103,7 +120,7 @@ img {
   width: 45px;
   height: 45px;
   background: var(--second-color);
-  color: #fff;
+  color: var(--bg-dark);
   font-size: var(--small-font-size);
   border-radius: 3px;
   cursor: pointer;
@@ -130,6 +147,8 @@ img {
   border-radius: 5px 0 0 5px;
   box-shadow: var(--box-shadow);
   cursor: pointer;
+  color: var(--first-color);
+  border: 1px solid var(--border-muted);
 }
 
 .theme-btn .fa-sun,
@@ -173,8 +192,9 @@ header {
 }
 
 header.sticky {
-  background: rgba(255, 255, 255, 0.1);
+  background: oklch(0.1 0.075 20 / 0.7);
   box-shadow: var(--box-shadow);
+  border-bottom: 1px solid var(--border-muted);
 }
 
 .nav-bar {
@@ -276,9 +296,9 @@ header.sticky .nav-bar {
 
 .btn {
   background: var(--second-color);
-  color: #fff;
+  color: var(--bg-dark);
   font-size: var(--normal-font-size);
-  font-weight: 500;
+  font-weight: 600;
   display: inline-block;
   margin-top: 25px;
   padding: 20px 30px;
@@ -289,6 +309,7 @@ header.sticky .nav-bar {
 
 .btn:hover {
   background: var(--hover-color);
+  color: var(--text);
 }
 
 .home-container .home-img {
@@ -485,9 +506,9 @@ header.sticky .nav-bar {
 
 .skills-info h4 span {
   background: var(--second-color);
-  color: #fff;
+  color: var(--bg-dark);
   font-size: var(--normal-font-size);
-  font-weight: 400;
+  font-weight: 500;
   padding: 5px 15px;
   border-radius: 5px;
 }
@@ -499,6 +520,7 @@ header.sticky .nav-bar {
 .edu-list .item {
   background: var(--card-bg-color);
   box-shadow: var(--box-shadow);
+  border: 1px solid var(--border-muted);
   border-bottom: 3px solid var(--second-color);
   padding: 20px;
   margin-top: 15px;
@@ -509,6 +531,7 @@ header.sticky .nav-bar {
 .edu-list .item .year {
   font-size: var(--small-font-size);
   margin-bottom: 5px;
+  color: var(--third-color);
 }
 
 .edu-list .item p {
@@ -529,6 +552,7 @@ header.sticky .nav-bar {
   padding: 20px;
   border-radius: 6px;
   transition: 0.3s ease;
+  border: 1px solid var(--border-muted);
 }
 
 .bar .info {
@@ -549,7 +573,7 @@ header.sticky .nav-bar {
   position: relative;
   width: 100%;
   height: 7px;
-  background: #c5cadf;
+  background: var(--border-muted);
   border-radius: 2px;
 }
 
@@ -585,6 +609,7 @@ header.sticky .nav-bar {
 
 .experience-card {
   background: var(--card-bg-color);
+  border: 1px solid var(--border-muted);
   border-bottom: 3px solid var(--second-color);
   padding: 35px;
   border-radius: 6px;
@@ -677,6 +702,7 @@ header.sticky .nav-bar {
 
 .service-card {
   background: var(--card-bg-color);
+  border: 1px solid var(--border-muted);
   border-bottom: 3px solid var(--second-color);
   padding: 50px;
   border-radius: 6px;
@@ -737,6 +763,7 @@ header.sticky .nav-bar {
   padding: 40px;
   border-radius: 10px;
   box-shadow: var(--box-shadow);
+  border: 1px solid var(--border-muted);
   transform: translateY(-50px);
   transition: 0.5s ease;
 }
@@ -791,6 +818,7 @@ header.sticky .nav-bar {
   box-shadow: var(--box-shadow);
   overflow: hidden;
   cursor: pointer;
+  border: 1px solid var(--border-muted);
 }
 
 .portfolio-list .img-card .overlay {
@@ -801,7 +829,7 @@ header.sticky .nav-bar {
 }
 
 .portfolio-list .img-card:hover .overlay {
-  background: rgba(0, 0, 0, 0.5);
+  background: oklch(0.1 0.075 20 / 0.55);
   z-index: 1;
 }
 
@@ -811,7 +839,7 @@ header.sticky .nav-bar {
   bottom: 0;
   left: 0;
   margin: 20px;
-  color: #fff;
+  color: var(--text);
   transform: translateY(20px);
   opacity: 0;
   transition: 0.5s ease;
@@ -865,6 +893,7 @@ header.sticky .nav-bar {
   padding: 40px;
   border-radius: 10px;
   box-shadow: var(--box-shadow);
+  border: 1px solid var(--border-muted);
   transform: translateY(-50px);
   transition: 0.5s ease;
 }
@@ -910,6 +939,7 @@ header.sticky .nav-bar {
   padding: 50px;
   border-radius: 10px;
   column-gap: 50px;
+  border: 1px solid var(--border-muted);
 }
 
 .contact-card .title {
@@ -1001,7 +1031,7 @@ header.sticky .nav-bar {
 
 .contact-form input,
 .contact-form textarea {
-  border: none;
+  border: 1px solid var(--border-muted);
   color: var(--first-color);
   background: var(--transparent-color-02);
   font-size: var(--normal-font-size);
@@ -1044,15 +1074,16 @@ footer {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: var(--second-color);
+  background: var(--bg);
   width: 100%;
   margin-top: 50px;
   padding: 3rem 2rem;
-  color: #fff;
+  color: var(--text);
+  border-top: 1px solid var(--border-muted);
 }
 
 footer a {
-  color: #fff;
+  color: var(--text);
 }
 
 .footer-container {
@@ -1065,7 +1096,7 @@ footer a {
 .footer-container .about h2 {
   font-size: 3em;
   font-weight: 600;
-  background: linear-gradient(to top, transparent 0%, #fff 50%);
+  background: linear-gradient(to top, transparent 0%, var(--text) 50%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1076,6 +1107,7 @@ footer a {
   font-size: var(--normal-font-size);
   font-weight: 300;
   margin-bottom: 30px;
+  color: var(--third-color);
 }
 
 .footer-container .info,
@@ -1110,6 +1142,7 @@ footer a {
   font-size: var(--normal-font-size);
   font-weight: 300;
   margin-top: 50px;
+  color: var(--third-color);
 }
 
 @media screen and (max-width: 1070px) {
@@ -1145,6 +1178,7 @@ footer a {
     padding: 40px;
     border-radius: 10px;
     box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-muted);
     transform: translateY(-50px);
     transition: 0.3s ease;
   }
@@ -1262,7 +1296,7 @@ footer a {
   .footer-container .hr {
     width: 100%;
     height: 2px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--border-muted);
     margin: 10px 0 22px;
   }
 }
