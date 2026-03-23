@@ -16,11 +16,40 @@
   --line-color: oklch(0.24 0 0);
 
   --color-filter: invert(1);
+  --box-shadow: 0 0 20px oklch(0 0 0 / 0.22);
 
-  --box-shadow: 0px 0px 20px oklch(0 0 0 / 0.22);
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-28: 28px;
+  --space-32: 32px;
+  --space-36: 36px;
+  --space-40: 40px;
+  --space-44: 44px;
+  --space-48: 48px;
+  --space-52: 52px;
+  --space-56: 56px;
+  --space-60: 60px;
+  --space-64: 64px;
+  --space-72: 72px;
+  --space-80: 80px;
+  --space-96: 96px;
 
-  --small-font-size: 16px;
-  --normal-font-size: 16px;
+  --text-12: 12px;
+  --text-16: 16px;
+  --text-20: 20px;
+  --text-24: 24px;
+  --text-32: 32px;
+  --text-36: 36px;
+  --text-40: 40px;
+  --text-48: 48px;
+  --text-64: 64px;
+
+  --small-font-size: var(--text-16);
+  --normal-font-size: var(--text-16);
 
   --scroll-bar-color: oklch(0.16 0 0);
   --scroll-thumb-color: oklch(0.32 0 0);
@@ -41,7 +70,7 @@ html {
 body {
   color: var(--first-color);
   background: var(--body-bg-color);
-  margin: 32px 0 0 0;
+  margin: var(--space-32) 0 0 0;
   transition: 0.5s ease;
 }
 
@@ -80,20 +109,20 @@ img {
   z-index: 99999;
   position: fixed;
   right: 0;
-  bottom: 20px;
-  width: 44px;
-  height: 44px;
+  bottom: var(--space-20);
+  width: var(--space-44);
+  height: var(--space-44);
   background: var(--card-bg-color);
   color: oklch(0.98 0 0);
   font-size: var(--small-font-size);
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
   opacity: 0;
   transition: 0.5s ease;
 }
 
 .scrollToTop-btn.active {
-  right: 20px;
+  right: var(--space-20);
   pointer-events: all;
   opacity: 1;
 }
@@ -110,13 +139,13 @@ img {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
   background: var(--scroll-bar-color);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--scroll-thumb-color);
-  border-radius: 2em;
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -140,24 +169,24 @@ header.sticky {
 
 .nav-bar {
   position: relative;
-  height: calc(4rem + 1rem);
+  height: 80px;
   max-width: 1250px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 20px;
+  padding: 0 var(--space-20);
   transition: 0.6s ease;
 }
 
 header.sticky .nav-bar {
-  height: calc(2.5rem + 1rem);
+  height: 56px;
 }
 
 .nav-bar .logo {
   color: var(--first-color);
-  font-size: 24px;
+  font-size: var(--text-24);
   font-weight: 600;
 }
 
@@ -172,7 +201,7 @@ header.sticky .nav-bar {
 }
 
 .nav-items a:not(:last-child) {
-  margin-right: 50px;
+  margin-right: var(--space-48);
 }
 
 .nav-items a:hover {
@@ -189,7 +218,7 @@ header.sticky .nav-bar {
   min-height: 100vh;
   margin-left: auto;
   margin-right: auto;
-  padding: 64px 32px;
+  padding: var(--space-64) var(--space-32);
   flex-direction: column;
 }
 
@@ -203,13 +232,13 @@ header.sticky .nav-bar {
 .home-container .media-icons {
   display: flex;
   flex-direction: column;
-  margin-right: 40px;
+  margin-right: var(--space-40);
 }
 
 .home-container .media-icons a {
   color: var(--second-color);
-  font-size: 24px;
-  margin: 10px 0;
+  font-size: var(--text-24);
+  margin: 12px 0;
 }
 
 .home-container .media-icons a:hover {
@@ -218,21 +247,24 @@ header.sticky .nav-bar {
 
 .home-container .info h1,
 .home-container .info h2 {
-  font-size: 64px;
+  font-size: var(--text-64);
   font-weight: 600;
-  line-height: 64px;
+  line-height: var(--text-64);
 }
 
 .home-container .info h3 {
   color: var(--third-color);
-  font-size: 24px;
+  font-size: var(--text-24);
   font-weight: 500;
+  margin-top: var(--space-8);
 }
 
 .home-container .info p {
   color: var(--third-color);
   font-size: var(--normal-font-size);
   max-width: 352px;
+  margin-top: var(--space-16);
+  line-height: 1.75;
 }
 
 .btn {
@@ -241,10 +273,10 @@ header.sticky .nav-bar {
   font-size: var(--normal-font-size);
   font-weight: 500;
   display: inline-block;
-  margin-top: 24px;
-  padding: 20px 32px;
+  margin-top: var(--space-24);
+  padding: var(--space-20) var(--space-32);
   letter-spacing: 1px;
-  border-radius: 10px;
+  border-radius: 8px;
   transition: 0.3s ease;
 }
 
@@ -270,12 +302,12 @@ header.sticky .nav-bar {
   color: var(--first-color);
   font-size: var(--normal-font-size);
   font-weight: 500;
-  margin-top: 20px;
+  margin-top: var(--space-20);
 }
 
 .home .scroll-down i {
   color: var(--second-color);
-  font-size: 20px;
+  font-size: var(--text-20);
   animation: arrow-down ease 2s infinite;
 }
 
@@ -285,7 +317,7 @@ header.sticky .nav-bar {
   }
 
   30% {
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
 }
 
@@ -294,7 +326,7 @@ header.sticky .nav-bar {
   max-width: 1150px;
   margin-left: auto;
   margin-right: auto;
-  padding: 96px 32px 32px;
+  padding: var(--space-96) var(--space-32) var(--space-32);
 }
 
 .sub-section {
@@ -302,13 +334,13 @@ header.sticky .nav-bar {
   max-width: 1150px;
   margin-left: auto;
   margin-right: auto;
-  padding: 96px 0;
+  padding: var(--space-96) 0;
 }
 
 .section-title {
-  font-size: 48px;
+  font-size: var(--text-48);
   font-weight: 700;
-  margin-bottom: 48px;
+  margin-bottom: var(--space-48);
   position: relative;
   display: inline-block;
 }
@@ -329,7 +361,7 @@ header.sticky .nav-bar {
 }
 
 .about .container .content {
-  column-gap: 40px;
+  column-gap: var(--space-40);
   width: 100%;
 }
 
@@ -340,8 +372,8 @@ header.sticky .nav-bar {
 .about-img img {
   max-width: 100%;
   min-width: 500px;
-  border-radius: 10px;
-  width: 625px;
+  border-radius: 8px;
+  width: 624px;
   height: 476px;
   object-fit: cover;
 }
@@ -351,15 +383,15 @@ header.sticky .nav-bar {
 }
 
 .about-info .description h3 {
-  font-size: 32px;
+  font-size: var(--text-32);
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: var(--space-12);
 }
 
 .about-info .description h4 {
-  font-size: 24px;
+  font-size: var(--text-24);
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: var(--space-12);
 }
 
 .about-info .description h4 span {
@@ -369,36 +401,38 @@ header.sticky .nav-bar {
 .about-info .description p {
   color: var(--third-color);
   font-size: var(--normal-font-size);
-  margin-bottom: 16px;
-  padding-bottom: 24px;
+  margin-bottom: var(--space-16);
+  padding-bottom: var(--space-24);
   border-bottom: 2px solid var(--line-color);
+  line-height: 1.75;
 }
 
 .about-info .professional-list {
   display: flex;
-  column-gap: 32px;
+  column-gap: var(--space-32);
 }
 
 .about-info .professional-list .list-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 16px;
-  margin-bottom: 20px;
+  column-gap: var(--space-16);
+  margin-bottom: var(--space-20);
 }
 
 .about-info .professional-list .list-item h3 {
-  font-size: 40px;
+  font-size: var(--text-40);
   font-weight: 700;
 }
 
 .about-info .professional-list .list-item span {
   color: var(--third-color);
   font-size: var(--small-font-size);
+  line-height: 1.5;
 }
 
 .about-info .professional-list .list-item i {
-  font-size: 32px;
+  font-size: var(--text-32);
   color: var(--second-color);
   transition: transform 0.3s ease, color 0.3s ease;
 }
@@ -414,28 +448,29 @@ header.sticky .nav-bar {
 
 .skills-description {
   max-width: 700px;
-  margin-bottom: 48px;
+  margin-bottom: var(--space-48);
 }
 
 .skills-description h3 {
-  font-size: 32px;
-  margin-bottom: 8px;
+  font-size: var(--text-32);
+  margin-bottom: var(--space-8);
 }
 
 .skills-description p {
   color: var(--third-color);
+  line-height: 1.75;
 }
 
 .skills-info {
   max-width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  gap: var(--space-20);
   margin: 0 auto;
 }
 
 .skills-info h4 {
-  margin-bottom: 20px;
+  margin-bottom: var(--space-20);
 }
 
 .skills-info h4 span {
@@ -443,8 +478,8 @@ header.sticky .nav-bar {
   color: oklch(0.98 0 0);
   font-size: var(--normal-font-size);
   font-weight: 400;
-  padding: 5px 15px;
-  border-radius: 5px;
+  padding: 8px var(--space-16);
+  border-radius: 8px;
   transition: 0.3s ease;
 }
 
@@ -453,27 +488,28 @@ header.sticky .nav-bar {
 }
 
 .education-all {
-  margin-bottom: 80px;
+  margin-bottom: var(--space-80);
 }
 
 .edu-list .item {
   background: var(--card-bg-color);
   box-shadow: var(--box-shadow);
-  border-bottom: 3px solid var(--second-color);
-  padding: 20px;
-  margin-top: 15px;
-  border-radius: 6px;
+  border-bottom: 4px solid var(--second-color);
+  padding: var(--space-20);
+  margin-top: var(--space-16);
+  border-radius: 8px;
   transition: 0.3s ease;
 }
 
 .edu-list .item .year {
   font-size: var(--small-font-size);
-  margin-bottom: 8px;
+  margin-bottom: var(--space-8);
 }
 
 .edu-list .item p {
   color: var(--third-color);
   font-size: var(--small-font-size);
+  line-height: 1.75;
 }
 
 .edu-list .item p span {
@@ -485,9 +521,9 @@ header.sticky .nav-bar {
 .bar {
   background: var(--card-bg-color);
   box-shadow: var(--box-shadow);
-  margin-bottom: 12px;
-  padding: 20px;
-  border-radius: 6px;
+  margin-bottom: var(--space-12);
+  padding: var(--space-20);
+  border-radius: 8px;
   transition: 0.3s ease;
 }
 
@@ -495,9 +531,9 @@ header.sticky .nav-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-8);
   font-size: var(--small-font-size);
-  gap: 12px;
+  gap: var(--space-12);
   flex-wrap: wrap;
 }
 
@@ -508,9 +544,9 @@ header.sticky .nav-bar {
 .bar .line {
   position: relative;
   width: 100%;
-  height: 8px;
+  height: var(--space-8);
   background: oklch(0.24 0 0);
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .bar .line::before {
@@ -520,7 +556,7 @@ header.sticky .nav-bar {
   top: 0%;
   left: 0%;
   background: var(--second-color);
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .bar .html::before {
@@ -545,19 +581,19 @@ header.sticky .nav-bar {
 
 .experience-card {
   background: var(--card-bg-color);
-  border-bottom: 3px solid var(--second-color);
-  padding: 36px;
-  border-radius: 6px;
+  border-bottom: 4px solid var(--second-color);
+  padding: var(--space-36);
+  border-radius: 8px;
   box-shadow: var(--box-shadow);
   transition: 0.3s ease;
 }
 
 .experience-card .upper {
-  line-height: 32px;
+  line-height: var(--space-32);
 }
 
 .experience-card h3 {
-  font-size: 24px;
+  font-size: var(--text-24);
   font-weight: 700;
 }
 
@@ -575,7 +611,7 @@ header.sticky .nav-bar {
   width: 100%;
   height: 2px;
   background: var(--line-color);
-  margin: 12px 0 24px;
+  margin: var(--space-12) 0 var(--space-24);
 }
 
 .edu-list .item:hover,
@@ -589,10 +625,10 @@ header.sticky .nav-bar {
 .experience-card {
   background: var(--card-bg-color);
   box-shadow: var(--box-shadow);
-  border-bottom: 3px solid var(--second-color);
-  border-radius: 6px;
+  border-bottom: 4px solid var(--second-color);
+  border-radius: 8px;
   transition: 0.3s ease;
-  padding: 24px;
+  padding: var(--space-24);
 }
 
 .bar .info span:first-child {
@@ -609,14 +645,15 @@ header.sticky .nav-bar {
 
 .experience-card ul {
   list-style: disc !important;
-  padding-left: 20px;
+  padding-left: var(--space-20);
   margin: 0;
 }
 
 .experience-card li {
   display: list-item;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-8);
   color: var(--third-color);
+  line-height: 1.75;
 }
 
 .services .container .content {
@@ -624,8 +661,8 @@ header.sticky .nav-bar {
 }
 
 .services-description h3 {
-  font-size: 32px;
-  margin-bottom: 48px;
+  font-size: var(--text-32);
+  margin-bottom: var(--space-48);
 }
 
 .service-list {
@@ -633,28 +670,28 @@ header.sticky .nav-bar {
   grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
   max-width: 100%;
   margin: 0 auto;
-  gap: 20px;
+  gap: var(--space-20);
 }
 
 .service-card {
   background: var(--card-bg-color);
-  border-bottom: 3px solid var(--second-color);
-  padding: 52px;
-  border-radius: 6px;
+  border-bottom: 4px solid var(--second-color);
+  padding: var(--space-52);
+  border-radius: 8px;
   box-shadow: var(--box-shadow);
 }
 
 .service-card > i {
   color: var(--second-color);
-  font-size: 48px;
-  margin-bottom: 32px;
+  font-size: var(--text-48);
+  margin-bottom: var(--space-32);
 }
 
 .service-card h3 {
-  font-size: 24px;
+  font-size: var(--text-24);
   font-weight: 700;
-  line-height: 32px;
-  margin-bottom: 20px;
+  line-height: var(--space-32);
+  margin-bottom: var(--space-20);
 }
 
 .service-card .learn-more-btn {
@@ -672,7 +709,7 @@ header.sticky .nav-bar {
 }
 
 .service-card:hover .learn-more-btn i {
-  transform: translateX(10px);
+  transform: translateX(8px);
 }
 
 .service-modal {
@@ -683,7 +720,7 @@ header.sticky .nav-bar {
   top: 0;
   left: 0;
   background: var(--bg-transparent-color);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   visibility: hidden;
   opacity: 0;
   transition: 0.3s ease;
@@ -698,11 +735,11 @@ header.sticky .nav-bar {
   position: relative;
   background: var(--modal-bg-color);
   max-width: 600px;
-  margin: 20px;
-  padding: 40px;
-  border-radius: 10px;
+  margin: var(--space-20);
+  padding: var(--space-40);
+  border-radius: 8px;
   box-shadow: var(--box-shadow);
-  transform: translateY(-50px);
+  transform: translateY(-48px);
   transition: 0.5s ease;
 }
 
@@ -714,27 +751,28 @@ header.sticky .nav-bar {
   position: absolute;
   top: 0;
   right: 0;
-  margin: 20px;
+  margin: var(--space-20);
   cursor: pointer;
 }
 
 .service-modal-body h3 {
-  font-size: 32px;
+  font-size: var(--text-32);
 }
 
 .service-modal-body h4 {
-  font-size: 24px;
+  font-size: var(--text-24);
   font-weight: 600;
-  margin: 16px 0 12px;
+  margin: var(--space-16) 0 var(--space-12);
 }
 
 .service-modal-body p,
 .service-modal-body ul li {
   color: var(--third-color);
+  line-height: 1.75;
 }
 
 .service-modal-body ul li {
-  margin-top: 16px;
+  margin-top: var(--space-16);
 }
 
 .service-modal-body ul li i {
@@ -749,7 +787,7 @@ header.sticky .nav-bar {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   max-width: 100%;
-  gap: 36px;
+  gap: var(--space-36);
   margin: 0 auto;
 }
 
@@ -757,7 +795,7 @@ header.sticky .nav-bar {
   position: relative;
   max-width: 100%;
   height: 360px;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: var(--box-shadow);
   overflow: hidden;
   cursor: pointer;
@@ -780,9 +818,9 @@ header.sticky .nav-bar {
   position: absolute;
   bottom: 0;
   left: 0;
-  margin: 20px;
+  margin: var(--space-20);
   color: oklch(0.98 0 0);
-  transform: translateY(20px);
+  transform: translateY(var(--space-20));
   opacity: 0;
   transition: 0.5s ease;
 }
@@ -793,11 +831,11 @@ header.sticky .nav-bar {
 }
 
 .portfolio-list .img-card .info h3 {
-  font-size: 24px;
+  font-size: var(--text-24);
 }
 
 .portfolio-list .img-card .info span {
-  font-size: 20px;
+  font-size: var(--text-20);
 }
 
 .portfolio-list .img-card img {
@@ -831,11 +869,11 @@ header.sticky .nav-bar {
   position: relative;
   background: var(--modal-bg-color);
   max-width: 600px;
-  margin: 20px;
-  padding: 40px;
-  border-radius: 10px;
+  margin: var(--space-20);
+  padding: var(--space-40);
+  border-radius: 8px;
   box-shadow: var(--box-shadow);
-  transform: translateY(-50px);
+  transform: translateY(-48px);
   transition: 0.5s ease;
 }
 
@@ -847,29 +885,30 @@ header.sticky .nav-bar {
   position: absolute;
   top: 0;
   right: 0;
-  margin: 20px;
+  margin: var(--space-20);
   cursor: pointer;
 }
 
 .portfolio-model-body h3 {
-  font-size: 24px;
+  font-size: var(--text-24);
 }
 
 .portfolio-model-body p {
   color: var(--third-color);
+  line-height: 1.75;
 }
 
 .portfolio-model-body img {
   width: 100%;
   height: auto;
-  margin: 20px 0;
-  border-radius: 10px;
+  margin: var(--space-20) 0;
+  border-radius: 8px;
   object-fit: cover;
   object-position: center;
 }
 
 .get-in-touch {
-  margin-top: 72px;
+  margin-top: var(--space-72);
 }
 
 .get-in-touch .container .content {
@@ -881,9 +920,9 @@ header.sticky .nav-bar {
   width: 90%;
   background: var(--card-bg-color);
   box-shadow: var(--box-shadow);
-  padding: 52px;
-  border-radius: 10px;
-  column-gap: 52px;
+  padding: var(--space-52);
+  border-radius: 8px;
+  column-gap: var(--space-52);
 }
 
 .contact-card .title {
@@ -892,19 +931,19 @@ header.sticky .nav-bar {
 }
 
 .contact-card .title h4 {
-  font-size: 20px;
+  font-size: var(--text-20);
   font-weight: 300;
-  line-height: 20px;
+  line-height: var(--text-20);
   color: var(--third-color);
 }
 
 .contact-card .title h3 {
-  font-size: 36px;
+  font-size: var(--text-36);
   font-weight: 400;
 }
 
 .contact-card .title h2 {
-  font-size: 64px;
+  font-size: var(--text-64);
   font-weight: 700;
   color: var(--first-color);
 }
@@ -918,9 +957,9 @@ header.sticky .nav-bar {
 }
 
 .contact-left h2 {
-  font-size: 36px;
+  font-size: var(--text-36);
   font-weight: 800;
-  margin-bottom: 40px;
+  margin-bottom: var(--space-40);
 }
 
 #contact .contact-list {
@@ -928,25 +967,25 @@ header.sticky .nav-bar {
 }
 
 .contact-list li {
-  margin-bottom: 40px;
+  margin-bottom: var(--space-40);
 }
 
 .contact-list li h3 {
-  font-size: 24px;
+  font-size: var(--text-24);
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: var(--space-12);
   color: var(--first-color);
 }
 
 #contact .contact-list .item-title i {
   color: var(--second-color);
-  font-size: 24px;
+  font-size: var(--text-24);
   margin-right: 10px;
 }
 
 .contact-list li span {
   color: var(--third-color);
-  margin-left: 40px;
+  margin-left: var(--space-40);
 }
 
 #contact .contact-list a:link,
@@ -961,8 +1000,9 @@ header.sticky .nav-bar {
 
 .contact-right p {
   color: var(--third-color);
-  font-size: 32px;
-  margin-bottom: 32px;
+  font-size: var(--text-32);
+  margin-bottom: var(--space-32);
+  line-height: 1.5;
 }
 
 .contact-right p span {
@@ -976,9 +1016,9 @@ header.sticky .nav-bar {
   color: var(--first-color);
   background: var(--transparent-color-02);
   font-size: var(--normal-font-size);
-  margin-bottom: 20px;
-  padding: 16px 40px 40px 20px;
-  border-radius: 5px;
+  margin-bottom: var(--space-20);
+  padding: var(--space-16) var(--space-40) var(--space-40) var(--space-20);
+  border-radius: 8px;
 }
 
 .contact-form textarea {
@@ -1006,7 +1046,7 @@ header.sticky .nav-bar {
 .contact-form .btn {
   border: none;
   margin-top: 0;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
@@ -1017,8 +1057,8 @@ footer {
   flex-direction: column;
   background: oklch(0.06 0 0);
   width: 100%;
-  margin-top: 52px;
-  padding: 48px 32px;
+  margin-top: var(--space-52);
+  padding: var(--space-48) var(--space-32);
   color: oklch(0.98 0 0);
 }
 
@@ -1034,7 +1074,7 @@ footer a {
 }
 
 .footer-container .about h2 {
-  font-size: 48px;
+  font-size: var(--text-48);
   font-weight: 600;
   background: linear-gradient(to top, transparent 0%, oklch(0.98 0 0) 50%);
   background-clip: text;
@@ -1046,8 +1086,9 @@ footer a {
 .footer-container .about p {
   font-size: var(--normal-font-size);
   font-weight: 300;
-  margin-bottom: 32px;
+  margin-bottom: var(--space-32);
   color: var(--third-color);
+  line-height: 1.75;
 }
 
 .footer-container .info,
@@ -1059,9 +1100,9 @@ footer a {
 
 .footer-container .info h3,
 .footer-container .follow h3 {
-  font-size: 20px;
+  font-size: var(--text-20);
   font-weight: 500;
-  margin-bottom: 32px;
+  margin-bottom: var(--space-32);
 }
 
 .footer-container .info ul,
@@ -1070,18 +1111,18 @@ footer a {
 }
 
 .footer-container .info a {
-  margin: 20px;
+  margin: var(--space-20);
 }
 
 .footer-container .follow a {
-  font-size: 24px;
-  margin: 20px;
+  font-size: var(--text-24);
+  margin: var(--space-20);
 }
 
 .footer-copyright p {
   font-size: var(--normal-font-size);
   font-weight: 300;
-  margin-top: 52px;
+  margin-top: var(--space-52);
   color: var(--third-color);
 }
 
@@ -1114,11 +1155,11 @@ footer a {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 20px;
-    padding: 40px;
-    border-radius: 10px;
+    margin: var(--space-20);
+    padding: var(--space-40);
+    border-radius: 8px;
     box-shadow: var(--box-shadow);
-    transform: translateY(-50px);
+    transform: translateY(-48px);
     transition: 0.3s ease;
   }
 
@@ -1127,7 +1168,7 @@ footer a {
   }
 
   .nav-items a {
-    margin: 16px 52px;
+    margin: var(--space-16) var(--space-52);
   }
 
   .nav-close-btn {
@@ -1136,8 +1177,8 @@ footer a {
     filter: var(--color-filter);
     background-size: 12px;
     background-position: center;
-    width: 40px;
-    height: 40px;
+    width: var(--space-40);
+    height: var(--space-40);
     top: 0;
     right: 0;
     margin: 10px;
@@ -1147,22 +1188,22 @@ footer a {
   .nav-menu-btn {
     background: url('/img/images/menu-btn.png') no-repeat;
     filter: var(--color-filter);
-    background-size: 30px;
+    background-size: 28px;
     background-position: center;
-    width: 40px;
-    height: 40px;
+    width: var(--space-40);
+    height: var(--space-40);
     cursor: pointer;
     display: block;
   }
 
   .home .home-container .info {
-    font-size: 16px;
+    font-size: var(--text-16);
   }
 
   .about .container .content {
     display: grid;
     width: 100%;
-    row-gap: 20px;
+    row-gap: var(--space-20);
   }
 
   .about-img img {
@@ -1189,17 +1230,17 @@ footer a {
   }
 
   .contact-card .title {
-    font-size: 16px;
-    line-height: 48px;
+    font-size: var(--text-16);
+    line-height: var(--text-48);
   }
 
   .contact .content {
     flex-direction: column;
-    font-size: 16px;
+    font-size: var(--text-16);
   }
 
   .contact .contact-left {
-    margin-bottom: 40px;
+    margin-bottom: var(--space-40);
   }
 
   .contact-form .second-row {
@@ -1220,7 +1261,7 @@ footer a {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 48px;
+    margin-bottom: var(--space-48);
   }
 
   .footer-container .info ul {
@@ -1229,31 +1270,31 @@ footer a {
   }
 
   .footer-container .info ul li {
-    margin: 4px 0;
+    margin: var(--space-4) 0;
   }
 
   .footer-container .hr {
     width: 100%;
     height: 2px;
     background: oklch(1 0 0 / 0.1);
-    margin: 12px 0 24px;
+    margin: var(--space-12) 0 var(--space-24);
   }
 }
 
 @media screen and (max-width: 730px) {
   body {
-    margin: 80px 0 0 0;
+    margin: var(--space-80) 0 0 0;
   }
 
   .section-title {
-    font-size: 32px;
+    font-size: var(--text-32);
   }
 
   .home .home-container {
     display: grid;
     grid-template-columns: 56px 1fr;
-    column-gap: 16px;
-    row-gap: 24px;
+    column-gap: var(--space-16);
+    row-gap: var(--space-24);
     align-items: start;
   }
 
@@ -1285,11 +1326,11 @@ footer a {
     grid-column: 1 / -1;
     grid-row: 2;
     width: 100%;
-    font-size: 16px;
+    font-size: var(--text-16);
   }
 
   .media-icons {
-    margin-bottom: 80px;
+    margin-bottom: var(--space-80);
   }
 
   .get-in-touch .contact-card {
@@ -1297,12 +1338,12 @@ footer a {
   }
 
   .contact-card .title {
-    font-size: 12px;
-    line-height: 40px;
+    font-size: var(--text-12);
+    line-height: var(--space-40);
   }
 
   .contact-card .contact-btn .btn {
-    font-size: 16px;
+    font-size: var(--text-16);
   }
 }
 
@@ -1319,14 +1360,14 @@ footer a {
 
 @media (max-width: 1024px) {
   .section {
-    padding: 80px 24px 32px;
+    padding: var(--space-80) var(--space-24) var(--space-32);
   }
 
   .skills-info,
   .service-list,
   .portfolio-list {
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 24px;
+    gap: var(--space-24);
   }
 }
 
@@ -1345,6 +1386,6 @@ footer a {
 @media (max-width: 768px) {
   .contact .container .content {
     flex-direction: column;
-    gap: 32px;
+    gap: var(--space-32);
   }
 }
