@@ -1,34 +1,830 @@
 <script lang="ts">
-  import Header from '$lib/components/layout/Header.svelte';
-  import Footer from '$lib/components/layout/Footer.svelte';
+  import { onMount } from 'svelte';
 
-  import HeroSection from '$lib/components/sections/HeroSection.svelte';
-  import FeatureSection from '$lib/components/sections/FeatureSection.svelte';
-  import InfoSection from '$lib/components/sections/InfoSection.svelte';
-  import ShowcaseSection from '$lib/components/sections/ShowcaseSection.svelte';
-  import StatsSection from '$lib/components/sections/StatsSection.svelte';
-  import CtaSection from '$lib/components/sections/CtaSection.svelte';
+  type Cleanup = () => void;
 
-  import { siteConfig } from '$lib/config/site';
+  const services = [
+    {
+      icon: 'fa-solid fa-database',
+      title: 'Data Pipeline Development',
+      description: 'Building scalable ETL and ELT pipelines that move data securely and efficiently between systems.',
+      bullets: [
+        'Custom pipeline design and automation',
+        'Database integration and data flow optimisation',
+        'Data quality checks and monitoring',
+        'Performance tuning for high-volume data'
+      ]
+    },
+    {
+      icon: 'fa-solid fa-sitemap',
+      title: 'Workflow Automation',
+      description: 'Automating manual data processes to improve accuracy and save time.',
+      bullets: [
+        'Apache Airflow DAG design and scheduling',
+        'Task orchestration and dependency handling',
+        'Automated validation and alert systems',
+        'Reduction of manual repetitive work'
+      ]
+    },
+    {
+      icon: 'fa-solid fa-cloud',
+      title: 'Cloud Data Solutions',
+      description: 'Designing and maintaining cloud-based data infrastructure.',
+      bullets: [
+        'AWS S3, EC2, and RDS setup',
+        'Data migration and storage optimisation',
+        'Backup and archiving strategies',
+        'Cost-efficient data access solutions'
+      ]
+    },
+    {
+      icon: 'fa-brands fa-medium',
+      title: 'Medium Content Writing',
+      description: 'Writing engaging, insightful, and data-driven articles for Medium and other online audiences.',
+      bullets: [
+        'Data and tech-focused article writing',
+        'SEO-friendly storytelling and formatting',
+        'Consistent publishing and topic research',
+        'Collaboration on thought-leadership content'
+      ]
+    }
+  ];
+
+  const portfolioItems = [
+    {
+      title: 'Web Design',
+      subtitle: 'Personal portfolio',
+      image: '/img/images/port-webdesign.jpg',
+      modalTitle: 'Web Design – Portfolio Website',
+      body:
+        'Responsive single-page portfolio built with HTML, CSS, and JS (sections: Home, About, Skills, Services, Portfolio, Contact). Includes Font Awesome icons, scroll animations, and modular components for future projects.'
+    },
+    {
+      title: 'Data Pipeline',
+      subtitle: 'ETL / ELT',
+      image: '/img/images/port-data-pipeline.jpg',
+      modalTitle: 'Data Pipeline Development',
+      body:
+        'Designed and optimised ETL/ELT pipelines moving data from SFTP/AWS into warehouse layers. Included data validation, archiving patterns, and performance tuning for high-volume datasets.'
+    },
+    {
+      title: 'Airflow Orchestration',
+      subtitle: 'DAGs / Scheduling',
+      image: '/img/images/port-airflow.jpg',
+      modalTitle: 'Airflow DAG Orchestration',
+      body:
+        'Built and maintained multiple Apache Airflow DAGs (campaign monitoring, OSAS/CMS feeds, remote logging). Included external task sensors, conditional triggers, and environment-aware variables.'
+    },
+    {
+      title: 'Cloud Data Solutions',
+      subtitle: 'AWS / S3 / EC2',
+      image: '/img/images/port-cloud.jpg',
+      modalTitle: 'Cloud Data Solutions',
+      body:
+        'Provisioned and integrated AWS services (S3 access points, EC2, RDS) for data-engineering workloads. Focused on secure access, bucket structure, and cost-aware storage/archiving strategies.'
+    },
+    {
+      title: 'Medium Writing',
+      subtitle: 'Data / Engineering',
+      image: '/img/images/port-medium.jpg',
+      modalTitle: 'Medium Content Writing',
+      body:
+        'Long-form, technical-but-readable articles on data pipelines, Airflow tricks, and working with AWS in real client environments. Structured for SEO and developer audiences.'
+    },
+    {
+      title: 'Branding & UI',
+      subtitle: 'Support assets',
+      image: '/img/images/port-branding.jpg',
+      modalTitle: 'Branding & UI Support',
+      body:
+        'Support visuals and UI layouts for dashboards, portfolio sections, and service pages to keep the whole site consistent with any personal brand.'
+    }
+  ];
+
+  let activeServiceModal: number | null = null;
+  let activePortfolioModal: number | null = null;
+  let navOpen = false;
+  let isSticky = false;
+  let showScrollTop = false;
+  let activeSection = 'home';
+  let isDarkTheme = false;
+
+  const navLinks = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'services', label: 'Services' },
+    { id: 'portfolio', label: 'Portfolio' },
+    { id: 'contact', label: 'Contact' }
+  ];
+
+  function closeAllModals() {
+    activeServiceModal = null;
+    activePortfolioModal = null;
+  }
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleTheme() {
+    isDarkTheme = !isDarkTheme;
+
+    if (typeof document !== 'undefined') {
+      document.body.classList.toggle('dark-theme', isDarkTheme);
+      localStorage.setItem('saved-theme', isDarkTheme ? 'dark' : 'light');
+      localStorage.setItem('saved-icon', isDarkTheme ? 'sun' : 'moon');
+    }
+  }
+
+  function syncScrollState() {
+    const scrollY = window.scrollY;
+    isSticky = scrollY > 0;
+    showScrollTop = scrollY > 500;
+
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
+
+    for (const section of sections) {
+      const sectionHeight = section.offsetHeight;
+      const sectionTop = section.offsetTop - 50;
+      const id = section.getAttribute('id') ?? '';
+
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        activeSection = id;
+      }
+    }
+  }
+
+  function closeOnEscape(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      closeAllModals();
+      navOpen = false;
+    }
+  }
+
+  function loadScrollReveal(): Promise<void> {
+    return new Promise((resolve) => {
+      if (typeof window === 'undefined') {
+        resolve();
+        return;
+      }
+
+      if ((window as Window & { ScrollReveal?: unknown }).ScrollReveal) {
+        resolve();
+        return;
+      }
+
+      const existing = document.querySelector<HTMLScriptElement>('script[data-scrollreveal="true"]');
+      if (existing) {
+        existing.addEventListener('load', () => resolve(), { once: true });
+        existing.addEventListener('error', () => resolve(), { once: true });
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/scrollreveal';
+      script.defer = true;
+      script.dataset.scrollreveal = 'true';
+      script.onload = () => resolve();
+      script.onerror = () => resolve();
+      document.head.appendChild(script);
+    });
+  }
+
+  function initScrollReveal() {
+    const srWindow = window as Window & {
+      ScrollReveal?: (options?: Record<string, unknown>) => {
+        reveal: (selector: string, options?: Record<string, unknown>) => void;
+      };
+    };
+
+    if (!srWindow.ScrollReveal) return;
+
+    srWindow.ScrollReveal({
+      reset: false,
+      distance: '24px',
+      duration: 800,
+      delay: 0
+    });
+
+    srWindow.ScrollReveal().reveal('.home .info h1, .section-title-01, .section-title-02', {
+      delay: 500,
+      origin: 'left'
+    });
+    srWindow.ScrollReveal().reveal('.home .info h3, .home .info p, .about-info .btn', {
+      delay: 600,
+      origin: 'right'
+    });
+    srWindow.ScrollReveal().reveal('.home .info .btn', {
+      delay: 700,
+      origin: 'bottom'
+    });
+    srWindow.ScrollReveal().reveal('.media-icons i, .contact-left li', {
+      delay: 500,
+      origin: 'left',
+      interval: 200
+    });
+    srWindow.ScrollReveal().reveal('.home-img, .about-img', {
+      delay: 500,
+      origin: 'bottom'
+    });
+    srWindow.ScrollReveal().reveal('.about .description, .contact-right', {
+      delay: 600,
+      origin: 'right'
+    });
+    srWindow.ScrollReveal().reveal('.about .professional-list li', {
+      delay: 500,
+      origin: 'right',
+      interval: 200
+    });
+    srWindow.ScrollReveal().reveal(
+      '.skills-description, .services-description, .contact-card, .contact-left h2',
+      {
+        delay: 700,
+        origin: 'left'
+      }
+    );
+    srWindow.ScrollReveal().reveal(
+      '.experience-card, .service-card, .education, .portfolio .img-card',
+      {
+        delay: 800,
+        origin: 'bottom',
+        interval: 200
+      }
+    );
+    srWindow.ScrollReveal().reveal('footer .group', {
+      delay: 500,
+      origin: 'top',
+      interval: 200
+    });
+  }
+
+  onMount(() => {
+    const cleanupFns: Cleanup[] = [];
+
+    const savedTheme = localStorage.getItem('saved-theme');
+    isDarkTheme = savedTheme === 'dark';
+    document.body.classList.toggle('dark-theme', isDarkTheme);
+
+    syncScrollState();
+
+    const onScroll = () => syncScrollState();
+    const onKeydown = (event: KeyboardEvent) => closeOnEscape(event);
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('keydown', onKeydown);
+
+    cleanupFns.push(() => window.removeEventListener('scroll', onScroll));
+    cleanupFns.push(() => window.removeEventListener('keydown', onKeydown));
+
+    loadScrollReveal().then(() => {
+      initScrollReveal();
+    });
+
+    return () => {
+      cleanupFns.forEach((fn) => fn());
+    };
+  });
 </script>
 
 <svelte:head>
-  <title>{siteConfig.metaTitle}</title>
-  <meta name="description" content={siteConfig.metaDescription} />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sibabalwe — Data Engineer Portfolio</title>
+  <meta
+    name="description"
+    content="Remote Data Engineer in Pretoria, South Africa. Python, SQL, Airflow, AWS, ETL, ELT, workflow automation and portfolio projects."
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  />
 </svelte:head>
 
-<div id="top">
-  <Header />
+<a href="#home" class="visually-hidden">Skip to content</a>
 
-  <main>
-    <HeroSection />
-    <FeatureSection />
-    <InfoSection />
-    <ShowcaseSection />
-    <StatsSection />
-    <CtaSection />
-  </main>
-
-  <Footer />
+<div
+  class="scrollToTop-btn flex-centre {showScrollTop ? 'active' : ''}"
+  aria-hidden="true"
+  on:click={scrollToTop}
+>
+  <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
 </div>
+
+<button
+  type="button"
+  class="theme-btn flex-center {isDarkTheme ? 'sun' : ''}"
+  aria-label="Toggle theme"
+  on:click={toggleTheme}
+>
+  <i class="fa-solid fa-moon" aria-hidden="true"></i>
+  <i class="fa-solid fa-sun" aria-hidden="true"></i>
+</button>
+
+<header class:sticky={isSticky}>
+  <div class="nav-bar">
+    <a href="#home" class="logo">Sibabalwe</a>
+
+    <nav class="navigation {navOpen ? 'active' : ''}" aria-label="Primary">
+      <div class="nav-items" id="primary-menu">
+        <button
+          type="button"
+          class="nav-close-btn"
+          aria-label="Close menu"
+          on:click={() => (navOpen = false)}
+        ></button>
+
+        {#each navLinks as link}
+          <a
+            href={`#${link.id}`}
+            class:active={activeSection === link.id}
+            on:click={() => (navOpen = false)}
+          >
+            {link.label}
+          </a>
+        {/each}
+      </div>
+    </nav>
+
+    <button
+      type="button"
+      class="nav-menu-btn"
+      aria-label="Open menu"
+      on:click={() => (navOpen = true)}
+    ></button>
+  </div>
+</header>
+
+<main>
+  <section class="home flex-centre" id="home" aria-label="Home">
+    <div class="home-container">
+      <div class="media-icons">
+        <a
+          href="https://www.facebook.com/share/19MJHuJnRk/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+        </a>
+        <a
+          href="https://medium.com/@sibabalwesinyaniso"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Medium"
+        >
+          <i class="fab fa-medium" aria-hidden="true"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/sibabalwe-sinyaniso"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+        >
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <div class="info">
+        <h1>Hi, I am Sibabalwe</h1>
+        <h3>Remote Data Engineer — Pretoria, South Africa</h3>
+        <p>
+          I build scalable data pipelines and automation with Python, SQL, Airflow, and AWS—making
+          data reliable and accessible across cloud and on-prem.
+        </p>
+        <a href="#contact" class="btn">
+          Contact Me <i class="fa-solid fa-arrow-circle-right" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <div class="home-img">
+        <img
+          src="/img/images/main-img.png"
+          alt="Sibabalwe — Data Engineer portrait"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <a href="#about" class="scroll-down">
+      Scroll Down <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+    </a>
+  </section>
+
+  <section class="about section" id="about" aria-label="About">
+    <div class="container flex-centre">
+      <h1 class="section-title-01">About Me</h1>
+      <h2 class="section-title-02">About Me</h2>
+
+      <div class="content flex-centre">
+        <div class="about-img">
+          <img
+            src="/img/images/about-img.png"
+            alt="Working at a laptop"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div class="about-info">
+          <div class="description">
+            <h3>I'm Sibabalwe</h3>
+            <h4>A <span>Data Engineer</span> based in <span>Pretoria, South Africa</span></h4>
+            <p>
+              I design and develop scalable data pipelines and automation solutions using Python,
+              SQL, Apache Airflow, and AWS. My work focuses on improving data reliability,
+              accuracy, and accessibility across cloud and on-premise environments. My passion is
+              to simplify complex data systems through automation and thoughtful engineering. Check
+              out my portfolio below.
+            </p>
+          </div>
+
+          <ul class="professional-list">
+            <li class="list-item">
+              <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+              <h3>3+</h3>
+              <span>Years of<br />Experience</span>
+            </li>
+          </ul>
+
+          <a
+            href="/asserts/sibabalwe_sinyaniso_updated_cv.pdf"
+            class="btn"
+            target="_blank"
+            rel="noopener"
+          >
+            Download CV <i class="fa-solid fa-download" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="skills section" id="skills" aria-label="Skills">
+    <div class="container flex-centre">
+      <h1 class="section-title-01">Skills</h1>
+      <h2 class="section-title-02">Skills</h2>
+
+      <div class="content">
+        <div class="skills-description">
+          <h3>Education &amp; Skills</h3>
+          <p>
+            For more than 3 years I’ve been designing, building, and maintaining modern ETL
+            pipelines using Python, SQL, and cloud technologies like AWS.
+          </p>
+        </div>
+
+        <div class="skills-info education-all">
+          <div class="education">
+            <h4><span>Education</span></h4>
+            <ul class="edu-list">
+              <li class="item">
+                <span class="year">2019 – 2023</span>
+                <p>
+                  <span>Advanced Diploma in Information Technology</span> – Cape Peninsula
+                  University of Technology (CPUT), Cape Town
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="education">
+            <h4><span>Certifications</span></h4>
+            <ul class="edu-list">
+              <li class="item">
+                <span class="year">2025</span>
+                <p><span>AWS Partner: Accreditation (Technical)</span> – Amazon Web Services</p>
+              </li>
+              <li class="item">
+                <span class="year">2025</span>
+                <p><span>Python Database Mastery: SQLAlchemy &amp; Alembic</span> – Udemy</p>
+              </li>
+              <li class="item">
+                <span class="year">2024</span>
+                <p><span>ChatGPT Prompt Engineering for Developers</span> – DeepLearning.AI</p>
+              </li>
+              <li class="item">
+                <span class="year">2022</span>
+                <p><span>Data Analysis with Python: Zero to Pandas</span> – Jovian</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="education">
+            <h4><span>Technical Skills</span></h4>
+            <ul class="bars">
+              <li class="bar">
+                <div class="info"><span>Programming</span>–<span>Python, SQL</span></div>
+              </li>
+              <li class="bar">
+                <div class="info"><span>Frameworks</span>–<span>Apache Airflow, Flask</span></div>
+              </li>
+              <li class="bar">
+                <div class="info"><span>Cloud Platforms</span>–<span>AWS (S3, EC2, RDS)</span></div>
+              </li>
+              <li class="bar">
+                <div class="info"><span>Databases</span>–<span>MySQL, PostgreSQL, Vertica</span></div>
+              </li>
+              <li class="bar">
+                <div class="info"><span>Data Tools</span>–<span>Pandas, Microsoft Excel</span></div>
+              </li>
+              <li class="bar">
+                <div class="info"><span>Version Control</span>–<span>Git / GitHub</span></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="skills-description">
+          <h3>Work &amp; Experience</h3>
+        </div>
+
+        <div class="skills-info">
+          <div class="experience-card">
+            <div class="upper">
+              <h3>Junior Data Engineer</h3>
+              <h5>Full Time | Hybrid</h5>
+              <span>February 2023 – Present</span>
+            </div>
+            <div class="hr"></div>
+            <h4><span>Eighty20 Consulting, Cape Town</span></h4>
+            <ul class="experience-list">
+              <li>Designed and optimised 15+ ETL pipelines using AWS and SFTP, reducing processing time by 40%.</li>
+              <li>Built and maintained 25+ Airflow DAGs, cutting downtime to under 2 hours per month.</li>
+              <li>Automated SQL tasks in Excel via ODBC, saving ~20 hours weekly.</li>
+              <li>Implemented data validation workflows achieving near-perfect data accuracy.</li>
+              <li>Contributed to 3 major cross-team data projects.</li>
+              <li>Authored documentation that halved onboarding time for new developers.</li>
+            </ul>
+          </div>
+
+          <div class="experience-card">
+            <div class="upper">
+              <h3>Junior Developer</h3>
+              <h5>Contract | Office</h5>
+              <span>July 2022 – January 2023</span>
+            </div>
+            <div class="hr"></div>
+            <h4><span>Eighty20 Consulting, Cape Town</span></h4>
+            <ul class="experience-list">
+              <li>Built ETL pipelines to process 500MB+ of daily survey data into MySQL.</li>
+              <li>Refactored R-based workflows into Python, cutting runtime by 25%.</li>
+              <li>Improved processing efficiency by 35% using Pandas and SQL.</li>
+              <li>Collaborated in a small team to deliver reliable data systems.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services section" id="services" aria-label="Services">
+    <div class="container flex-centre">
+      <h1 class="section-title-01">Services</h1>
+      <h2 class="section-title-02">Services</h2>
+
+      <div class="content">
+        <div class="services-description">
+          <h3>What I provide</h3>
+        </div>
+
+        <ul class="service-list">
+          {#each services as service, i}
+            <li class="service-container">
+              <div class="service-card">
+                <i class={service.icon} aria-hidden="true"></i>
+                <h3>{service.title}</h3>
+                <div
+                  class="learn-more-btn"
+                  role="button"
+                  tabindex="0"
+                  on:click={() => (activeServiceModal = i)}
+                  on:keydown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') activeServiceModal = i;
+                  }}
+                >
+                  Learn More <i class="fa-solid fa-long-arrow-alt-right" aria-hidden="true"></i>
+                </div>
+              </div>
+
+              <div
+                class="service-modal flex-centre {activeServiceModal === i ? 'active' : ''}"
+                aria-hidden={activeServiceModal === i ? 'false' : 'true'}
+                on:click={(event) => {
+                  if (event.currentTarget === event.target) activeServiceModal = null;
+                }}
+              >
+                <div class="service-modal-body">
+                  <i
+                    class="fa-solid fa-times modal-close-btn"
+                    aria-label="Close"
+                    role="button"
+                    tabindex="0"
+                    on:click={() => (activeServiceModal = null)}
+                    on:keydown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') activeServiceModal = null;
+                    }}
+                  ></i>
+                  <h3>{service.title}</h3>
+                  <h4>What is it?</h4>
+                  <p>{service.description}</p>
+                  <h4>What I provide</h4>
+                  <ul>
+                    {#each service.bullets as bullet}
+                      <li>
+                        <i class="fa-solid fa-check-circle" aria-hidden="true"></i> {bullet}
+                      </li>
+                    {/each}
+                  </ul>
+                </div>
+              </div>
+            </li>
+          {/each}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio section" id="portfolio" aria-label="Portfolio">
+    <div class="container flex-centre">
+      <h1 class="section-title-01">Portfolio</h1>
+      <h2 class="section-title-02">Portfolio</h2>
+
+      <div class="content">
+        <div class="portfolio-list">
+          {#each portfolioItems as item, i}
+            <div class="img-card-container">
+              <div
+                class="img-card"
+                role="button"
+                tabindex="0"
+                on:click={() => (activePortfolioModal = i)}
+                on:keydown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') activePortfolioModal = i;
+                }}
+              >
+                <div class="overlay"></div>
+                <div class="info">
+                  <h3>{item.title}</h3>
+                  <span>{item.subtitle}</span>
+                </div>
+                <img src={item.image} alt={item.modalTitle} loading="lazy" decoding="async" />
+              </div>
+
+              <div
+                class="portfolio-model flex-centre {activePortfolioModal === i ? 'active' : ''}"
+                aria-hidden={activePortfolioModal === i ? 'false' : 'true'}
+                on:click={(event) => {
+                  if (event.currentTarget === event.target) activePortfolioModal = null;
+                }}
+              >
+                <div class="portfolio-model-body">
+                  <i
+                    class="fa-solid fa-times portfolio-close-btn"
+                    aria-label="Close"
+                    role="button"
+                    tabindex="0"
+                    on:click={() => (activePortfolioModal = null)}
+                    on:keydown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') activePortfolioModal = null;
+                    }}
+                  ></i>
+                  <h3>{item.modalTitle}</h3>
+                  <img src={item.image} alt={item.modalTitle} loading="lazy" decoding="async" />
+                  <p>{item.body}</p>
+                </div>
+              </div>
+            </div>
+          {/each}
+        </div>
+      </div>
+    </div>
+
+    <div class="get-in-touch sub-section">
+      <div class="container">
+        <div class="content flex-centre">
+          <div class="contact-card flex-centre">
+            <div class="title">
+              <h4>Let's Talk</h4>
+              <h3>About Your</h3>
+              <h2>Next Project</h2>
+            </div>
+            <div class="contact-btn">
+              <a href="#contact" class="btn">
+                Get In Touch <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact section" id="contact" aria-label="Contact">
+    <div class="container flex-centre">
+      <h1 class="section-title-01">Contact Me</h1>
+      <h2 class="section-title-02">Contact Me</h2>
+
+      <div class="content">
+        <div class="contact-left">
+          <h2>Let's discuss your project</h2>
+          <ul class="contact-list">
+            <li>
+              <h3 class="item-title"><i class="fa-solid fa-phone" aria-hidden="true"></i> Phone</h3>
+              <span>+27 72 211 7731</span>
+            </li>
+            <li>
+              <h3 class="item-title">
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i> Email Address
+              </h3>
+              <span><a href="mailto:s.sibabalwee1@gmail.com">s.sibabalwee1@gmail.com</a></span>
+            </li>
+            <li>
+              <h3 class="item-title">
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i> Location
+              </h3>
+              <span>Pretoria, South Africa</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-right">
+          <p>
+            I'm always open to discussing <br />
+            <span>data projects, workflow automation, collaborations, or creating websites.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-container">
+    <div class="about group">
+      <h2>Sibabalwe</h2>
+      <p>Front-end and Backend Developer</p>
+      <a href="#about">About Me</a>
+    </div>
+
+    <div class="hr" aria-hidden="true"></div>
+
+    <div class="info group">
+      <h3>More</h3>
+      <ul>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="hr" aria-hidden="true"></div>
+
+    <div class="follow group">
+      <h3>Follow</h3>
+      <ul>
+        <li>
+          <a
+            href="https://www.facebook.com/share/19MJHuJnRk/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://medium.com/@sibabalwesinyaniso"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Medium"
+          >
+            <i class="fab fa-medium"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.linkedin.com/in/sibabalwe-sinyaniso"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-copyright group">
+    <p>© 2025 by Siba-Webspace. All rights reserved.</p>
+  </div>
+</footer>
