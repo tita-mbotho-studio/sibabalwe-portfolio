@@ -1,5 +1,3 @@
-<!-- app/src/routes/+page.svelte -->
-
 <script lang="ts">
   import { onMount } from 'svelte';
 
@@ -201,13 +199,6 @@
     };
 
     if (!srWindow.ScrollReveal) return;
-
-    srWindow.ScrollReveal({
-      reset: false,
-      distance: '24px',
-      duration: 800,
-      delay: 0
-    });
 
     srWindow.ScrollReveal({
       reset: false,

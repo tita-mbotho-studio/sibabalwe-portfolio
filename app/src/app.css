@@ -1,69 +1,49 @@
-/* app/src/app.css */
-
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 :root {
-  --bg-dark: oklch(0.12 0.02 20);
-  --bg: oklch(0.16 0.02 20);
-  --bg-light: oklch(0.22 0.025 20);
+  --first-color: oklch(0.98 0 0);
+  --second-color: oklch(0.63 0.22 25);
+  --third-color: oklch(0.72 0 0);
 
-  --text: oklch(0.97 0.01 20);
-  --text-muted: oklch(0.76 0.015 20);
+  --hover-color: oklch(0.58 0.24 25);
 
-  --highlight: oklch(0.62 0.2 25);
-  --border: oklch(0.42 0.06 20);
-  --border-muted: oklch(0.3 0.03 20);
-
-  --primary: oklch(0.62 0.2 25);
-  --secondary: oklch(0.9 0.01 20);
-  --danger: oklch(0.68 0.22 25);
-  --warning: oklch(0.78 0.16 85);
-  --success: oklch(0.72 0.16 155);
-  --info: oklch(0.72 0.12 250);
-
-  --first-color: var(--text);
-  --second-color: var(--primary);
-  --third-color: var(--text-muted);
-
-  --hover-color: oklch(0.68 0.22 25);
-
-  --body-bg-color: var(--bg-dark);
-  --card-bg-color: var(--bg);
-  --modal-bg-color: var(--bg-light);
-  --bg-transparent-color: oklch(0.1 0.02 20 / 0.78);
-  --transparent-color-01: oklch(0.2 0.02 20 / 0.5);
-  --transparent-color-02: oklch(0.95 0.01 20 / 0.06);
-  --line-color: var(--border-muted);
+  --body-bg-color: oklch(0.12 0 0);
+  --card-bg-color: oklch(0.16 0 0);
+  --modal-bg-color: oklch(0.18 0 0);
+  --bg-transparent-color: oklch(0.1 0 0 / 0.1);
+  --transparent-color-01: oklch(1 0 0 / 0.08);
+  --transparent-color-02: oklch(1 0 0 / 0.06);
+  --line-color: oklch(0.28 0 0);
 
   --color-filter: invert(1);
 
-  --box-shadow: 0 16px 48px oklch(0.02 0.01 20 / 0.45);
+  --box-shadow: 0px 0px 20px oklch(0 0 0 / 0.22);
 
   --small-font-size: 0.9em;
   --normal-font-size: 1em;
 
-  --scroll-bar-color: var(--bg-light);
-  --scroll-thumb-color: var(--border);
-  --scroll-thumb-hover-color: var(--primary);
+  --scroll-bar-color: oklch(0.2 0 0);
+  --scroll-thumb-color: oklch(0.35 0 0);
+  --scroll-thumb-hover-color: oklch(0.5 0 0);
 }
 
 .dark-theme {
-  --first-color: var(--text);
-  --second-color: var(--primary);
-  --third-color: var(--text-muted);
+  --first-color: oklch(0.98 0 0);
+  --second-color: oklch(0.63 0.22 25);
+  --third-color: oklch(0.72 0 0);
 
-  --body-bg-color: var(--bg-dark);
-  --card-bg-color: var(--bg);
-  --modal-bg-color: var(--bg-light);
-  --bg-transparent-color: oklch(0.1 0.02 20 / 0.78);
-  --transparent-color-01: oklch(0.2 0.02 20 / 0.5);
-  --line-color: var(--border-muted);
+  --body-bg-color: oklch(0.12 0 0);
+  --card-bg-color: oklch(0.16 0 0);
+  --modal-bg-color: oklch(0.18 0 0);
+  --bg-transparent-color: oklch(1 0 0 / 0.08);
+  --transparent-color-01: oklch(1 0 0 / 0.08);
+  --line-color: oklch(0.28 0 0);
 
   --color-filter: invert(1);
 
-  --scroll-bar-color: var(--bg-light);
-  --scroll-thumb-color: var(--border);
-  --scroll-thumb-hover-color: var(--primary);
+  --scroll-bar-color: oklch(0.2 0 0);
+  --scroll-thumb-color: oklch(0.35 0 0);
+  --scroll-thumb-hover-color: oklch(0.5 0 0);
 }
 
 * {
@@ -79,9 +59,7 @@ html {
 
 body {
   color: var(--first-color);
-  background:
-    radial-gradient(circle at top, oklch(0.2 0.04 20 / 0.35), transparent 40%),
-    linear-gradient(180deg, var(--bg-light) 0%, var(--body-bg-color) 18%, var(--body-bg-color) 100%);
+  background: var(--body-bg-color);
   margin: 2rem 0 0 0;
   transition: 0.5s ease;
 }
@@ -125,12 +103,11 @@ img {
   width: 45px;
   height: 45px;
   background: var(--second-color);
-  color: white;
+  color: oklch(0.98 0 0);
   font-size: var(--small-font-size);
-  border-radius: 10px;
+  border-radius: 3px;
   cursor: pointer;
   opacity: 0;
-  box-shadow: var(--box-shadow);
   transition: 0.5s ease;
 }
 
@@ -150,11 +127,10 @@ img {
   width: 50px;
   height: 50px;
   font-size: 1.2em;
-  border-radius: 10px 0 0 10px;
+  border-radius: 5px 0 0 5px;
   box-shadow: var(--box-shadow);
   cursor: pointer;
   color: var(--first-color);
-  border: 1px solid var(--border-muted);
 }
 
 .theme-btn .fa-sun,
@@ -198,9 +174,8 @@ header {
 }
 
 header.sticky {
-  background: oklch(0.11 0.02 20 / 0.82);
+  background: oklch(0.12 0 0 / 0.82);
   box-shadow: var(--box-shadow);
-  border-bottom: 1px solid var(--border-muted);
 }
 
 .nav-bar {
@@ -223,8 +198,7 @@ header.sticky .nav-bar {
 .nav-bar .logo {
   color: var(--first-color);
   font-size: 1.3em;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-weight: 600;
 }
 
 .nav-items a {
@@ -264,7 +238,6 @@ header.sticky .nav-bar {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: 2rem;
 }
 
 .home-container .media-icons {
@@ -277,53 +250,46 @@ header.sticky .nav-bar {
   color: var(--second-color);
   font-size: 1.5em;
   margin: 10px 0;
-  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .home-container .media-icons a:hover {
-  color: white;
-  transform: translateX(4px);
+  color: var(--hover-color);
 }
 
 .home-container .info h1,
 .home-container .info h2 {
   font-size: 4em;
-  font-weight: 800;
-  line-height: 1.05;
-  margin-bottom: 0.35em;
+  font-weight: 600;
+  line-height: 70px;
 }
 
 .home-container .info h3 {
   color: var(--third-color);
   font-size: 1.3em;
   font-weight: 500;
-  margin-bottom: 1rem;
 }
 
 .home-container .info p {
   color: var(--third-color);
   font-size: var(--normal-font-size);
-  max-width: 420px;
-  line-height: 1.75;
+  max-width: 350px;
 }
 
 .btn {
   background: var(--second-color);
-  color: white;
+  color: oklch(0.98 0 0);
   font-size: var(--normal-font-size);
-  font-weight: 600;
+  font-weight: 500;
   display: inline-block;
   margin-top: 25px;
-  padding: 16px 24px;
-  letter-spacing: 0.01em;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px oklch(0.2 0.12 25 / 0.35);
+  padding: 20px 30px;
+  letter-spacing: 1px;
+  border-radius: 10px;
   transition: 0.3s ease;
 }
 
 .btn:hover {
   background: var(--hover-color);
-  transform: translateY(-2px);
 }
 
 .home-container .home-img {
@@ -383,11 +349,11 @@ header.sticky .nav-bar {
   font-size: 4.5em;
   font-weight: 800;
   margin-bottom: 2rem;
-  background: linear-gradient(to top, transparent 0%, white 70%);
+  background: linear-gradient(to top, transparent 0%, var(--first-color) 70%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  opacity: 0.08;
+  opacity: 0.1;
 }
 
 .section-title-02 {
@@ -405,7 +371,6 @@ header.sticky .nav-bar {
   right: 0;
   bottom: 0;
   background: var(--second-color);
-  border-radius: 999px;
 }
 
 .container {
@@ -425,12 +390,10 @@ header.sticky .nav-bar {
 .about-img img {
   max-width: 100%;
   min-width: 500px;
-  border-radius: 18px;
+  border-radius: 10px;
   width: 625px;
   height: 476px;
   object-fit: cover;
-  border: 1px solid var(--border-muted);
-  box-shadow: var(--box-shadow);
 }
 
 .about-info .description {
@@ -439,7 +402,7 @@ header.sticky .nav-bar {
 
 .about-info .description h3 {
   font-size: 2em;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 
@@ -447,7 +410,6 @@ header.sticky .nav-bar {
   font-size: 1.3em;
   font-weight: 600;
   margin-bottom: 10px;
-  color: var(--third-color);
 }
 
 .about-info .description h4 span {
@@ -459,8 +421,7 @@ header.sticky .nav-bar {
   font-size: var(--normal-font-size);
   margin-bottom: 15px;
   padding-bottom: 25px;
-  border-bottom: 1px solid var(--line-color);
-  line-height: 1.8;
+  border-bottom: 2px solid var(--line-color);
 }
 
 .about-info .professional-list {
@@ -494,7 +455,7 @@ header.sticky .nav-bar {
 
 .about-info .professional-list .list-item i:hover {
   transform: scale(1.1);
-  color: white;
+  color: var(--second-color);
 }
 
 .skills .container .content {
@@ -513,7 +474,6 @@ header.sticky .nav-bar {
 
 .skills-description p {
   color: var(--third-color);
-  line-height: 1.8;
 }
 
 .skills-info {
@@ -530,11 +490,11 @@ header.sticky .nav-bar {
 
 .skills-info h4 span {
   background: var(--second-color);
-  color: white;
+  color: oklch(0.98 0 0);
   font-size: var(--normal-font-size);
-  font-weight: 500;
-  padding: 6px 14px;
-  border-radius: 999px;
+  font-weight: 400;
+  padding: 5px 15px;
+  border-radius: 5px;
 }
 
 .education-all {
@@ -542,42 +502,38 @@ header.sticky .nav-bar {
 }
 
 .edu-list .item {
-  background: linear-gradient(180deg, oklch(0.18 0.02 20), oklch(0.16 0.02 20));
+  background: var(--card-bg-color);
   box-shadow: var(--box-shadow);
-  border: 1px solid var(--border-muted);
   border-bottom: 3px solid var(--second-color);
   padding: 20px;
   margin-top: 15px;
-  border-radius: 16px;
+  border-radius: 6px;
   transition: 0.3s ease;
 }
 
 .edu-list .item .year {
   font-size: var(--small-font-size);
   margin-bottom: 5px;
-  color: var(--third-color);
 }
 
 .edu-list .item p {
   color: var(--third-color);
   font-size: var(--small-font-size);
-  line-height: 1.7;
 }
 
 .edu-list .item p span {
   color: var(--first-color);
   font-size: var(--normal-font-size);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .bar {
-  background: linear-gradient(180deg, oklch(0.18 0.02 20), oklch(0.16 0.02 20));
+  background: var(--card-bg-color);
   box-shadow: var(--box-shadow);
   margin-bottom: 10px;
   padding: 20px;
-  border-radius: 16px;
+  border-radius: 6px;
   transition: 0.3s ease;
-  border: 1px solid var(--border-muted);
 }
 
 .bar .info {
@@ -598,7 +554,7 @@ header.sticky .nav-bar {
   position: relative;
   width: 100%;
   height: 7px;
-  background: var(--border-muted);
+  background: oklch(0.28 0 0);
   border-radius: 2px;
 }
 
@@ -633,11 +589,10 @@ header.sticky .nav-bar {
 }
 
 .experience-card {
-  background: linear-gradient(180deg, oklch(0.18 0.02 20), oklch(0.16 0.02 20));
-  border: 1px solid var(--border-muted);
+  background: var(--card-bg-color);
   border-bottom: 3px solid var(--second-color);
   padding: 35px;
-  border-radius: 16px;
+  border-radius: 6px;
   box-shadow: var(--box-shadow);
   transition: 0.3s ease;
 }
@@ -655,7 +610,6 @@ header.sticky .nav-bar {
   font-size: var(--small-font-size);
   font-weight: 500;
   font-style: italic;
-  color: var(--third-color);
 }
 
 .experience-card span {
@@ -664,21 +618,25 @@ header.sticky .nav-bar {
 
 .experience-card .hr {
   width: 100%;
-  height: 1px;
+  height: 2px;
   background: var(--line-color);
-  margin: 14px 0 22px;
+  margin: 10px 0 22px;
 }
 
 .edu-list .item:hover,
 .bar:hover,
 .experience-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--border);
+  transform: scale(1.03);
 }
 
 .edu-list .item,
 .bar,
 .experience-card {
+  background: var(--card-bg-color);
+  box-shadow: var(--box-shadow);
+  border-bottom: 3px solid var(--second-color);
+  border-radius: 6px;
+  transition: 0.3s ease;
   padding: 24px;
 }
 
@@ -704,7 +662,6 @@ header.sticky .nav-bar {
   display: list-item;
   margin-bottom: 8px;
   color: var(--third-color);
-  line-height: 1.7;
 }
 
 .services .container .content {
@@ -725,18 +682,11 @@ header.sticky .nav-bar {
 }
 
 .service-card {
-  background: linear-gradient(180deg, oklch(0.18 0.02 20), oklch(0.16 0.02 20));
-  border: 1px solid var(--border-muted);
+  background: var(--card-bg-color);
   border-bottom: 3px solid var(--second-color);
-  padding: 38px 32px;
-  border-radius: 16px;
+  padding: 50px;
+  border-radius: 6px;
   box-shadow: var(--box-shadow);
-  transition: transform 0.25s ease, border-color 0.25s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--border);
 }
 
 .service-card > i {
@@ -795,9 +745,8 @@ header.sticky .nav-bar {
   max-width: 600px;
   margin: 20px;
   padding: 40px;
-  border-radius: 18px;
+  border-radius: 10px;
   box-shadow: var(--box-shadow);
-  border: 1px solid var(--border-muted);
   transform: translateY(-50px);
   transition: 0.5s ease;
 }
@@ -812,7 +761,6 @@ header.sticky .nav-bar {
   right: 0;
   margin: 20px;
   cursor: pointer;
-  color: var(--third-color);
 }
 
 .service-modal-body h3 {
@@ -828,7 +776,6 @@ header.sticky .nav-bar {
 .service-modal-body p,
 .service-modal-body ul li {
   color: var(--third-color);
-  line-height: 1.8;
 }
 
 .service-modal-body ul li {
@@ -855,22 +802,21 @@ header.sticky .nav-bar {
   position: relative;
   max-width: 100%;
   height: 360px;
-  border-radius: 18px;
+  border-radius: 10px;
   box-shadow: var(--box-shadow);
   overflow: hidden;
   cursor: pointer;
-  border: 1px solid var(--border-muted);
 }
 
 .portfolio-list .img-card .overlay {
   position: absolute;
   inset: 0;
   background: transparent;
-  transition: 0.35s ease;
+  transition: 1s ease;
 }
 
 .portfolio-list .img-card:hover .overlay {
-  background: linear-gradient(to top, oklch(0.08 0.02 20 / 0.8), oklch(0.1 0.02 20 / 0.25));
+  background: oklch(0 0 0 / 0.55);
   z-index: 1;
 }
 
@@ -880,7 +826,7 @@ header.sticky .nav-bar {
   bottom: 0;
   left: 0;
   margin: 20px;
-  color: white;
+  color: oklch(0.98 0 0);
   transform: translateY(20px);
   opacity: 0;
   transition: 0.5s ease;
@@ -896,8 +842,7 @@ header.sticky .nav-bar {
 }
 
 .portfolio-list .img-card .info span {
-  font-size: 1.05em;
-  color: oklch(0.9 0.01 20);
+  font-size: 1.2em;
 }
 
 .portfolio-list .img-card img {
@@ -933,9 +878,8 @@ header.sticky .nav-bar {
   max-width: 600px;
   margin: 20px;
   padding: 40px;
-  border-radius: 18px;
+  border-radius: 10px;
   box-shadow: var(--box-shadow);
-  border: 1px solid var(--border-muted);
   transform: translateY(-50px);
   transition: 0.5s ease;
 }
@@ -950,7 +894,6 @@ header.sticky .nav-bar {
   right: 0;
   margin: 20px;
   cursor: pointer;
-  color: var(--third-color);
 }
 
 .portfolio-model-body h3 {
@@ -959,14 +902,13 @@ header.sticky .nav-bar {
 
 .portfolio-model-body p {
   color: var(--third-color);
-  line-height: 1.8;
 }
 
 .portfolio-model-body img {
   width: 100%;
   height: auto;
   margin: 20px 0;
-  border-radius: 14px;
+  border-radius: 10px;
   object-fit: cover;
   object-position: center;
 }
@@ -982,12 +924,11 @@ header.sticky .nav-bar {
 .get-in-touch .contact-card {
   position: relative;
   width: 90%;
-  background: linear-gradient(180deg, oklch(0.18 0.02 20), oklch(0.16 0.02 20));
+  background: var(--card-bg-color);
   box-shadow: var(--box-shadow);
   padding: 50px;
-  border-radius: 20px;
+  border-radius: 10px;
   column-gap: 50px;
-  border: 1px solid var(--border-muted);
 }
 
 .contact-card .title {
@@ -1004,13 +945,17 @@ header.sticky .nav-bar {
 
 .contact-card .title h3 {
   font-size: 2.3em;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .contact-card .title h2 {
   font-size: 4.2em;
-  font-weight: 800;
-  color: var(--second-color);
+  font-weight: 700;
+  background: linear-gradient(to top, transparent 0%, var(--first-color) 30%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.9;
 }
 
 .contact .container .content {
@@ -1065,9 +1010,8 @@ header.sticky .nav-bar {
 
 .contact-right p {
   color: var(--third-color);
-  font-size: 1.35em;
+  font-size: 1.6em;
   margin-bottom: 30px;
-  line-height: 1.8;
 }
 
 .contact-right p span {
@@ -1077,13 +1021,13 @@ header.sticky .nav-bar {
 
 .contact-form input,
 .contact-form textarea {
-  border: 1px solid var(--border-muted);
+  border: none;
   color: var(--first-color);
   background: var(--transparent-color-02);
   font-size: var(--normal-font-size);
   margin-bottom: 20px;
   padding: 15px 40px 40px 20px;
-  border-radius: 12px;
+  border-radius: 5px;
 }
 
 .contact-form textarea {
@@ -1111,7 +1055,7 @@ header.sticky .nav-bar {
 .contact-form .btn {
   border: none;
   margin-top: 0;
-  border-radius: 12px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -1120,16 +1064,15 @@ footer {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: oklch(0.1 0.02 20);
+  background: oklch(0.1 0 0);
   width: 100%;
   margin-top: 50px;
   padding: 3rem 2rem;
-  color: var(--text);
-  border-top: 1px solid var(--border-muted);
+  color: oklch(0.98 0 0);
 }
 
 footer a {
-  color: white;
+  color: oklch(0.98 0 0);
 }
 
 .footer-container {
@@ -1141,8 +1084,12 @@ footer a {
 
 .footer-container .about h2 {
   font-size: 3em;
-  font-weight: 700;
-  color: white;
+  font-weight: 600;
+  background: linear-gradient(to top, transparent 0%, oklch(0.98 0 0) 50%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.8;
 }
 
 .footer-container .about p {
@@ -1162,7 +1109,7 @@ footer a {
 .footer-container .info h3,
 .footer-container .follow h3 {
   font-size: 1.1em;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 30px;
 }
 
@@ -1178,7 +1125,6 @@ footer a {
 .footer-container .follow a {
   font-size: 1.5em;
   margin: 20px;
-  color: var(--second-color);
 }
 
 .footer-copyright p {
@@ -1219,9 +1165,8 @@ footer a {
     flex-direction: column;
     margin: 20px;
     padding: 40px;
-    border-radius: 18px;
+    border-radius: 10px;
     box-shadow: var(--box-shadow);
-    border: 1px solid var(--border-muted);
     transform: translateY(-50px);
     transition: 0.3s ease;
   }
@@ -1338,8 +1283,8 @@ footer a {
 
   .footer-container .hr {
     width: 100%;
-    height: 1px;
-    background: var(--border-muted);
+    height: 2px;
+    background: oklch(1 0 0 / 0.1);
     margin: 10px 0 22px;
   }
 }
