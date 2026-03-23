@@ -170,7 +170,7 @@ header.sticky {
 .nav-bar {
   position: relative;
   height: 80px;
-  max-width: 1250px;
+  max-width: 1248px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -214,7 +214,7 @@ header.sticky .nav-bar {
 
 .home {
   position: relative;
-  max-width: 1250px;
+  max-width: 1248px;
   min-height: 100vh;
   margin-left: auto;
   margin-right: auto;
@@ -238,7 +238,7 @@ header.sticky .nav-bar {
 .home-container .media-icons a {
   color: var(--second-color);
   font-size: var(--text-24);
-  margin: 12px 0;
+  margin: var(--space-12) 0;
 }
 
 .home-container .media-icons a:hover {
@@ -323,7 +323,7 @@ header.sticky .nav-bar {
 
 .section {
   position: relative;
-  max-width: 1150px;
+  max-width: 1152px;
   margin-left: auto;
   margin-right: auto;
   padding: var(--space-96) var(--space-32) var(--space-32);
@@ -331,7 +331,7 @@ header.sticky .nav-bar {
 
 .sub-section {
   position: relative;
-  max-width: 1150px;
+  max-width: 1152px;
   margin-left: auto;
   margin-right: auto;
   padding: var(--space-96) 0;
@@ -478,7 +478,7 @@ header.sticky .nav-bar {
   color: oklch(0.98 0 0);
   font-size: var(--normal-font-size);
   font-weight: 400;
-  padding: 8px var(--space-16);
+  padding: var(--space-8) var(--space-16);
   border-radius: 8px;
   transition: 0.3s ease;
 }
@@ -667,7 +667,7 @@ header.sticky .nav-bar {
 
 .service-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
   max-width: 100%;
   margin: 0 auto;
   gap: var(--space-20);
@@ -980,7 +980,7 @@ header.sticky .nav-bar {
 #contact .contact-list .item-title i {
   color: var(--second-color);
   font-size: var(--text-24);
-  margin-right: 10px;
+  margin-right: var(--space-8);
 }
 
 .contact-list li span {
@@ -1070,7 +1070,7 @@ footer a {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 1150px;
+  max-width: 1152px;
 }
 
 .footer-container .about h2 {
@@ -1181,7 +1181,7 @@ footer a {
     height: var(--space-40);
     top: 0;
     right: 0;
-    margin: 10px;
+    margin: var(--space-8);
     cursor: pointer;
   }
 
