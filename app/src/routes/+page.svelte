@@ -209,6 +209,13 @@
       delay: 0
     });
 
+    srWindow.ScrollReveal({
+      reset: false,
+      distance: '24px',
+      duration: 800,
+      delay: 0
+    });
+
     srWindow.ScrollReveal().reveal('.home .info h1, .section-title-01, .section-title-02', {
       delay: 500,
       origin: 'left'
