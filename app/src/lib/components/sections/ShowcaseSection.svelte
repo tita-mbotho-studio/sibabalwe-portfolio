@@ -2,18 +2,27 @@
   import { siteConfig } from '$lib/config/site';
 </script>
 
-<section id="showcase" class="section">
+<section class="section anchor-offset" id="projects">
   <div class="container">
-    <h2 class="section-title">Showcase</h2>
+    <span class="section-eyebrow">Selected work</span>
+    <h2 class="section-title">Projects and directions I can confidently present.</h2>
     <p class="section-copy">
-      Use this section for clients, portfolio items, logos, testimonials, or featured work.
+      These showcase cards are aligned to the image files you already have in
+      `static/img/images`, so they will render without path errors.
     </p>
 
-    <div class="grid showcase-grid">
+    <div class="showcase-grid">
       {#each siteConfig.showcase as item}
         <article class="card showcase-card">
-          <h3>{item.title}</h3>
-          <p>{item.subtitle}</p>
+          <div class="showcase-media">
+            <img src={item.image} alt={item.title} />
+          </div>
+
+          <div class="showcase-content">
+            <span>{item.category}</span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
         </article>
       {/each}
     </div>
@@ -22,26 +31,51 @@
 
 <style>
   .showcase-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
     margin-top: 2rem;
   }
 
   .showcase-card {
-    padding: 1.5rem;
-    min-height: 180px;
+    overflow: hidden;
   }
 
-  h3 {
+  .showcase-media {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  .showcase-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .showcase-content {
+    padding: 1.2rem;
+  }
+
+  .showcase-content span {
+    display: inline-block;
+    margin-bottom: 0.65rem;
+    color: var(--accent);
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .showcase-content h3 {
     margin: 0 0 0.6rem;
+    font-size: 1.2rem;
   }
 
-  p {
+  .showcase-content p {
     margin: 0;
     color: var(--text-muted);
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 860px) {
     .showcase-grid {
       grid-template-columns: 1fr;
     }

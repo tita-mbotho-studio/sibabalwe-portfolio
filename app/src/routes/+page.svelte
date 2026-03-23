@@ -15,10 +15,12 @@
 <svelte:head>
   <title>{siteConfig.metaTitle}</title>
   <meta name="description" content={siteConfig.metaDescription} />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 </svelte:head>
 
 <div id="top">
   <Header />
+
   <main>
     <HeroSection />
     <FeatureSection />
@@ -27,5 +29,6 @@
     <StatsSection />
     <CtaSection />
   </main>
+
   <Footer />
 </div>

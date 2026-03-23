@@ -1,70 +1,83 @@
 import type { SiteConfig } from '$lib/types/site';
 
 export const siteConfig: SiteConfig = {
-  siteName: 'Template Studio',
-  siteUrl: 'https://example.com',
-  metaTitle: 'Template Studio | Modern SvelteKit Website Template',
+  siteName: 'Sibabalwe Sinyaniso',
+  siteUrl: '/',
+  metaTitle: 'Sibabalwe Sinyaniso | Data Engineer Portfolio',
   metaDescription:
-    'A reusable SvelteKit template for landing pages, portfolios, and business showcase websites.',
-  footerText: '© 2026 Sibabalwe Sinyaniso. All rights reserved.',
-  navigation: [
-    { label: 'Features', href: '#features' },
+    'Portfolio website for Sibabalwe Sinyaniso, showcasing data engineering, analytics, automation, cloud, and digital project work.',
+  heroTitle: 'Data Engineer building reliable systems and modern digital experiences.',
+  heroSubtitle:
+    'I design data pipelines, automate reporting workflows, and build practical web experiences that are clean, useful, and production-minded.',
+  heroPrimaryCta: {
+    label: 'View Projects',
+    href: '#projects'
+  },
+  heroSecondaryCta: {
+    label: 'Download CV',
+    href: '/asserts/sibabalwe_sinyaniso_updated_cv.pdf'
+  },
+  navItems: [
     { label: 'About', href: '#about' },
-    { label: 'Showcase', href: '#showcase' },
-    { label: 'Stats', href: '#stats' },
+    { label: 'Services', href: '#services' },
+    { label: 'Projects', href: '#projects' },
     { label: 'Contact', href: '#contact' }
   ],
-  hero: {
-    eyebrow: 'Reusable SvelteKit template',
-    title: 'Build polished websites faster with a clean reusable starter.',
-    description:
-      'This template gives you a strong landing-page foundation with reusable sections, typed content config, and a clean file structure.',
-    primaryCtaLabel: 'Get Started',
-    primaryCtaHref: '#contact',
-    secondaryCtaLabel: 'See Features',
-    secondaryCtaHref: '#features'
-  },
+  stats: [
+    { value: '4+', label: 'Years in data workflows' },
+    { value: 'ETL', label: 'Automation and delivery focus' },
+    { value: 'SQL + Python', label: 'Core engineering toolkit' }
+  ],
   features: [
     {
-      title: 'Reusable sections',
-      description: 'Swap content quickly without rebuilding page structure each time.'
-    },
-    {
-      title: 'Typed site config',
-      description: 'Manage major content from one place with helpful TypeScript support.'
-    },
-    {
-      title: 'Clean starter structure',
-      description: 'Start with sensible defaults instead of reinventing every project.'
-    }
-  ],
-  info: [
-    {
-      title: 'Designed for flexibility',
+      title: 'Data Engineering',
       description:
-        'The structure is general enough for business websites, portfolio pages, service brands, and showcase sites.'
+        'Designing clean ingestion, transformation, and delivery workflows for production and reporting use cases.'
     },
     {
-      title: 'Easy to customise',
+      title: 'Automation',
       description:
-        'Replace text, images, colours, and section ordering without fighting the codebase.'
+        'Reducing manual work through scheduled pipelines, reproducible processes, and dependable operational logic.'
+    },
+    {
+      title: 'Analytics Delivery',
+      description:
+        'Turning raw datasets into structured outputs that are easier for teams and clients to consume.'
     }
   ],
   showcase: [
-    { title: 'Brand showcase', subtitle: 'Replace with logos, portfolio items, or testimonials.' },
-    { title: 'Client work', subtitle: 'Use this area for proof, trust, or featured projects.' },
-    { title: 'Visual highlights', subtitle: 'Keep it flexible for your own use case.' }
+    {
+      title: 'Pipeline Automation',
+      category: 'Data Engineering',
+      description:
+        'Workflow-oriented solutions for repeatable data movement, transformation, and export processes.',
+      image: '/img/images/port-data-pipeline.jpg'
+    },
+    {
+      title: 'Airflow Operations',
+      category: 'Orchestration',
+      description:
+        'Managing task orchestration, job dependencies, and reliable scheduling for production data workloads.',
+      image: '/img/images/port-airflow.jpg'
+    },
+    {
+      title: 'Cloud and Infrastructure',
+      category: 'Platform',
+      description:
+        'Supporting practical deployment and infrastructure choices for apps, services, and backend workflows.',
+      image: '/img/images/port-cloud.jpg'
+    },
+    {
+      title: 'Web and Product Delivery',
+      category: 'Frontend / Product',
+      description:
+        'Building clean, presentable web experiences that communicate work clearly and professionally.',
+      image: '/img/images/port-webdesign.jpg'
+    }
   ],
-  stats: [
-    { value: 'Fast', label: 'Setup for new projects' },
-    { value: 'Clean', label: 'Starter structure' },
-    { value: 'Reusable', label: 'General-purpose sections' }
+  socialLinks: [
+    { label: 'LinkedIn', href: 'https://www.linkedin.com' },
+    { label: 'GitHub', href: 'https://github.com' }
   ],
-  cta: {
-    title: 'Ready to launch your next site?',
-    description:
-      'Use this template as your standard starting point and customise it for each project.',
-    buttonLabel: 'Start a Project',
-    buttonHref: '#top'
-  }
+  cvUrl: '/asserts/sibabalwe_sinyaniso_updated_cv.pdf'
 };

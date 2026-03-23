@@ -1,90 +1,119 @@
 <script lang="ts">
   import { siteConfig } from '$lib/config/site';
-  import MobileNav from './MobileNav.svelte';
-
-  let isOpen = false;
 </script>
 
-<header class="header">
-  <div class="container header-inner">
-    <a class="brand" href="#top">{siteConfig.siteName}</a>
+<footer class="site-footer" id="contact">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="footer-mark">SS</div>
+      <div>
+        <h2>{siteConfig.siteName}</h2>
+        <p>
+          Data engineer focused on practical automation, analytics delivery, and dependable digital
+          systems.
+        </p>
+      </div>
+    </div>
 
-    <nav class="nav desktop-nav" aria-label="Primary navigation">
-      {#each siteConfig.navigation as item}
-        <a href={item.href}>{item.label}</a>
-      {/each}
-    </nav>
+    <div>
+      <h3>Navigation</h3>
+      <div class="footer-links">
+        {#each siteConfig.navItems as item}
+          <a href={item.href}>{item.label}</a>
+        {/each}
+      </div>
+    </div>
 
-    <button
-      class="menu-button"
-      type="button"
-      aria-label="Toggle navigation"
-      aria-expanded={isOpen}
-      on:click={() => (isOpen = !isOpen)}
-    >
-      Menu
-    </button>
+    <div>
+      <h3>Resources</h3>
+      <div class="footer-links">
+        <a href={siteConfig.cvUrl} target="_blank" rel="noreferrer">Download CV</a>
+        {#each siteConfig.socialLinks as link}
+          <a href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
+        {/each}
+      </div>
+    </div>
   </div>
 
-  <MobileNav bind:isOpen />
-</header>
+  <div class="container footer-bottom">
+    <p>© 2026 {siteConfig.siteName}. All rights reserved.</p>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
 
 <style>
-  .header {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    backdrop-filter: blur(14px);
-    background: rgba(11, 16, 32, 0.7);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  .site-footer {
+    padding: 4rem 0 2rem;
+    border-top: 1px solid var(--border);
+    background: oklch(0.12 0.02 255 / 0.8);
   }
 
-  .header-inner {
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .footer-brand {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 72px;
     gap: 1rem;
   }
 
-  .brand {
-    font-size: 1.05rem;
+  .footer-mark {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: oklch(0.17 0.03 255);
     font-weight: 800;
-    letter-spacing: 0.02em;
+    flex-shrink: 0;
   }
 
-  .nav {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
+  .footer-brand h2,
+  .site-footer h3 {
+    margin: 0 0 0.75rem;
   }
 
-  .nav a {
+  .footer-brand p,
+  .footer-bottom p {
+    margin: 0;
     color: var(--text-muted);
-    transition: color 0.2s ease;
+    line-height: 1.7;
   }
 
-  .nav a:hover {
+  .footer-links {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .footer-links a {
+    color: var(--text-muted);
+  }
+
+  .footer-links a:hover,
+  .footer-bottom a:hover {
     color: var(--text);
   }
 
-  .menu-button {
-    display: none;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: transparent;
-    color: var(--text);
-    padding: 0.7rem 1rem;
-    cursor: pointer;
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
   }
 
-  @media (max-width: 768px) {
-    .desktop-nav {
-      display: none;
+  @media (max-width: 860px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
     }
 
-    .menu-button {
-      display: inline-flex;
+    .footer-bottom {
+      flex-direction: column;
     }
   }
 </style>

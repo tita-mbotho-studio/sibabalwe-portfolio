@@ -1,39 +1,69 @@
-<script lang="ts">
-  import { siteConfig } from '$lib/config/site';
-</script>
+<section class="section anchor-offset" id="about">
+  <div class="container info-grid">
+    <div class="info-visual card">
+      <img src="/img/images/about-img.png" alt="About portfolio visual" />
+    </div>
 
-<section id="about" class="section">
-  <div class="container">
-    <h2 class="section-title">About</h2>
-    <p class="section-copy">Use this area for story, mission, explanation, or detailed context.</p>
+    <div class="info-copy">
+      <span class="section-eyebrow">About me</span>
+      <h2 class="section-title">I care about useful systems, not just impressive tools.</h2>
+      <p class="section-copy">
+        My work sits at the intersection of data engineering, reporting automation, and practical
+        problem solving. I enjoy building solutions that are understandable, maintainable, and
+        ready for real use.
+      </p>
 
-    <div class="grid info-grid">
-      {#each siteConfig.info as block}
-        <article class="card info-card">
-          <h3>{block.title}</h3>
-          <p>{block.description}</p>
-        </article>
-      {/each}
+      <div class="info-points">
+        <div class="card point">
+          <strong>Reliable delivery</strong>
+          <span>Clear structure, repeatable workflows, and production-minded decisions.</span>
+        </div>
+        <div class="card point">
+          <strong>Modern stack mindset</strong>
+          <span>Comfortable moving across SQL, Python, orchestration, infrastructure, and UI.</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   .info-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 2rem;
+    align-items: center;
   }
 
-  .info-card {
-    padding: 1.5rem;
+  .info-visual {
+    overflow: hidden;
+    padding: 1rem;
   }
 
-  h3 {
-    margin: 0 0 0.75rem;
+  .info-visual img {
+    width: 100%;
+    aspect-ratio: 4 / 4.5;
+    object-fit: cover;
+    border-radius: 18px;
   }
 
-  p {
-    margin: 0;
+  .info-points {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .point {
+    padding: 1rem 1.1rem;
+  }
+
+  .point strong {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: 1rem;
+  }
+
+  .point span {
     color: var(--text-muted);
     line-height: 1.7;
   }

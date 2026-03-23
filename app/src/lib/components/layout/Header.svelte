@@ -1,90 +1,97 @@
 <script lang="ts">
-  import { siteConfig } from '$lib/config/site';
   import MobileNav from './MobileNav.svelte';
-
-  let isOpen = false;
+  import { siteConfig } from '$lib/config/site';
 </script>
 
-<header class="header">
+<header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="#top">{siteConfig.siteName}</a>
+    <a class="brand" href="#top">
+      <span class="brand-mark">SS</span>
+      <span class="brand-text">{siteConfig.siteName}</span>
+    </a>
 
-    <nav class="nav desktop-nav" aria-label="Primary navigation">
-      {#each siteConfig.navigation as item}
+    <nav class="desktop-nav" aria-label="Primary">
+      {#each siteConfig.navItems as item}
         <a href={item.href}>{item.label}</a>
       {/each}
     </nav>
 
-    <button
-      class="menu-button"
-      type="button"
-      aria-label="Toggle navigation"
-      aria-expanded={isOpen}
-      on:click={() => (isOpen = !isOpen)}
-    >
-      Menu
-    </button>
-  </div>
+    <div class="desktop-actions">
+      <a class="button button-secondary" href={siteConfig.cvUrl} target="_blank" rel="noreferrer">
+        CV
+      </a>
+    </div>
 
-  <MobileNav bind:isOpen />
+    <MobileNav />
+  </div>
 </header>
 
 <style>
-  .header {
+  .site-header {
     position: sticky;
     top: 0;
-    z-index: 20;
+    z-index: 50;
     backdrop-filter: blur(14px);
-    background: rgba(11, 16, 32, 0.7);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: oklch(0.14 0.03 255 / 0.72);
+    border-bottom: 1px solid var(--border);
   }
 
   .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 72px;
+    min-height: 76px;
     gap: 1rem;
   }
 
   .brand {
-    font-size: 1.05rem;
-    font-weight: 800;
-    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-width: 0;
   }
 
-  .nav {
+  .brand-mark {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: oklch(0.17 0.03 255);
+    font-weight: 800;
+  }
+
+  .brand-text {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .desktop-nav {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1.2rem;
   }
 
-  .nav a {
+  .desktop-nav a {
     color: var(--text-muted);
     transition: color 0.2s ease;
   }
 
-  .nav a:hover {
+  .desktop-nav a:hover {
     color: var(--text);
   }
 
-  .menu-button {
-    display: none;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: transparent;
-    color: var(--text);
-    padding: 0.7rem 1rem;
-    cursor: pointer;
+  .desktop-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
   }
 
-  @media (max-width: 768px) {
-    .desktop-nav {
+  @media (max-width: 860px) {
+    .desktop-nav,
+    .desktop-actions {
       display: none;
-    }
-
-    .menu-button {
-      display: inline-flex;
     }
   }
 </style>

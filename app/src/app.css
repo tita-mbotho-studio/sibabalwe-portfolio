@@ -1,15 +1,18 @@
 :root {
-  --background: #0b1020;
-  --background-soft: #121933;
-  --surface: rgba(255, 255, 255, 0.06);
-  --border: rgba(255, 255, 255, 0.12);
-  --text: #f5f7ff;
-  --text-muted: #bcc4e0;
-  --primary: #7c9cff;
-  --primary-strong: #5f83ff;
+  --background: oklch(0.14 0.03 255);
+  --background-soft: oklch(0.18 0.03 255);
+  --surface: oklch(0.22 0.03 255 / 0.72);
+  --surface-strong: oklch(0.26 0.03 255 / 0.9);
+  --border: oklch(0.72 0.03 255 / 0.18);
+  --text: oklch(0.97 0.01 255);
+  --text-muted: oklch(0.82 0.02 255);
+  --primary: oklch(0.72 0.16 255);
+  --primary-strong: oklch(0.66 0.18 255);
+  --accent: oklch(0.8 0.1 180);
   --max-width: 1120px;
-  --radius: 20px;
-  --shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  --radius: 24px;
+  --radius-sm: 16px;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
 }
 
 * {
@@ -24,8 +27,8 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at top, rgba(124, 156, 255, 0.18), transparent 30%),
-    linear-gradient(180deg, #0b1020 0%, #0d1226 100%);
+    radial-gradient(circle at top, oklch(0.72 0.16 255 / 0.18), transparent 28%),
+    linear-gradient(180deg, oklch(0.14 0.03 255) 0%, oklch(0.12 0.02 255) 100%);
   color: var(--text);
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -51,20 +54,36 @@ button {
 }
 
 .section {
-  padding: 5rem 0;
+  padding: 5.5rem 0;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: oklch(0.3 0.03 255 / 0.35);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .section-title {
-  margin: 0 0 0.75rem;
-  font-size: clamp(1.8rem, 3vw, 3rem);
-  line-height: 1.1;
+  margin: 0 0 0.9rem;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
 }
 
 .section-copy {
   margin: 0;
-  max-width: 720px;
+  max-width: 760px;
   color: var(--text-muted);
-  line-height: 1.7;
+  line-height: 1.75;
+  font-size: 1.02rem;
 }
 
 .card {
@@ -72,21 +91,24 @@ button {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
 }
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 46px;
-  padding: 0.8rem 1.25rem;
+  min-height: 48px;
+  padding: 0.85rem 1.3rem;
   border: 1px solid transparent;
   border-radius: 999px;
-  font-weight: 600;
+  font-weight: 700;
   transition:
     transform 0.2s ease,
     background-color 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    color 0.2s ease;
+  cursor: pointer;
 }
 
 .button:hover {
@@ -95,7 +117,7 @@ button {
 
 .button-primary {
   background: var(--primary);
-  color: #09101f;
+  color: oklch(0.17 0.03 255);
 }
 
 .button-primary:hover {
@@ -113,8 +135,24 @@ button {
   gap: 1.25rem;
 }
 
+.muted {
+  color: var(--text-muted);
+}
+
+.highlight {
+  color: var(--accent);
+}
+
+.anchor-offset {
+  scroll-margin-top: 100px;
+}
+
 @media (max-width: 768px) {
   .section {
     padding: 4rem 0;
+  }
+
+  .container {
+    width: min(100% - 1.25rem, var(--max-width));
   }
 }

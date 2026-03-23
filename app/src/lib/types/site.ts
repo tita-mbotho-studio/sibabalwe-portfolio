@@ -3,14 +3,9 @@ export type NavItem = {
   href: string;
 };
 
-export type HeroContent = {
-  eyebrow: string;
-  title: string;
-  description: string;
-  primaryCtaLabel: string;
-  primaryCtaHref: string;
-  secondaryCtaLabel: string;
-  secondaryCtaHref: string;
+export type StatItem = {
+  value: string;
+  label: string;
 };
 
 export type FeatureItem = {
@@ -18,19 +13,11 @@ export type FeatureItem = {
   description: string;
 };
 
-export type InfoBlock = {
-  title: string;
-  description: string;
-};
-
 export type ShowcaseItem = {
   title: string;
-  subtitle: string;
-};
-
-export type StatItem = {
-  value: string;
-  label: string;
+  category: string;
+  description: string;
+  image: string;
 };
 
 export type SiteConfig = {
@@ -38,17 +25,23 @@ export type SiteConfig = {
   siteUrl: string;
   metaTitle: string;
   metaDescription: string;
-  footerText: string;
-  navigation: NavItem[];
-  hero: HeroContent;
-  features: FeatureItem[];
-  info: InfoBlock[];
-  showcase: ShowcaseItem[];
-  stats: StatItem[];
-  cta: {
-    title: string;
-    description: string;
-    buttonLabel: string;
-    buttonHref: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  heroPrimaryCta: {
+    label: string;
+    href: string;
   };
+  heroSecondaryCta: {
+    label: string;
+    href: string;
+  };
+  navItems: NavItem[];
+  stats: StatItem[];
+  features: FeatureItem[];
+  showcase: ShowcaseItem[];
+  socialLinks: {
+    label: string;
+    href: string;
+  }[];
+  cvUrl: string;
 };

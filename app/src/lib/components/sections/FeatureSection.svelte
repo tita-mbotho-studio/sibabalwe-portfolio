@@ -2,16 +2,21 @@
   import { siteConfig } from '$lib/config/site';
 </script>
 
-<section id="features" class="section">
+<section class="section anchor-offset" id="services">
   <div class="container">
-    <h2 class="section-title">Features</h2>
-    <p class="section-copy">Use this section for benefits, services, or product features.</p>
+    <span class="section-eyebrow">What I do</span>
+    <h2 class="section-title">Practical skills that support real delivery.</h2>
+    <p class="section-copy">
+      I focus on work that improves reliability, clarity, and speed across data and digital
+      projects.
+    </p>
 
-    <div class="grid feature-grid">
-      {#each siteConfig.features as item}
+    <div class="feature-grid">
+      {#each siteConfig.features as feature}
         <article class="card feature-card">
-          <h3>{item.title}</h3>
-          <p>{item.description}</p>
+          <div class="feature-icon"></div>
+          <h3>{feature.title}</h3>
+          <p>{feature.description}</p>
         </article>
       {/each}
     </div>
@@ -20,7 +25,9 @@
 
 <style>
   .feature-grid {
+    display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
     margin-top: 2rem;
   }
 
@@ -28,17 +35,26 @@
     padding: 1.4rem;
   }
 
-  h3 {
-    margin: 0 0 0.6rem;
+  .feature-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
   }
 
-  p {
+  .feature-card h3 {
+    margin: 0 0 0.7rem;
+    font-size: 1.2rem;
+  }
+
+  .feature-card p {
     margin: 0;
     color: var(--text-muted);
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 860px) {
     .feature-grid {
       grid-template-columns: 1fr;
     }
