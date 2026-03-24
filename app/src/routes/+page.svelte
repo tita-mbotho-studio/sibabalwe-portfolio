@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { base } from '$app/paths';
 
   type Cleanup = () => void;
 
@@ -54,7 +55,7 @@
     {
       title: 'Web Design',
       subtitle: 'Personal portfolio',
-      image: '/img/images/port-webdesign.jpg',
+      image: `${base}/img/images/port-webdesign.jpg`,
       modalTitle: 'Web Design – Portfolio Website',
       body:
         'Responsive single-page portfolio built with HTML, CSS, and JS (sections: Home, About, Skills, Services, Portfolio, Contact). Includes Font Awesome icons, scroll animations, and modular components for future projects.'
@@ -62,7 +63,7 @@
     {
       title: 'Data Pipeline',
       subtitle: 'ETL / ELT',
-      image: '/img/images/port-data-pipeline.jpg',
+      image: `${base}/img/images/port-data-pipeline.jpg`,
       modalTitle: 'Data Pipeline Development',
       body:
         'Designed and optimised ETL/ELT pipelines moving data from SFTP/AWS into warehouse layers. Included data validation, archiving patterns, and performance tuning for high-volume datasets.'
@@ -70,7 +71,7 @@
     {
       title: 'Airflow Orchestration',
       subtitle: 'DAGs / Scheduling',
-      image: '/img/images/port-airflow.jpg',
+      image: `${base}/img/images/port-airflow.jpg`,
       modalTitle: 'Airflow DAG Orchestration',
       body:
         'Built and maintained multiple Apache Airflow DAGs (campaign monitoring, OSAS/CMS feeds, remote logging). Included external task sensors, conditional triggers, and environment-aware variables.'
@@ -78,7 +79,7 @@
     {
       title: 'Cloud Data Solutions',
       subtitle: 'AWS / S3 / EC2',
-      image: '/img/images/port-cloud.jpg',
+      image: `${base}/img/images/port-cloud.jpg`,
       modalTitle: 'Cloud Data Solutions',
       body:
         'Provisioned and integrated AWS services (S3 access points, EC2, RDS) for data-engineering workloads. Focused on secure access, bucket structure, and cost-aware storage/archiving strategies.'
@@ -86,7 +87,7 @@
     {
       title: 'Medium Writing',
       subtitle: 'Data / Engineering',
-      image: '/img/images/port-medium.jpg',
+      image: `${base}/img/images/port-medium.jpg`,
       modalTitle: 'Medium Content Writing',
       body:
         'Long-form, technical-but-readable articles on data pipelines, Airflow tricks, and working with AWS in real client environments. Structured for SEO and developer audiences.'
@@ -94,7 +95,7 @@
     {
       title: 'Branding & UI',
       subtitle: 'Support assets',
-      image: '/img/images/port-branding.jpg',
+      image: `${base}/img/images/port-branding.jpg`,
       modalTitle: 'Branding & UI Support',
       body:
         'Support visuals and UI layouts for dashboards, portfolio sections, and service pages to keep the whole site consistent with any personal brand.'
@@ -312,7 +313,9 @@
           class="nav-close-btn"
           aria-label="Close menu"
           on:click={() => (navOpen = false)}
-        ></button>
+        >
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
 
         {#each navLinks as link}
           <a
@@ -331,7 +334,9 @@
       class="nav-menu-btn"
       aria-label="Open menu"
       on:click={() => (navOpen = true)}
-    ></button>
+    >
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
   </div>
 </header>
 
@@ -379,7 +384,7 @@
 
       <div class="home-img">
         <img
-          src="/img/images/main-img.png"
+          src={`${base}/img/images/main-img.png`}
           alt="Sibabalwe — Data Engineer portrait"
           loading="eager"
           decoding="async"
@@ -399,7 +404,7 @@
       <div class="content flex-centre">
         <div class="about-img">
           <img
-            src="/img/images/about-img.png"
+            src={`${base}/img/images/about-img.png`}
             alt="Working at a laptop"
             loading="lazy"
             decoding="async"
@@ -428,7 +433,7 @@
           </ul>
 
           <a
-            href="/asserts/sibabalwe_sinyaniso_updated_cv.pdf"
+            href={`${base}/asserts/sibabalwe_sinyaniso_updated_cv.pdf`}
             class="btn"
             target="_blank"
             rel="noopener"
@@ -448,7 +453,7 @@
         <div class="skills-description">
           <h3>Education &amp; Skills</h3>
           <p>
-            For more than 3 years I’ve been designing, building, and maintaining modern ETL
+            For more than 3 years I've been designing, building, and maintaining modern ETL
             pipelines using Python, SQL, and cloud technologies like AWS.
           </p>
         </div>
@@ -795,6 +800,6 @@
   </div>
 
   <div class="footer-copyright group">
-    <p>© 2025 by Siba-Webspace. All rights reserved.</p>
+    <p>© 2026 by Sibabalwe Sinyaniso. All rights reserved.</p>
   </div>
 </footer>
