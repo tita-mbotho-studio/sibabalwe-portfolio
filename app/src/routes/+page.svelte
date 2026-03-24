@@ -222,7 +222,7 @@
       delay: 600,
       origin: 'right'
     });
-    srWindow.ScrollReveal().reveal('.about .professional-list li', {
+    srWindow.ScrollReveal().reveal('.about .professional-list li, .about-actions', {
       delay: 500,
       origin: 'right',
       interval: 200
@@ -413,7 +413,9 @@
 
   <section class="about section" id="about" aria-label="About">
     <div class="container flex-centre">
-      <h2 class="section-title">About Me</h2>
+      <div class="about-header">
+        <h2 class="section-title">About Me</h2>
+      </div>
 
       <div class="content">
         <div class="about-img">
