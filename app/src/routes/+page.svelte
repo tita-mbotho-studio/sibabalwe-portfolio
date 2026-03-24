@@ -415,7 +415,7 @@
     <div class="container flex-centre">
       <h2 class="section-title">About Me</h2>
 
-      <div class="content flex-centre">
+      <div class="content">
         <div class="about-img">
           <img
             src={`${base}/img/images/about-img.png`}
@@ -446,14 +446,16 @@
             </li>
           </ul>
 
-          <a
-            href={`${base}/asserts/sibabalwe_sinyaniso_updated_cv.pdf`}
-            class="btn"
-            target="_blank"
-            rel="noopener"
-          >
-            Download CV <i class="fa-solid fa-download" aria-hidden="true"></i>
-          </a>
+          <div class="about-actions">
+            <a
+              href={`${base}/asserts/sibabalwe_sinyaniso_updated_cv.pdf`}
+              class="btn"
+              target="_blank"
+              rel="noopener"
+            >
+              Download CV <i class="fa-solid fa-download" aria-hidden="true"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>

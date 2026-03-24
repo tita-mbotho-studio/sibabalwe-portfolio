@@ -397,22 +397,38 @@ header.sticky .nav-bar {
   flex-direction: column;
 }
 
+.about.section {
+  max-width: 1248px;
+  padding: var(--space-64) var(--space-32);
+}
+
 .about .container .content {
+  display: grid;
+  grid-template-columns: minmax(320px, 520px) minmax(0, 1fr);
+  align-items: center;
   column-gap: var(--space-40);
   width: 100%;
 }
 
 .about-img {
   position: relative;
+  width: 100%;
 }
 
 .about-img img {
-  max-width: 100%;
-  min-width: 500px;
+  width: 100%;
+  max-width: 520px;
+  min-width: 0;
+  height: auto;
+  aspect-ratio: 624 / 476;
   border-radius: 8px;
-  width: 624px;
-  height: 476px;
   object-fit: cover;
+}
+
+.about-info {
+  width: 100%;
+  max-width: 600px;
+  justify-self: start;
 }
 
 .about-info .description {
@@ -447,6 +463,7 @@ header.sticky .nav-bar {
 .about-info .professional-list {
   display: flex;
   column-gap: var(--space-32);
+  margin-bottom: var(--space-24);
 }
 
 .about-info .professional-list .list-item {
@@ -477,6 +494,16 @@ header.sticky .nav-bar {
 .about-info .professional-list .list-item i:hover {
   transform: scale(1.1);
   color: var(--second-color);
+}
+
+.about-actions {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.about-actions .btn {
+  margin-top: 0;
 }
 
 .skills .container .content {
@@ -1263,8 +1290,14 @@ footer a {
 
   .about .container .content {
     display: grid;
+    grid-template-columns: 1fr;
     width: 100%;
-    row-gap: var(--space-20);
+    row-gap: var(--space-32);
+  }
+
+  .about-img {
+    display: flex;
+    justify-content: center;
   }
 
   .about-img img {
@@ -1275,6 +1308,7 @@ footer a {
   .about-info {
     min-width: 0;
     width: 100%;
+    max-width: none;
   }
 
   .about-info .professional-list {
@@ -1400,6 +1434,10 @@ footer a {
     margin-bottom: 0;
   }
 
+  .about.section {
+    padding: var(--space-64) var(--space-32);
+  }
+
   .get-in-touch .contact-card {
     display: grid;
   }
@@ -1428,6 +1466,10 @@ footer a {
 @media (max-width: 1024px) {
   .section {
     padding: var(--space-80) var(--space-24) var(--space-32);
+  }
+
+  .about.section {
+    padding: var(--space-64) var(--space-24);
   }
 
   .skills-info,
