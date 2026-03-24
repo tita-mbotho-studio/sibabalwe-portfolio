@@ -34,6 +34,16 @@
         'Secure movement of data between systems',
         'Storage structure and cost-aware access design'
       ]
+    },
+    {
+      title: 'Web Design & Development',
+      description:
+        'Design and development of modern, responsive websites with clean layouts, strong visual hierarchy, and production-ready front-end structure.',
+      bullets: [
+        'Responsive website design for desktop and mobile',
+        'Clean UI structure with modern typography and spacing',
+        'Front-end implementation focused on clarity and maintainability'
+      ]
     }
   ];
 
@@ -612,8 +622,8 @@
         <div class="services-description">
           <h3>What I build and improve</h3>
           <p>
-            I focus on practical engineering work that improves data reliability, delivery speed,
-            and operational clarity across production workflows.
+            I focus on practical engineering work across data platforms, workflow automation, cloud
+            infrastructure, and modern website design and development.
           </p>
         </div>
 
