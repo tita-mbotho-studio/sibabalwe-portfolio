@@ -197,24 +197,24 @@
       delay: 0
     });
 
-    srWindow.ScrollReveal().reveal('.home .info h1, .section-title', {
+    srWindow.ScrollReveal().reveal('.home-copy h1, .section-title', {
       delay: 500,
       origin: 'left'
     });
-    srWindow.ScrollReveal().reveal('.home .info h3, .home .info p, .about-info .btn', {
+    srWindow.ScrollReveal().reveal('.home-copy h3, .home-copy p', {
       delay: 600,
       origin: 'right'
     });
-    srWindow.ScrollReveal().reveal('.home .info .btn', {
+    srWindow.ScrollReveal().reveal('.home-actions', {
       delay: 700,
       origin: 'bottom'
     });
-    srWindow.ScrollReveal().reveal('.media-icons i, .contact-left li', {
+    srWindow.ScrollReveal().reveal('.media-icons a, .contact-left li', {
       delay: 500,
       origin: 'left',
-      interval: 200
+      interval: 150
     });
-    srWindow.ScrollReveal().reveal('.home-img, .about-img', {
+    srWindow.ScrollReveal().reveal('.home-image-wrap, .about-img', {
       delay: 500,
       origin: 'bottom'
     });
@@ -313,9 +313,7 @@
           class="nav-close-btn"
           aria-label="Close menu"
           on:click={() => (navOpen = false)}
-        >
-          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-        </button>
+        ></button>
 
         {#each navLinks as link}
           <a
@@ -334,9 +332,7 @@
       class="nav-menu-btn"
       aria-label="Open menu"
       on:click={() => (navOpen = true)}
-    >
-      <i class="fa-solid fa-bars" aria-hidden="true"></i>
-    </button>
+    ></button>
   </div>
 </header>
 
@@ -351,6 +347,14 @@
           aria-label="Facebook"
         >
           <i class="fab fa-facebook-f" aria-hidden="true"></i>
+        </a>
+        <a
+          href="https://www.tiktok.com/@sibabalwe_sinyaniso?is_from_webapp=1&sender_device=pc"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok"
+        >
+          <i class="fab fa-tiktok" aria-hidden="true"></i>
         </a>
         <a
           href="https://medium.com/@sibabalwesinyaniso"
@@ -370,25 +374,35 @@
         </a>
       </div>
 
-      <div class="info">
-        <h1>Hi, I am Sibabalwe</h1>
-        <h3>Remote Data Engineer — Pretoria, South Africa</h3>
-        <p>
-          I build scalable data pipelines and automation with Python, SQL, Airflow, and AWS—making
-          data reliable and accessible across cloud and on-prem.
-        </p>
-        <a href="#contact" class="btn">
-          Contact Me <i class="fa-solid fa-arrow-circle-right" aria-hidden="true"></i>
-        </a>
+      <div class="home-copy">
+        <div class="home-copy-row">
+          <h1>Hi, I am Sibabalwe</h1>
+        </div>
+        <div class="home-copy-row">
+          <h3>Remote Data Engineer — Pretoria, South Africa</h3>
+        </div>
+        <div class="home-copy-row">
+          <p>
+            I build scalable data pipelines and automation with Python, SQL, Airflow, and AWS—making
+            data reliable and accessible across cloud and on-prem.
+          </p>
+        </div>
+        <div class="home-copy-row home-actions">
+          <a href="#contact" class="btn">
+            Contact Me <i class="fa-solid fa-arrow-circle-right" aria-hidden="true"></i>
+          </a>
+        </div>
       </div>
 
-      <div class="home-img">
-        <img
-          src={`${base}/img/images/main-img.png`}
-          alt="Sibabalwe — Data Engineer portrait"
-          loading="eager"
-          decoding="async"
-        />
+      <div class="home-image-wrap">
+        <div class="home-img">
+          <img
+            src={`${base}/img/images/main-img.png`}
+            alt="Sibabalwe — Data Engineer portrait"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
       </div>
     </div>
 
@@ -453,7 +467,7 @@
         <div class="skills-description">
           <h3>Education &amp; Skills</h3>
           <p>
-            For more than 3 years I've been designing, building, and maintaining modern ETL
+            For more than 3 years I’ve been designing, building, and maintaining modern ETL
             pipelines using Python, SQL, and cloud technologies like AWS.
           </p>
         </div>
@@ -773,6 +787,16 @@
             aria-label="Facebook"
           >
             <i class="fab fa-facebook-f"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.tiktok.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TikTok"
+          >
+            <i class="fab fa-tiktok"></i>
           </a>
         </li>
         <li>
