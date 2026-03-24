@@ -235,11 +235,11 @@
       }
     );
     srWindow.ScrollReveal().reveal(
-      '.experience-card, .service-card, .education, .portfolio .img-card',
+      '.skills-panel, .experience-card, .service-card, .portfolio .img-card',
       {
         delay: 800,
         origin: 'bottom',
-        interval: 200
+        interval: 150
       }
     );
     srWindow.ScrollReveal().reveal('footer .group', {
@@ -469,112 +469,152 @@
 
       <div class="content">
         <div class="skills-description">
-          <h3>Education &amp; Skills</h3>
+          <h3>Education, certifications, and core capabilities</h3>
           <p>
-            For more than 3 years I’ve been designing, building, and maintaining modern ETL
-            pipelines using Python, SQL, and cloud technologies like AWS.
+            I build reliable data workflows across Python, SQL, Airflow, and AWS, with a focus on
+            maintainability, data quality, and production-ready delivery.
           </p>
         </div>
 
-        <div class="skills-info education-all">
-          <div class="education">
-            <h4><span>Education</span></h4>
-            <ul class="edu-list">
-              <li class="item">
-                <span class="year">2019 – 2023</span>
-                <p>
-                  <span>Advanced Diploma in Information Technology</span> – Cape Peninsula
-                  University of Technology (CPUT), Cape Town
-                </p>
-              </li>
-            </ul>
-          </div>
+        <div class="skills-summary-grid">
+          <article class="skills-panel">
+            <div class="skills-panel-heading">
+              <span class="skills-panel-label">Foundation</span>
+              <h4>Education</h4>
+            </div>
 
-          <div class="education">
-            <h4><span>Certifications</span></h4>
-            <ul class="edu-list">
-              <li class="item">
-                <span class="year">2025</span>
-                <p><span>AWS Partner: Accreditation (Technical)</span> – Amazon Web Services</p>
-              </li>
-              <li class="item">
-                <span class="year">2025</span>
-                <p><span>Python Database Mastery: SQLAlchemy &amp; Alembic</span> – Udemy</p>
-              </li>
-              <li class="item">
-                <span class="year">2024</span>
-                <p><span>ChatGPT Prompt Engineering for Developers</span> – DeepLearning.AI</p>
-              </li>
-              <li class="item">
-                <span class="year">2022</span>
-                <p><span>Data Analysis with Python: Zero to Pandas</span> – Jovian</p>
-              </li>
-            </ul>
-          </div>
+            <div class="skills-panel-body">
+              <div class="skills-entry">
+                <span class="skills-entry-year">2019 – 2023</span>
+                <p class="skills-entry-title">Advanced Diploma in Information Technology</p>
+                <p class="skills-entry-meta">Cape Peninsula University of Technology, Cape Town</p>
+              </div>
+            </div>
+          </article>
 
-          <div class="education">
-            <h4><span>Technical Skills</span></h4>
-            <ul class="bars">
-              <li class="bar">
-                <div class="info"><span>Programming</span>–<span>Python, SQL</span></div>
-              </li>
-              <li class="bar">
-                <div class="info"><span>Frameworks</span>–<span>Apache Airflow, Flask</span></div>
-              </li>
-              <li class="bar">
-                <div class="info"><span>Cloud Platforms</span>–<span>AWS (S3, EC2, RDS)</span></div>
-              </li>
-              <li class="bar">
-                <div class="info"><span>Databases</span>–<span>MySQL, PostgreSQL, Vertica</span></div>
-              </li>
-              <li class="bar">
-                <div class="info"><span>Data Tools</span>–<span>Pandas, Microsoft Excel</span></div>
-              </li>
-              <li class="bar">
-                <div class="info"><span>Version Control</span>–<span>Git / GitHub</span></div>
-              </li>
-            </ul>
-          </div>
+          <article class="skills-panel">
+            <div class="skills-panel-heading">
+              <span class="skills-panel-label">Professional</span>
+              <h4>Certifications</h4>
+            </div>
+
+            <div class="skills-panel-body">
+              <div class="skills-entry">
+                <span class="skills-entry-year">2025</span>
+                <p class="skills-entry-title">AWS Partner: Accreditation (Technical)</p>
+                <p class="skills-entry-meta">Amazon Web Services</p>
+              </div>
+
+              <div class="skills-entry">
+                <span class="skills-entry-year">2025</span>
+                <p class="skills-entry-title">Python Database Mastery: SQLAlchemy &amp; Alembic</p>
+                <p class="skills-entry-meta">Udemy</p>
+              </div>
+
+              <div class="skills-entry">
+                <span class="skills-entry-year">2024</span>
+                <p class="skills-entry-title">ChatGPT Prompt Engineering for Developers</p>
+                <p class="skills-entry-meta">DeepLearning.AI</p>
+              </div>
+
+              <div class="skills-entry">
+                <span class="skills-entry-year">2022</span>
+                <p class="skills-entry-title">Data Analysis with Python: Zero to Pandas</p>
+                <p class="skills-entry-meta">Jovian</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="skills-panel">
+            <div class="skills-panel-heading">
+              <span class="skills-panel-label">Execution</span>
+              <h4>Core skills</h4>
+            </div>
+
+            <div class="skills-panel-body">
+              <div class="skills-stack">
+                <div class="skills-stack-row">
+                  <span class="skills-stack-term">Languages</span>
+                  <span class="skills-stack-desc">Python, SQL</span>
+                </div>
+
+                <div class="skills-stack-row">
+                  <span class="skills-stack-term">Data</span>
+                  <span class="skills-stack-desc">ETL, ELT, workflow automation, data validation</span>
+                </div>
+
+                <div class="skills-stack-row">
+                  <span class="skills-stack-term">Orchestration</span>
+                  <span class="skills-stack-desc">Apache Airflow, scheduled pipelines, monitoring</span>
+                </div>
+
+                <div class="skills-stack-row">
+                  <span class="skills-stack-term">Cloud</span>
+                  <span class="skills-stack-desc">AWS S3, EC2, RDS</span>
+                </div>
+
+                <div class="skills-stack-row">
+                  <span class="skills-stack-term">Databases</span>
+                  <span class="skills-stack-desc">MySQL, PostgreSQL, Vertica</span>
+                </div>
+
+                <div class="skills-stack-row">
+                  <span class="skills-stack-term">Tools</span>
+                  <span class="skills-stack-desc">Pandas, Excel, Git, GitHub</span>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
 
         <div class="skills-description">
-          <h3>Work &amp; Experience</h3>
+          <h3>Experience</h3>
+          <p>
+            Recent roles focused on delivery across ingestion, orchestration, optimisation, and
+            cross-team support.
+          </p>
         </div>
 
-        <div class="skills-info">
-          <div class="experience-card">
+        <div class="experience-grid">
+          <article class="experience-card">
             <div class="upper">
               <h3>Junior Data Engineer</h3>
               <h5>Full Time | Hybrid</h5>
               <span>February 2023 – Present</span>
             </div>
-            <div class="hr"></div>
-            <h4><span>Eighty20 Consulting, Cape Town</span></h4>
-            <ul class="experience-list">
-              <li>Designed and optimised 15+ ETL pipelines using AWS and SFTP, reducing processing time by 40%.</li>
-              <li>Built and maintained 25+ Airflow DAGs, cutting downtime to under 2 hours per month.</li>
-              <li>Automated SQL tasks in Excel via ODBC, saving ~20 hours weekly.</li>
-              <li>Implemented data validation workflows achieving near-perfect data accuracy.</li>
-              <li>Contributed to 3 major cross-team data projects.</li>
-              <li>Authored documentation that halved onboarding time for new developers.</li>
-            </ul>
-          </div>
 
-          <div class="experience-card">
+            <div class="hr"></div>
+
+            <h4>Eighty20 Consulting, Cape Town</h4>
+
+            <ul class="experience-list">
+              <li>Designed and optimised 15+ ETL pipelines across AWS and SFTP-driven workflows.</li>
+              <li>Built and maintained 25+ Airflow DAGs for scheduled data movement and monitoring.</li>
+              <li>Automated recurring SQL reporting workflows, reducing manual effort by about 20 hours per week.</li>
+              <li>Implemented validation checks that improved delivery quality and reduced downstream issues.</li>
+              <li>Contributed to cross-team data initiatives and documented processes for smoother onboarding.</li>
+            </ul>
+          </article>
+
+          <article class="experience-card">
             <div class="upper">
               <h3>Junior Developer</h3>
               <h5>Contract | Office</h5>
               <span>July 2022 – January 2023</span>
             </div>
+
             <div class="hr"></div>
-            <h4><span>Eighty20 Consulting, Cape Town</span></h4>
+
+            <h4>Eighty20 Consulting, Cape Town</h4>
+
             <ul class="experience-list">
-              <li>Built ETL pipelines to process 500MB+ of daily survey data into MySQL.</li>
-              <li>Refactored R-based workflows into Python, cutting runtime by 25%.</li>
-              <li>Improved processing efficiency by 35% using Pandas and SQL.</li>
-              <li>Collaborated in a small team to deliver reliable data systems.</li>
+              <li>Built ETL pipelines to process large daily survey datasets into MySQL-based delivery tables.</li>
+              <li>Refactored legacy R workflows into Python to improve maintainability and execution speed.</li>
+              <li>Improved processing efficiency using Pandas and SQL across repeated transformation steps.</li>
+              <li>Worked within a small delivery team to support stable and reliable data operations.</li>
+              <li>Helped standardise implementation patterns that made future pipeline work easier to extend.</li>
             </ul>
-          </div>
+          </article>
         </div>
       </div>
     </div>
