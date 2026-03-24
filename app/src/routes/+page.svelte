@@ -4,49 +4,35 @@
 
   type Cleanup = () => void;
 
-  const services = [
+  const capabilities = [
     {
-      icon: 'fa-solid fa-database',
-      title: 'Data Pipeline Development',
-      description: 'Building scalable ETL and ELT pipelines that move data securely and efficiently between systems.',
+      title: 'Data Pipeline Engineering',
+      description:
+        'Design and delivery of production ETL and ELT pipelines across SFTP, AWS, and warehouse environments, with validation and reliability built in.',
       bullets: [
-        'Custom pipeline design and automation',
-        'Database integration and data flow optimisation',
-        'Data quality checks and monitoring',
-        'Performance tuning for high-volume data'
+        'End-to-end ingestion and transformation design',
+        'Data validation, reconciliation, and error handling',
+        'Performance optimisation for recurring high-volume loads'
       ]
     },
     {
-      icon: 'fa-solid fa-sitemap',
-      title: 'Workflow Automation',
-      description: 'Automating manual data processes to improve accuracy and save time.',
+      title: 'Workflow Orchestration',
+      description:
+        'Airflow-based scheduling and orchestration for dependable data movement, repeatable execution, and clearer operational control.',
       bullets: [
-        'Apache Airflow DAG design and scheduling',
-        'Task orchestration and dependency handling',
-        'Automated validation and alert systems',
-        'Reduction of manual repetitive work'
+        'DAG design, dependency management, and retries',
+        'Monitoring, alerting, and production debugging',
+        'Improved pipeline stability across scheduled workloads'
       ]
     },
     {
-      icon: 'fa-solid fa-cloud',
-      title: 'Cloud Data Solutions',
-      description: 'Designing and maintaining cloud-based data infrastructure.',
+      title: 'Cloud & Data Infrastructure',
+      description:
+        'Practical cloud integration for storage, compute, and database-backed workflows, with a focus on maintainability and efficient access patterns.',
       bullets: [
-        'AWS S3, EC2, and RDS setup',
-        'Data migration and storage optimisation',
-        'Backup and archiving strategies',
-        'Cost-efficient data access solutions'
-      ]
-    },
-    {
-      icon: 'fa-brands fa-medium',
-      title: 'Medium Content Writing',
-      description: 'Writing engaging, insightful, and data-driven articles for Medium and other online audiences.',
-      bullets: [
-        'Data and tech-focused article writing',
-        'SEO-friendly storytelling and formatting',
-        'Consistent publishing and topic research',
-        'Collaboration on thought-leadership content'
+        'AWS S3, EC2, and RDS integration',
+        'Secure movement of data between systems',
+        'Storage structure and cost-aware access design'
       ]
     }
   ];
@@ -102,7 +88,6 @@
     }
   ];
 
-  let activeServiceModal: number | null = null;
   let activePortfolioModal: number | null = null;
   let navOpen = false;
   let isSticky = false;
@@ -119,7 +104,6 @@
   ];
 
   function closeAllModals() {
-    activeServiceModal = null;
     activePortfolioModal = null;
   }
 
@@ -235,7 +219,7 @@
       }
     );
     srWindow.ScrollReveal().reveal(
-      '.skills-panel, .experience-card, .service-card, .portfolio .img-card',
+      '.skills-panel, .experience-card, .capability-card, .portfolio .img-card',
       {
         delay: 800,
         origin: 'bottom',
@@ -622,66 +606,32 @@
 
   <section class="services section" id="services" aria-label="Services">
     <div class="container flex-centre">
-      <h2 class="section-title">Services</h2>
+      <h2 class="section-title">Capabilities</h2>
 
       <div class="content">
         <div class="services-description">
-          <h3>What I provide</h3>
+          <h3>What I build and improve</h3>
+          <p>
+            I focus on practical engineering work that improves data reliability, delivery speed,
+            and operational clarity across production workflows.
+          </p>
         </div>
 
-        <ul class="service-list">
-          {#each services as service, i}
-            <li class="service-container">
-              <div class="service-card">
-                <i class={service.icon} aria-hidden="true"></i>
-                <h3>{service.title}</h3>
-                <div
-                  class="learn-more-btn"
-                  role="button"
-                  tabindex="0"
-                  on:click={() => (activeServiceModal = i)}
-                  on:keydown={(event) => {
-                    if (event.key === 'Enter' || event.key === ' ') activeServiceModal = i;
-                  }}
-                >
-                  Learn More <i class="fa-solid fa-long-arrow-alt-right" aria-hidden="true"></i>
-                </div>
-              </div>
+        <div class="capabilities-grid">
+          {#each capabilities as capability}
+            <article class="capability-card">
+              <div class="capability-accent" aria-hidden="true"></div>
+              <h3>{capability.title}</h3>
+              <p>{capability.description}</p>
 
-              <div
-                class="service-modal flex-centre {activeServiceModal === i ? 'active' : ''}"
-                aria-hidden={activeServiceModal === i ? 'false' : 'true'}
-                on:click={(event) => {
-                  if (event.currentTarget === event.target) activeServiceModal = null;
-                }}
-              >
-                <div class="service-modal-body">
-                  <i
-                    class="fa-solid fa-times modal-close-btn"
-                    aria-label="Close"
-                    role="button"
-                    tabindex="0"
-                    on:click={() => (activeServiceModal = null)}
-                    on:keydown={(event) => {
-                      if (event.key === 'Enter' || event.key === ' ') activeServiceModal = null;
-                    }}
-                  ></i>
-                  <h3>{service.title}</h3>
-                  <h4>What is it?</h4>
-                  <p>{service.description}</p>
-                  <h4>What I provide</h4>
-                  <ul>
-                    {#each service.bullets as bullet}
-                      <li>
-                        <i class="fa-solid fa-check-circle" aria-hidden="true"></i> {bullet}
-                      </li>
-                    {/each}
-                  </ul>
-                </div>
-              </div>
-            </li>
+              <ul class="capability-list">
+                {#each capability.bullets as bullet}
+                  <li>{bullet}</li>
+                {/each}
+              </ul>
+            </article>
           {/each}
-        </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -812,7 +762,7 @@
       <h3>More</h3>
       <ul>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#services">Services</a></li>
+        <li><a href="#services">Capabilities</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>

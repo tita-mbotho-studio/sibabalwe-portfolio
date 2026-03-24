@@ -718,6 +718,7 @@ header.sticky .nav-bar {
 
 .skills-panel:hover,
 .experience-card:hover,
+.capability-card:hover,
 .service-card:hover {
   transform: translateY(-4px);
 }
@@ -728,7 +729,76 @@ header.sticky .nav-bar {
 
 .services-description h3 {
   font-size: var(--text-32);
-  margin-bottom: var(--space-48);
+  margin-bottom: var(--space-12);
+}
+
+.services-description p {
+  color: var(--third-color);
+  line-height: 1.75;
+  max-width: 720px;
+}
+
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-24);
+}
+
+.capability-card {
+  background: var(--card-bg-color);
+  box-shadow: var(--box-shadow);
+  border-bottom: 4px solid var(--second-color);
+  border-radius: 8px;
+  padding: var(--space-32);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  transition: 0.3s ease;
+}
+
+.capability-accent {
+  width: 56px;
+  height: 4px;
+  background: var(--second-color);
+  border-radius: 999px;
+  margin-bottom: var(--space-24);
+}
+
+.capability-card h3 {
+  font-size: var(--text-24);
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: var(--space-16);
+}
+
+.capability-card p {
+  color: var(--third-color);
+  line-height: 1.75;
+  margin-bottom: var(--space-24);
+}
+
+.capability-list {
+  display: grid;
+  gap: var(--space-12);
+  margin-top: auto;
+}
+
+.capability-list li {
+  color: var(--third-color);
+  line-height: 1.7;
+  position: relative;
+  padding-left: var(--space-16);
+}
+
+.capability-list li::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--second-color);
 }
 
 .service-list {
@@ -1318,7 +1388,8 @@ footer a {
   }
 
   .skills-summary-grid,
-  .experience-grid {
+  .experience-grid,
+  .capabilities-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1447,7 +1518,8 @@ footer a {
   }
 
   .skills-panel,
-  .experience-card {
+  .experience-card,
+  .capability-card {
     padding: var(--space-24);
   }
 
@@ -1485,7 +1557,6 @@ footer a {
     padding: var(--space-64) var(--space-24);
   }
 
-  .service-list,
   .portfolio-list {
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: var(--space-24);
@@ -1493,7 +1564,6 @@ footer a {
 }
 
 @media (max-width: 600px) {
-  .service-list,
   .portfolio-list {
     grid-template-columns: 1fr;
   }
