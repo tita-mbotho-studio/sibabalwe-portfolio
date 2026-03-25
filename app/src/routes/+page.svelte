@@ -164,13 +164,13 @@
       interval: 200
     });
     srWindow.ScrollReveal().reveal(
-      '.skills-description, .services-description, .contact-card, .contact-left h2',
+      '.skills-description, .services-description, .contact-left h2',
       {
         delay: 700,
         origin: 'left'
       }
     );
-    srWindow.ScrollReveal().reveal('.skills-panel, .experience-card, .capability-card', {
+    srWindow.ScrollReveal().reveal('.skills-panel, .experience-card, .capability-card, .contact-cta', {
       delay: 800,
       origin: 'bottom',
       interval: 150
@@ -368,8 +368,7 @@
               I design and develop scalable data pipelines and automation solutions using Python,
               SQL, Apache Airflow, and AWS. My work focuses on improving data reliability,
               accuracy, and accessibility across cloud and on-premise environments. My passion is
-              to simplify complex data systems through automation and thoughtful engineering. Check
-              out my portfolio below.
+              to simplify complex data systems through automation and thoughtful engineering.
             </p>
           </div>
 
@@ -618,23 +617,10 @@
             <span>data projects, workflow automation, collaborations, or creating websites.</span>
           </p>
 
-          <div class="get-in-touch sub-section">
-            <div class="container">
-              <div class="content flex-centre">
-                <div class="contact-card flex-centre">
-                  <div class="title">
-                    <h4>Let's Talk</h4>
-                    <h3>About Your</h3>
-                    <h2>Next Project</h2>
-                  </div>
-                  <div class="contact-btn">
-                    <a href="#contact" class="btn">
-                      Get In Touch <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="contact-cta">
+            <a href="mailto:s.sibabalwee1@gmail.com" class="btn">
+              Get In Touch <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </div>
