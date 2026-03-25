@@ -718,7 +718,8 @@ header.sticky .nav-bar {
 
 .skills-panel:hover,
 .experience-card:hover,
-.capability-card:hover {
+.capability-card:hover,
+.contact-cta:hover {
   transform: translateY(-4px);
 }
 
@@ -1046,52 +1047,15 @@ header.sticky .nav-bar {
   font-weight: 700;
 }
 
-.contact-right .get-in-touch {
-  margin-top: 0;
-}
-
-.contact-right .get-in-touch.sub-section {
-  max-width: 100%;
-  padding: 0;
-}
-
-.contact-right .get-in-touch .container {
+.contact-cta {
   width: 100%;
+  max-width: 420px;
+  display: flex;
+  justify-content: center;
+  align-self: start;
 }
 
-.contact-right .get-in-touch .container .content {
-  width: 100%;
-  display: block;
-}
-
-.contact-right .get-in-touch .contact-card {
-  width: 100%;
-  max-width: 640px;
-  padding: var(--space-40);
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: var(--space-24);
-  column-gap: 0;
-}
-
-.contact-right .contact-card .title {
-  line-height: 1.15;
-}
-
-.contact-right .contact-card .title h4 {
-  margin-bottom: var(--space-12);
-}
-
-.contact-right .contact-card .title h3 {
-  margin-bottom: var(--space-8);
-}
-
-.contact-right .contact-card .title h2 {
-  font-size: var(--text-48);
-  line-height: 1.05;
-}
-
-.contact-right .contact-btn .btn {
+.contact-cta .btn {
   margin-top: 0;
 }
 
@@ -1370,13 +1334,9 @@ footer a {
     justify-self: stretch;
   }
 
-  .contact-right .get-in-touch .contact-card {
-    padding: var(--space-32);
+  .contact-cta {
     max-width: none;
-  }
-
-  .contact-right .contact-card .title h2 {
-    font-size: var(--text-40);
+    justify-content: center;
   }
 
   .contact-form .second-row {
@@ -1511,14 +1471,6 @@ footer a {
 
   .home-container .home-img {
     max-width: 320px;
-  }
-
-  .contact-right .get-in-touch .contact-card {
-    padding: var(--space-24);
-  }
-
-  .contact-right .contact-card .title h2 {
-    font-size: var(--text-36);
   }
 }
 
