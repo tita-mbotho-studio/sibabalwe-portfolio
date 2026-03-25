@@ -47,58 +47,6 @@
     }
   ];
 
-  const portfolioItems = [
-    {
-      title: 'Web Design',
-      subtitle: 'Personal portfolio',
-      image: `${base}/img/images/port-webdesign.jpg`,
-      modalTitle: 'Web Design – Portfolio Website',
-      body:
-        'Responsive single-page portfolio built with HTML, CSS, and JS (sections: Home, About, Skills, Services, Portfolio, Contact). Includes Font Awesome icons, scroll animations, and modular components for future projects.'
-    },
-    {
-      title: 'Data Pipeline',
-      subtitle: 'ETL / ELT',
-      image: `${base}/img/images/port-data-pipeline.jpg`,
-      modalTitle: 'Data Pipeline Development',
-      body:
-        'Designed and optimised ETL/ELT pipelines moving data from SFTP/AWS into warehouse layers. Included data validation, archiving patterns, and performance tuning for high-volume datasets.'
-    },
-    {
-      title: 'Airflow Orchestration',
-      subtitle: 'DAGs / Scheduling',
-      image: `${base}/img/images/port-airflow.jpg`,
-      modalTitle: 'Airflow DAG Orchestration',
-      body:
-        'Built and maintained multiple Apache Airflow DAGs (campaign monitoring, OSAS/CMS feeds, remote logging). Included external task sensors, conditional triggers, and environment-aware variables.'
-    },
-    {
-      title: 'Cloud Data Solutions',
-      subtitle: 'AWS / S3 / EC2',
-      image: `${base}/img/images/port-cloud.jpg`,
-      modalTitle: 'Cloud Data Solutions',
-      body:
-        'Provisioned and integrated AWS services (S3 access points, EC2, RDS) for data-engineering workloads. Focused on secure access, bucket structure, and cost-aware storage/archiving strategies.'
-    },
-    {
-      title: 'Medium Writing',
-      subtitle: 'Data / Engineering',
-      image: `${base}/img/images/port-medium.jpg`,
-      modalTitle: 'Medium Content Writing',
-      body:
-        'Long-form, technical-but-readable articles on data pipelines, Airflow tricks, and working with AWS in real client environments. Structured for SEO and developer audiences.'
-    },
-    {
-      title: 'Branding & UI',
-      subtitle: 'Support assets',
-      image: `${base}/img/images/port-branding.jpg`,
-      modalTitle: 'Branding & UI Support',
-      body:
-        'Support visuals and UI layouts for dashboards, portfolio sections, and service pages to keep the whole site consistent with any personal brand.'
-    }
-  ];
-
-  let activePortfolioModal: number | null = null;
   let navOpen = false;
   let isSticky = false;
   let showScrollTop = false;
@@ -109,13 +57,8 @@
     { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
     { id: 'services', label: 'Services' },
-    { id: 'portfolio', label: 'Portfolio' },
     { id: 'contact', label: 'Contact' }
   ];
-
-  function closeAllModals() {
-    activePortfolioModal = null;
-  }
 
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -141,7 +84,6 @@
 
   function closeOnEscape(event: KeyboardEvent) {
     if (event.key === 'Escape') {
-      closeAllModals();
       navOpen = false;
     }
   }
@@ -228,14 +170,11 @@
         origin: 'left'
       }
     );
-    srWindow.ScrollReveal().reveal(
-      '.skills-panel, .experience-card, .capability-card, .portfolio .img-card',
-      {
-        delay: 800,
-        origin: 'bottom',
-        interval: 150
-      }
-    );
+    srWindow.ScrollReveal().reveal('.skills-panel, .experience-card, .capability-card', {
+      delay: 800,
+      origin: 'bottom',
+      interval: 150
+    });
     srWindow.ScrollReveal().reveal('footer .group', {
       delay: 500,
       origin: 'top',
@@ -646,80 +585,6 @@
     </div>
   </section>
 
-  <section class="portfolio section" id="portfolio" aria-label="Portfolio">
-    <div class="container flex-centre">
-      <h2 class="section-title">Portfolio</h2>
-
-      <div class="content">
-        <div class="portfolio-list">
-          {#each portfolioItems as item, i}
-            <div class="img-card-container">
-              <div
-                class="img-card"
-                role="button"
-                tabindex="0"
-                on:click={() => (activePortfolioModal = i)}
-                on:keydown={(event) => {
-                  if (event.key === 'Enter' || event.key === ' ') activePortfolioModal = i;
-                }}
-              >
-                <div class="overlay"></div>
-                <div class="info">
-                  <h3>{item.title}</h3>
-                  <span>{item.subtitle}</span>
-                </div>
-                <img src={item.image} alt={item.modalTitle} loading="lazy" decoding="async" />
-              </div>
-
-              <div
-                class="portfolio-model flex-centre {activePortfolioModal === i ? 'active' : ''}"
-                aria-hidden={activePortfolioModal === i ? 'false' : 'true'}
-                on:click={(event) => {
-                  if (event.currentTarget === event.target) activePortfolioModal = null;
-                }}
-              >
-                <div class="portfolio-model-body">
-                  <i
-                    class="fa-solid fa-times portfolio-close-btn"
-                    aria-label="Close"
-                    role="button"
-                    tabindex="0"
-                    on:click={() => (activePortfolioModal = null)}
-                    on:keydown={(event) => {
-                      if (event.key === 'Enter' || event.key === ' ') activePortfolioModal = null;
-                    }}
-                  ></i>
-                  <h3>{item.modalTitle}</h3>
-                  <img src={item.image} alt={item.modalTitle} loading="lazy" decoding="async" />
-                  <p>{item.body}</p>
-                </div>
-              </div>
-            </div>
-          {/each}
-        </div>
-      </div>
-    </div>
-
-    <div class="get-in-touch sub-section">
-      <div class="container">
-        <div class="content flex-centre">
-          <div class="contact-card flex-centre">
-            <div class="title">
-              <h4>Let's Talk</h4>
-              <h3>About Your</h3>
-              <h2>Next Project</h2>
-            </div>
-            <div class="contact-btn">
-              <a href="#contact" class="btn">
-                Get In Touch <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="contact section" id="contact" aria-label="Contact">
     <div class="container flex-centre">
       <h2 class="section-title">Contact Me</h2>
@@ -752,6 +617,25 @@
             I'm always open to discussing <br />
             <span>data projects, workflow automation, collaborations, or creating websites.</span>
           </p>
+
+          <div class="get-in-touch sub-section">
+            <div class="container">
+              <div class="content flex-centre">
+                <div class="contact-card flex-centre">
+                  <div class="title">
+                    <h4>Let's Talk</h4>
+                    <h3>About Your</h3>
+                    <h2>Next Project</h2>
+                  </div>
+                  <div class="contact-btn">
+                    <a href="#contact" class="btn">
+                      Get In Touch <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -773,7 +657,6 @@
       <ul>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#services">Capabilities</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>

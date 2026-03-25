@@ -974,17 +974,18 @@ header.sticky .nav-bar {
 }
 
 .contact .container .content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: minmax(280px, 420px) minmax(0, 1fr);
+  align-items: start;
   width: 100%;
-  gap: 60px;
+  gap: var(--space-64);
 }
 
 .contact-left h2 {
-  font-size: var(--text-36);
+  font-size: var(--text-32);
   font-weight: 800;
   margin-bottom: var(--space-40);
+  line-height: 1.2;
 }
 
 #contact .contact-list {
@@ -1023,16 +1024,75 @@ header.sticky .nav-bar {
   color: var(--second-color) !important;
 }
 
+.contact-right {
+  display: grid;
+  grid-template-rows: auto auto;
+  row-gap: var(--space-36);
+  align-content: start;
+  width: 100%;
+  max-width: 680px;
+  justify-self: end;
+}
+
 .contact-right p {
   color: var(--third-color);
   font-size: var(--text-32);
-  margin-bottom: var(--space-32);
+  margin-bottom: 0;
   line-height: 1.5;
 }
 
 .contact-right p span {
   color: var(--first-color);
   font-weight: 700;
+}
+
+.contact-right .get-in-touch {
+  margin-top: 0;
+}
+
+.contact-right .get-in-touch.sub-section {
+  max-width: 100%;
+  padding: 0;
+}
+
+.contact-right .get-in-touch .container {
+  width: 100%;
+}
+
+.contact-right .get-in-touch .container .content {
+  width: 100%;
+  display: block;
+}
+
+.contact-right .get-in-touch .contact-card {
+  width: 100%;
+  max-width: 640px;
+  padding: var(--space-40);
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: var(--space-24);
+  column-gap: 0;
+}
+
+.contact-right .contact-card .title {
+  line-height: 1.15;
+}
+
+.contact-right .contact-card .title h4 {
+  margin-bottom: var(--space-12);
+}
+
+.contact-right .contact-card .title h3 {
+  margin-bottom: var(--space-8);
+}
+
+.contact-right .contact-card .title h2 {
+  font-size: var(--text-48);
+  line-height: 1.05;
+}
+
+.contact-right .contact-btn .btn {
+  margin-top: 0;
 }
 
 .contact-form input,
@@ -1296,13 +1356,27 @@ footer a {
     line-height: var(--text-48);
   }
 
-  .contact .content {
-    flex-direction: column;
-    font-size: var(--text-16);
+  .contact .container .content {
+    grid-template-columns: 1fr;
+    gap: var(--space-40);
   }
 
   .contact .contact-left {
-    margin-bottom: var(--space-40);
+    margin-bottom: 0;
+  }
+
+  .contact-right {
+    max-width: none;
+    justify-self: stretch;
+  }
+
+  .contact-right .get-in-touch .contact-card {
+    padding: var(--space-32);
+    max-width: none;
+  }
+
+  .contact-right .contact-card .title h2 {
+    font-size: var(--text-40);
   }
 
   .contact-form .second-row {
@@ -1423,6 +1497,10 @@ footer a {
   .contact-card .contact-btn .btn {
     font-size: var(--text-16);
   }
+
+  .contact-right p {
+    font-size: var(--text-24);
+  }
 }
 
 @media (max-width: 480px) {
@@ -1433,6 +1511,14 @@ footer a {
 
   .home-container .home-img {
     max-width: 320px;
+  }
+
+  .contact-right .get-in-touch .contact-card {
+    padding: var(--space-24);
+  }
+
+  .contact-right .contact-card .title h2 {
+    font-size: var(--text-36);
   }
 }
 
@@ -1463,7 +1549,7 @@ footer a {
 
 @media (max-width: 768px) {
   .contact .container .content {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: var(--space-32);
   }
 }
