@@ -672,7 +672,7 @@
         <div class="work-block">
           <div class="work-block-header">
             <h3>Data Systems</h3>
-            <p>Selected data and automation projects focused on reliability, efficiency, and scale.</p>
+            <p>Web projects focused on clean design, structure, and strong visual presentation.</p>
           </div>
 
           <div class="data-project-grid">
@@ -780,15 +780,6 @@
             </article>
           {/each}
         </div>
-
-        <blockquote class="focus-quote">
-          <p>
-            "The happiest people spend much time in a state of flow - the state in which people are
-            so involved in an activity that nothing else seems to matter; the experience itself is so
-            enjoyable that people will do it even at great cost, for the sheer sake of doing it."
-          </p>
-          <footer>Mihaly Csikszentmihalyi</footer>
-        </blockquote>
       </div>
     </div>
   </section>
