@@ -52,24 +52,18 @@
     {
       name: 'Apex Studio',
       logoLabel: 'AS',
-      category: 'Brand website redesign',
       image:
         'https://images.pexels.com/photos/20955052/pexels-photo-20955052.jpeg?auto=compress&cs=tinysrgb&w=1400',
       alt: 'Woman using a laptop in a modern office',
-      quote:
-        'The website immediately looked more premium and structured. The design felt modern, the pages were clear, and the final build gave us a much stronger online presence.',
-      outcome: 'Modernised service website with cleaner structure and stronger visual trust.'
+      quote: 'Clean, modern, and professional from start to finish.'
     },
     {
       name: 'Northview Creative',
       logoLabel: 'NC',
-      category: 'Portfolio and service landing pages',
       image:
         'https://images.pexels.com/photos/16940578/pexels-photo-16940578.jpeg?auto=compress&cs=tinysrgb&w=1400',
       alt: 'Smiling woman sitting by desk with laptop',
-      quote:
-        'Communication was smooth, the process was professional, and the website came out polished. It was exactly the kind of clean and modern presentation we needed for clients.',
-      outcome: 'Sharper portfolio presentation with improved content flow and conversion focus.'
+      quote: 'The final website felt polished and much stronger visually.'
     }
   ];
 
@@ -657,10 +651,9 @@
 
       <div class="content">
         <div class="clients-description">
-          <h3>Web design and development work with a proper featured carousel</h3>
+          <h3>Selected web design work</h3>
           <p>
-            This layout uses a real button-controlled infinite carousel. Each slide contains the
-            image, logo placeholder, review, and outcome in one structured card.
+            A clean showcase of recent client work and feedback.
           </p>
         </div>
 
@@ -699,30 +692,14 @@
                     </div>
 
                     <div class="client-carousel-content">
-                      <div class="client-carousel-top">
-                        <div class="client-carousel-logo">
-                          <div class="client-carousel-logo-mark">{client.logoLabel}</div>
+                      <div class="client-carousel-logo">
+                        <div class="client-carousel-logo-mark">{client.logoLabel}</div>
 
-                          <div class="client-carousel-meta">
-                            <h3>{client.name}</h3>
-                            <span>{client.category}</span>
-                          </div>
-                        </div>
-
-                        <div class="client-rating" aria-label="5 out of 5 review">
-                          <i class="fa-solid fa-star" aria-hidden="true"></i>
-                          <i class="fa-solid fa-star" aria-hidden="true"></i>
-                          <i class="fa-solid fa-star" aria-hidden="true"></i>
-                          <i class="fa-solid fa-star" aria-hidden="true"></i>
-                          <i class="fa-solid fa-star" aria-hidden="true"></i>
+                        <div class="client-carousel-meta">
+                          <h3>{client.name}</h3>
+                          <p>{client.quote}</p>
                         </div>
                       </div>
-
-                      <blockquote class="client-review">
-                        "{client.quote}"
-                      </blockquote>
-
-                      <p class="client-outcome">{client.outcome}</p>
                     </div>
                   </div>
                 </article>
