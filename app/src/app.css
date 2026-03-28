@@ -216,14 +216,14 @@ header.sticky .nav-bar {
 }
 
 .nav-items a.active {
-  color: var(--first-color);
+  color: var(--second-color);
   background: oklch(0.18 0 0 / 0.92);
   border-color: oklch(1 0 0 / 0.12);
   box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.06);
 }
 
 .nav-items a:hover {
-  color: var(--first-color);
+  color: var(--second-color);
   background: oklch(1 0 0 / 0.06);
 }
 
@@ -1377,6 +1377,7 @@ footer a {
   }
 
   .nav-items a.active {
+    color: var(--second-color);
     border-bottom: 1px solid oklch(1 0 0 / 0.12);
   }
 
