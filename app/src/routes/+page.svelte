@@ -50,16 +50,16 @@
 
   const clientSlides = [
     {
-      name: 'Apex Studio',
+      name: 'BOSS B',
       image:
-        'https://images.pexels.com/photos/20955052/pexels-photo-20955052.jpeg?auto=compress&cs=tinysrgb&w=1400',
+        'https://ik.imagekit.io/kw8awoqvwi/personal-portfolio/bossb-logo.webp',
       alt: 'Woman using a laptop in a modern office',
       quote: 'Clean, modern, and professional from start to finish.'
     },
     {
-      name: 'Northview Creative',
+      name: 'CTRA GROUP',
       image:
-        'https://images.pexels.com/photos/16940578/pexels-photo-16940578.jpeg?auto=compress&cs=tinysrgb&w=1400',
+        'https://ik.imagekit.io/kw8awoqvwi/personal-portfolio/ctra-logo.webp',
       alt: 'Smiling woman sitting by desk with laptop',
       quote: 'The final website felt polished and much stronger visually.'
     }
