@@ -733,7 +733,7 @@ header.sticky .nav-bar {
 .skills-panel:hover,
 .experience-card:hover,
 .capability-card:hover,
-.client-carousel-shell:hover,
+.carousel:hover,
 .contact-cta:hover {
   transform: translateY(-4px);
 }
@@ -801,117 +801,130 @@ header.sticky .nav-bar {
   background: var(--second-color);
 }
 
-.client-carousel-shell {
+.carousel {
   position: relative;
-  background: var(--card-bg-color);
-  border: 1px solid var(--transparent-color-01);
-  border-bottom: 4px solid var(--second-color);
   border-radius: 16px;
-  padding: var(--space-20);
-  box-shadow: var(--box-shadow);
   overflow: hidden;
+  border: 1px solid var(--transparent-color-01);
+  box-shadow: var(--box-shadow);
+  background: var(--card-bg-color);
   transition: 0.3s ease;
 }
 
-.client-carousel-controls {
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--space-12);
-  margin-bottom: var(--space-16);
+.carousel-inner {
+  overflow: hidden;
+  width: 100%;
 }
 
-.client-carousel-btn {
-  width: 44px;
-  height: 44px;
+.carousel-track {
+  display: flex;
+  width: 100%;
+}
+
+.carousel-item {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 100%;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, oklch(0.06 0 0 / 0.82), oklch(0.06 0 0 / 0.08));
+  pointer-events: none;
+}
+
+.carousel-caption {
+  position: absolute;
+  left: var(--space-32);
+  right: var(--space-32);
+  bottom: var(--space-28);
+  z-index: 2;
+}
+
+.carousel-caption h5 {
+  font-size: var(--text-32);
+  font-weight: 600;
+  margin-bottom: var(--space-8);
+  color: var(--first-color);
+}
+
+.carousel-caption p {
+  max-width: 600px;
+  color: oklch(0.9 0 0);
+  font-size: var(--text-16);
+  line-height: 1.7;
+}
+
+.carousel-indicators {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-16);
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-8);
+  z-index: 3;
+}
+
+.carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: oklch(1 0 0 / 0.45);
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.carousel-indicators button.active {
+  background: var(--first-color);
+  transform: scale(1.15);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  border-radius: 999px;
-  background: oklch(0.22 0 0);
+  background: oklch(0.12 0 0 / 0.45);
   color: var(--first-color);
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.client-carousel-btn:hover {
-  background: var(--second-color);
-  transform: translateY(-2px);
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background: oklch(0.12 0 0 / 0.7);
 }
 
-.client-carousel-viewport {
-  overflow: hidden;
-  width: 100%;
+.carousel-control-prev {
+  left: var(--space-16);
 }
 
-.client-carousel-track {
-  display: flex;
-  width: 100%;
+.carousel-control-next {
+  right: var(--space-16);
 }
 
-.client-carousel-slide {
-  min-width: 100%;
-  width: 100%;
-  flex: 0 0 100%;
-}
-
-.client-carousel-card {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: var(--space-24);
-  align-items: center;
-}
-
-.client-carousel-media {
-  min-height: 280px;
-  border-radius: 12px;
-  overflow: hidden;
-  background: oklch(0.14 0 0);
-}
-
-.client-carousel-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.client-carousel-content {
-  display: flex;
-  align-items: center;
-  min-height: 100%;
-}
-
-.client-carousel-logo {
-  display: flex;
-  align-items: center;
-  gap: var(--space-16);
-}
-
-.client-carousel-logo-mark {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background: oklch(0.22 0 0);
-  color: var(--first-color);
-  font-size: var(--text-16);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  flex-shrink: 0;
-}
-
-.client-carousel-meta h3 {
-  font-size: var(--text-24);
-  font-weight: 600;
-  margin-bottom: var(--space-8);
-}
-
-.client-carousel-meta p {
-  color: var(--third-color);
-  font-size: var(--text-16);
-  line-height: 1.7;
-  max-width: 28ch;
+  font-size: var(--text-20);
 }
 
 .portfolio .container .content {
@@ -1384,8 +1397,7 @@ footer a {
   }
 
   .about .content,
-  .contact .container .content,
-  .client-carousel-card {
+  .contact .container .content {
     grid-template-columns: 1fr;
   }
 
@@ -1419,14 +1431,6 @@ footer a {
   .skills-stack-row {
     grid-template-columns: 1fr;
     gap: var(--space-8);
-  }
-
-  .client-carousel-media {
-    min-height: 240px;
-  }
-
-  .client-carousel-content {
-    padding: 0;
   }
 
   .get-in-touch .contact-card {
@@ -1559,41 +1563,32 @@ footer a {
 
   .skills-panel,
   .experience-card,
-  .capability-card,
-  .client-carousel-shell {
+  .capability-card {
     padding: var(--space-24);
   }
 
-  .client-carousel-shell {
-    padding: var(--space-16);
+  .carousel-item img {
+    height: 320px;
   }
 
-  .client-carousel-controls {
-    margin-bottom: var(--space-12);
+  .carousel-caption {
+    left: var(--space-20);
+    right: var(--space-20);
+    bottom: var(--space-24);
   }
 
-  .client-carousel-btn {
-    width: 40px;
-    height: 40px;
+  .carousel-caption h5 {
+    font-size: var(--text-24);
   }
 
-  .client-carousel-media {
-    min-height: 220px;
+  .carousel-caption p {
+    font-size: 14px;
   }
 
-  .client-carousel-logo-mark {
-    width: 48px;
-    height: 48px;
-    font-size: var(--text-16);
-  }
-
-  .client-carousel-meta h3 {
-    font-size: var(--text-20);
-  }
-
-  .client-carousel-meta p,
-  .contact-right p {
-    font-size: var(--text-16);
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 44px;
+    height: 44px;
   }
 
   .get-in-touch .contact-card {
@@ -1608,6 +1603,10 @@ footer a {
   .contact-card .contact-btn .btn {
     font-size: var(--text-16);
   }
+
+  .contact-right p {
+    font-size: var(--text-24);
+  }
 }
 
 @media (max-width: 480px) {
@@ -1620,23 +1619,23 @@ footer a {
     max-width: 320px;
   }
 
-  .client-carousel-logo {
-    align-items: flex-start;
+  .carousel-item img {
+    height: 260px;
   }
 
-  .client-carousel-logo-mark {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    font-size: 14px;
+  .carousel-caption h5 {
+    font-size: var(--text-20);
   }
 
-  .client-carousel-meta h3 {
-    font-size: var(--text-16);
+  .carousel-caption p {
+    font-size: 13px;
+    line-height: 1.6;
   }
 
-  .client-carousel-meta p {
-    font-size: 14px;
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 40px;
+    height: 40px;
   }
 }
 

@@ -51,7 +51,6 @@
   const clientSlides = [
     {
       name: 'Apex Studio',
-      logoLabel: 'AS',
       image:
         'https://images.pexels.com/photos/20955052/pexels-photo-20955052.jpeg?auto=compress&cs=tinysrgb&w=1400',
       alt: 'Woman using a laptop in a modern office',
@@ -59,7 +58,6 @@
     },
     {
       name: 'Northview Creative',
-      logoLabel: 'NC',
       image:
         'https://images.pexels.com/photos/16940578/pexels-photo-16940578.jpeg?auto=compress&cs=tinysrgb&w=1400',
       alt: 'Smiling woman sitting by desk with laptop',
@@ -89,6 +87,13 @@
     { id: 'clients', label: 'Clients' },
     { id: 'contact', label: 'Contact' }
   ];
+
+  $: activeClientIndex =
+    carouselIndex === 0
+      ? clientSlides.length - 1
+      : carouselIndex === carouselSlides.length - 1
+        ? 0
+        : carouselIndex - 1;
 
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -124,6 +129,10 @@
 
   function prevClient() {
     carouselIndex -= 1;
+  }
+
+  function goToClient(index: number) {
+    carouselIndex = index + 1;
   }
 
   async function handleCarouselTransitionEnd() {
@@ -229,7 +238,7 @@
       }
     );
     srWindow.ScrollReveal().reveal(
-      '.skills-panel, .experience-card, .capability-card, .client-carousel-shell, .contact-cta',
+      '.skills-panel, .experience-card, .capability-card, .carousel, .contact-cta',
       {
         delay: 800,
         origin: 'bottom',
@@ -652,60 +661,63 @@
       <div class="content">
         <div class="clients-description">
           <h3>Selected web design work</h3>
-          <p>
-            A clean showcase of recent client work and feedback.
-          </p>
+          <p>A simple visual showcase with client feedback.</p>
         </div>
 
-        <div class="client-carousel-shell">
-          <div class="client-carousel-controls">
-            <button
-              type="button"
-              class="client-carousel-btn"
-              aria-label="Previous client"
-              on:click={prevClient}
-            >
-              <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-            </button>
-
-            <button
-              type="button"
-              class="client-carousel-btn"
-              aria-label="Next client"
-              on:click={nextClient}
-            >
-              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-            </button>
+        <div id="clientsCarousel" class="carousel slide">
+          <div class="carousel-indicators">
+            {#each clientSlides as _, index}
+              <button
+                type="button"
+                class:active={activeClientIndex === index}
+                aria-label={`Slide ${index + 1}`}
+                aria-current={activeClientIndex === index ? 'true' : undefined}
+                on:click={() => goToClient(index)}
+              ></button>
+            {/each}
           </div>
 
-          <div class="client-carousel-viewport">
+          <div class="carousel-inner">
             <div
-              class="client-carousel-track"
+              class="carousel-track"
               style={`transform: translateX(-${carouselIndex * 100}%); transition: ${carouselAnimate ? 'transform 0.55s ease' : 'none'};`}
               on:transitionend={handleCarouselTransitionEnd}
             >
               {#each carouselSlides as client}
-                <article class="client-carousel-slide">
-                  <div class="client-carousel-card">
-                    <div class="client-carousel-media">
-                      <img src={client.image} alt={client.alt} loading="lazy" decoding="async" />
-                    </div>
-
-                    <div class="client-carousel-content">
-                      <div class="client-carousel-logo">
-                        <div class="client-carousel-logo-mark">{client.logoLabel}</div>
-
-                        <div class="client-carousel-meta">
-                          <h3>{client.name}</h3>
-                          <p>{client.quote}</p>
-                        </div>
-                      </div>
-                    </div>
+                <div class="carousel-item">
+                  <img src={client.image} class="d-block w-100" alt={client.alt} />
+                  <div class="carousel-caption">
+                    <h5>{client.name}</h5>
+                    <p>{client.quote}</p>
                   </div>
-                </article>
+                </div>
               {/each}
             </div>
           </div>
+
+          <button
+            class="carousel-control-prev"
+            type="button"
+            aria-label="Previous slide"
+            on:click={prevClient}
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true">
+              <i class="fa-solid fa-chevron-left"></i>
+            </span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+
+          <button
+            class="carousel-control-next"
+            type="button"
+            aria-label="Next slide"
+            on:click={nextClient}
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true">
+              <i class="fa-solid fa-chevron-right"></i>
+            </span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
       </div>
     </div>
