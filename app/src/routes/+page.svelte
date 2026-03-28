@@ -1,5 +1,6 @@
+<!-- app/src/routes/+page.svelte -->
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { base } from '$app/paths';
 
   type Cleanup = () => void;
@@ -47,16 +48,51 @@
     }
   ];
 
+  const clientSlides = [
+    {
+      name: 'Apex Studio',
+      logoLabel: 'AS',
+      category: 'Brand website redesign',
+      image:
+        'https://images.pexels.com/photos/20955052/pexels-photo-20955052.jpeg?auto=compress&cs=tinysrgb&w=1400',
+      alt: 'Woman using a laptop in a modern office',
+      quote:
+        'The website immediately looked more premium and structured. The design felt modern, the pages were clear, and the final build gave us a much stronger online presence.',
+      outcome: 'Modernised service website with cleaner structure and stronger visual trust.'
+    },
+    {
+      name: 'Northview Creative',
+      logoLabel: 'NC',
+      category: 'Portfolio and service landing pages',
+      image:
+        'https://images.pexels.com/photos/16940578/pexels-photo-16940578.jpeg?auto=compress&cs=tinysrgb&w=1400',
+      alt: 'Smiling woman sitting by desk with laptop',
+      quote:
+        'Communication was smooth, the process was professional, and the website came out polished. It was exactly the kind of clean and modern presentation we needed for clients.',
+      outcome: 'Sharper portfolio presentation with improved content flow and conversion focus.'
+    }
+  ];
+
+  const carouselSlides = [
+    clientSlides[clientSlides.length - 1],
+    ...clientSlides,
+    clientSlides[0]
+  ];
+
   let navOpen = false;
   let isSticky = false;
   let showScrollTop = false;
   let activeSection = 'home';
+
+  let carouselIndex = 1;
+  let carouselAnimate = true;
 
   const navLinks = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
     { id: 'services', label: 'Services' },
+    { id: 'clients', label: 'Clients' },
     { id: 'contact', label: 'Contact' }
   ];
 
@@ -85,6 +121,34 @@
   function closeOnEscape(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       navOpen = false;
+    }
+  }
+
+  function nextClient() {
+    carouselIndex += 1;
+  }
+
+  function prevClient() {
+    carouselIndex -= 1;
+  }
+
+  async function handleCarouselTransitionEnd() {
+    if (carouselIndex === 0) {
+      carouselAnimate = false;
+      carouselIndex = clientSlides.length;
+      await tick();
+      requestAnimationFrame(() => {
+        carouselAnimate = true;
+      });
+    }
+
+    if (carouselIndex === carouselSlides.length - 1) {
+      carouselAnimate = false;
+      carouselIndex = 1;
+      await tick();
+      requestAnimationFrame(() => {
+        carouselAnimate = true;
+      });
     }
   }
 
@@ -164,17 +228,20 @@
       interval: 200
     });
     srWindow.ScrollReveal().reveal(
-      '.skills-description, .services-description, .contact-left h2',
+      '.skills-description, .services-description, .clients-description, .contact-left h2',
       {
         delay: 700,
         origin: 'left'
       }
     );
-    srWindow.ScrollReveal().reveal('.skills-panel, .experience-card, .capability-card, .contact-cta', {
-      delay: 800,
-      origin: 'bottom',
-      interval: 150
-    });
+    srWindow.ScrollReveal().reveal(
+      '.skills-panel, .experience-card, .capability-card, .client-carousel-shell, .contact-cta',
+      {
+        delay: 800,
+        origin: 'bottom',
+        interval: 150
+      }
+    );
     srWindow.ScrollReveal().reveal('footer .group', {
       delay: 500,
       origin: 'top',
@@ -584,6 +651,89 @@
     </div>
   </section>
 
+  <section class="clients section" id="clients" aria-label="Clients">
+    <div class="container flex-centre">
+      <h2 class="section-title">Clients</h2>
+
+      <div class="content">
+        <div class="clients-description">
+          <h3>Web design and development work with a proper featured carousel</h3>
+          <p>
+            This layout uses a real button-controlled infinite carousel. Each slide contains the
+            image, logo placeholder, review, and outcome in one structured card.
+          </p>
+        </div>
+
+        <div class="client-carousel-shell">
+          <div class="client-carousel-controls">
+            <button
+              type="button"
+              class="client-carousel-btn"
+              aria-label="Previous client"
+              on:click={prevClient}
+            >
+              <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            </button>
+
+            <button
+              type="button"
+              class="client-carousel-btn"
+              aria-label="Next client"
+              on:click={nextClient}
+            >
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <div class="client-carousel-viewport">
+            <div
+              class="client-carousel-track"
+              style={`transform: translateX(-${carouselIndex * 100}%); transition: ${carouselAnimate ? 'transform 0.55s ease' : 'none'};`}
+              on:transitionend={handleCarouselTransitionEnd}
+            >
+              {#each carouselSlides as client}
+                <article class="client-carousel-slide">
+                  <div class="client-carousel-card">
+                    <div class="client-carousel-media">
+                      <img src={client.image} alt={client.alt} loading="lazy" decoding="async" />
+                    </div>
+
+                    <div class="client-carousel-content">
+                      <div class="client-carousel-top">
+                        <div class="client-carousel-logo">
+                          <div class="client-carousel-logo-mark">{client.logoLabel}</div>
+
+                          <div class="client-carousel-meta">
+                            <h3>{client.name}</h3>
+                            <span>{client.category}</span>
+                          </div>
+                        </div>
+
+                        <div class="client-rating" aria-label="5 out of 5 review">
+                          <i class="fa-solid fa-star" aria-hidden="true"></i>
+                          <i class="fa-solid fa-star" aria-hidden="true"></i>
+                          <i class="fa-solid fa-star" aria-hidden="true"></i>
+                          <i class="fa-solid fa-star" aria-hidden="true"></i>
+                          <i class="fa-solid fa-star" aria-hidden="true"></i>
+                        </div>
+                      </div>
+
+                      <blockquote class="client-review">
+                        "{client.quote}"
+                      </blockquote>
+
+                      <p class="client-outcome">{client.outcome}</p>
+                    </div>
+                  </div>
+                </article>
+              {/each}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="contact section" id="contact" aria-label="Contact">
     <div class="container flex-centre">
       <h2 class="section-title">Contact Me</h2>
@@ -643,6 +793,7 @@
       <ul>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#services">Capabilities</a></li>
+        <li><a href="#clients">Clients</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>

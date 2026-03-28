@@ -1,3 +1,4 @@
+/* app/src/app.css */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 :root {
@@ -530,21 +531,29 @@ header.sticky .nav-bar {
   margin-top: 0;
 }
 
-.skills .container .content {
+.skills .container .content,
+.services .container .content,
+.clients .container .content {
   width: 100%;
 }
 
-.skills-description {
+.skills-description,
+.services-description,
+.clients-description {
   max-width: 720px;
   margin-bottom: var(--space-48);
 }
 
-.skills-description h3 {
+.skills-description h3,
+.services-description h3,
+.clients-description h3 {
   font-size: var(--text-32);
   margin-bottom: var(--space-12);
 }
 
-.skills-description p {
+.skills-description p,
+.services-description p,
+.clients-description p {
   color: var(--third-color);
   line-height: 1.75;
 }
@@ -724,27 +733,9 @@ header.sticky .nav-bar {
 .skills-panel:hover,
 .experience-card:hover,
 .capability-card:hover,
+.client-carousel-shell:hover,
 .contact-cta:hover {
   transform: translateY(-4px);
-}
-
-.services .container .content {
-  width: 100%;
-}
-
-.services-description {
-  margin-bottom: var(--space-48);
-}
-
-.services-description h3 {
-  font-size: var(--text-32);
-  margin-bottom: var(--space-12);
-}
-
-.services-description p {
-  color: var(--third-color);
-  line-height: 1.75;
-  max-width: 720px;
 }
 
 .capabilities-grid {
@@ -808,6 +799,151 @@ header.sticky .nav-bar {
   height: 6px;
   border-radius: 999px;
   background: var(--second-color);
+}
+
+.client-carousel-shell {
+  position: relative;
+  background: var(--card-bg-color);
+  border: 1px solid var(--transparent-color-01);
+  border-bottom: 4px solid var(--second-color);
+  border-radius: 16px;
+  padding: var(--space-24);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.client-carousel-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-12);
+  margin-bottom: var(--space-20);
+}
+
+.client-carousel-btn {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 999px;
+  background: oklch(0.22 0 0);
+  color: var(--first-color);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.client-carousel-btn:hover {
+  background: var(--second-color);
+  transform: translateY(-2px);
+}
+
+.client-carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.client-carousel-track {
+  display: flex;
+  width: 100%;
+}
+
+.client-carousel-slide {
+  min-width: 100%;
+  width: 100%;
+  flex: 0 0 100%;
+}
+
+.client-carousel-card {
+  display: grid;
+  grid-template-columns: minmax(320px, 520px) minmax(0, 1fr);
+  gap: var(--space-32);
+  align-items: stretch;
+}
+
+.client-carousel-media {
+  min-height: 420px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: oklch(0.14 0 0);
+}
+
+.client-carousel-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.client-carousel-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-24);
+  padding: var(--space-12) 0;
+}
+
+.client-carousel-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-20);
+}
+
+.client-carousel-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+}
+
+.client-carousel-logo-mark {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: oklch(0.22 0 0);
+  color: var(--first-color);
+  font-size: var(--text-20);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+
+.client-carousel-meta h3 {
+  font-size: var(--text-32);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+.client-carousel-meta span {
+  color: var(--third-color);
+  font-size: var(--text-16);
+  line-height: 1.6;
+}
+
+.client-rating {
+  display: inline-flex;
+  gap: var(--space-4);
+  color: var(--second-color);
+  font-size: var(--text-16);
+  flex-shrink: 0;
+  margin-top: var(--space-8);
+}
+
+.client-review {
+  color: var(--first-color);
+  font-size: var(--text-24);
+  line-height: 1.75;
+  font-weight: 500;
+}
+
+.client-outcome {
+  color: var(--third-color);
+  font-size: var(--text-16);
+  line-height: 1.75;
+  padding-top: var(--space-20);
+  border-top: 1px solid var(--transparent-color-01);
 }
 
 .portfolio .container .content {
@@ -1279,9 +1415,10 @@ footer a {
     font-size: var(--text-16);
   }
 
-  .about .content {
+  .about .content,
+  .contact .container .content,
+  .client-carousel-card {
     grid-template-columns: 1fr;
-    row-gap: var(--space-32);
   }
 
   .about-img {
@@ -1316,6 +1453,19 @@ footer a {
     gap: var(--space-8);
   }
 
+  .client-carousel-media {
+    min-height: 320px;
+  }
+
+  .client-carousel-content {
+    padding: 0;
+  }
+
+  .client-carousel-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .get-in-touch .contact-card {
     display: grid;
     width: 100%;
@@ -1327,7 +1477,6 @@ footer a {
   }
 
   .contact .container .content {
-    grid-template-columns: 1fr;
     gap: var(--space-40);
   }
 
@@ -1447,8 +1596,41 @@ footer a {
 
   .skills-panel,
   .experience-card,
-  .capability-card {
+  .capability-card,
+  .client-carousel-shell {
     padding: var(--space-24);
+  }
+
+  .client-carousel-shell {
+    padding: var(--space-20);
+  }
+
+  .client-carousel-controls {
+    margin-bottom: var(--space-16);
+  }
+
+  .client-carousel-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .client-carousel-media {
+    min-height: 240px;
+  }
+
+  .client-carousel-logo-mark {
+    width: 56px;
+    height: 56px;
+    font-size: var(--text-16);
+  }
+
+  .client-carousel-meta h3 {
+    font-size: var(--text-24);
+  }
+
+  .client-review,
+  .contact-right p {
+    font-size: var(--text-20);
   }
 
   .get-in-touch .contact-card {
@@ -1463,10 +1645,6 @@ footer a {
   .contact-card .contact-btn .btn {
     font-size: var(--text-16);
   }
-
-  .contact-right p {
-    font-size: var(--text-24);
-  }
 }
 
 @media (max-width: 480px) {
@@ -1477,6 +1655,21 @@ footer a {
 
   .home-container .home-img {
     max-width: 320px;
+  }
+
+  .client-carousel-logo {
+    align-items: flex-start;
+  }
+
+  .client-carousel-logo-mark {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    font-size: var(--text-16);
+  }
+
+  .client-review {
+    font-size: var(--text-16);
   }
 }
 
