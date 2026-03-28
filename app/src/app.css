@@ -307,7 +307,7 @@ header.sticky .nav-bar {
 .home-copy p {
   color: var(--third-color);
   font-size: var(--normal-font-size);
-  max-width: 520px;
+  max-width: 560px;
   line-height: 1.75;
 }
 
@@ -547,27 +547,31 @@ header.sticky .nav-bar {
 
 .skills .container .content,
 .services .container .content,
-.clients .container .content {
+.work .container .content,
+.focus .container .content {
   width: 100%;
 }
 
 .skills-description,
 .services-description,
-.clients-description {
+.work-description,
+.focus-description {
   max-width: 720px;
   margin-bottom: var(--space-48);
 }
 
 .skills-description h3,
 .services-description h3,
-.clients-description h3 {
+.work-description h3,
+.focus-description h3 {
   font-size: var(--text-32);
   margin-bottom: var(--space-12);
 }
 
 .skills-description p,
 .services-description p,
-.clients-description p {
+.work-description p,
+.focus-description p {
   color: var(--third-color);
   line-height: 1.75;
 }
@@ -576,7 +580,6 @@ header.sticky .nav-bar {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-24);
-  margin-bottom: var(--space-80);
 }
 
 .skills-panel {
@@ -676,84 +679,17 @@ header.sticky .nav-bar {
   line-height: 1.7;
 }
 
-.experience-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-24);
-}
-
-.experience-card {
-  background: var(--card-bg-color);
-  border-bottom: 4px solid var(--second-color);
-  padding: var(--space-32);
-  border-radius: 8px;
-  box-shadow: var(--box-shadow);
-  transition: 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-}
-
-.experience-card .upper {
-  display: grid;
-  gap: var(--space-8);
-  line-height: 1.4;
-}
-
-.experience-card h3 {
-  font-size: var(--text-24);
-  font-weight: 700;
-}
-
-.experience-card h5 {
-  font-size: var(--text-16);
-  font-weight: 500;
-  font-style: normal;
-  color: var(--third-color);
-}
-
-.experience-card span {
-  color: var(--third-color);
-  font-size: var(--text-16);
-}
-
-.experience-card .hr {
-  width: 100%;
-  height: 2px;
-  background: var(--line-color);
-  margin: var(--space-20) 0;
-}
-
-.experience-card h4 {
-  font-size: var(--text-16);
-  font-weight: 600;
-  margin-bottom: var(--space-20);
-}
-
-.experience-card ul {
-  list-style: disc !important;
-  padding-left: var(--space-20);
-  margin: 0;
-  display: grid;
-  gap: var(--space-12);
-}
-
-.experience-card li {
-  display: list-item;
-  color: var(--third-color);
-  line-height: 1.75;
-}
-
 .skills-panel:hover,
-.experience-card:hover,
 .capability-card:hover,
+.data-project-card:hover,
+.focus-card:hover,
 .contact-cta:hover {
   transform: translateY(-4px);
 }
 
 .capabilities-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-24);
 }
 
@@ -812,6 +748,92 @@ header.sticky .nav-bar {
   height: 6px;
   border-radius: 999px;
   background: var(--second-color);
+}
+
+.work-block {
+  width: 100%;
+}
+
+.work-block + .work-block {
+  margin-top: var(--space-80);
+}
+
+.work-block-header {
+  max-width: 720px;
+  margin-bottom: var(--space-32);
+}
+
+.work-block-header h3 {
+  font-size: var(--text-32);
+  margin-bottom: var(--space-12);
+}
+
+.work-block-header p {
+  color: var(--third-color);
+  line-height: 1.75;
+}
+
+.data-project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-24);
+}
+
+.data-project-card {
+  background: var(--card-bg-color);
+  box-shadow: var(--box-shadow);
+  border-bottom: 4px solid var(--second-color);
+  border-radius: 8px;
+  padding: var(--space-32);
+  transition: 0.3s ease;
+}
+
+.data-project-accent {
+  width: 56px;
+  height: 4px;
+  background: var(--second-color);
+  border-radius: 999px;
+  margin-bottom: var(--space-24);
+}
+
+.data-project-card h4 {
+  font-size: var(--text-24);
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: var(--space-16);
+}
+
+.data-project-card p {
+  color: var(--third-color);
+  line-height: 1.75;
+  margin-bottom: var(--space-24);
+}
+
+.data-project-list {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.data-project-list li {
+  color: var(--third-color);
+  line-height: 1.7;
+  position: relative;
+  padding-left: var(--space-16);
+}
+
+.data-project-list li::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--second-color);
+}
+
+.web-work-block {
+  position: relative;
 }
 
 .carousel {
@@ -957,6 +979,55 @@ header.sticky .nav-bar {
   justify-content: center;
   align-items: center;
   font-size: var(--text-20);
+}
+
+.focus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-24);
+  margin-bottom: var(--space-40);
+}
+
+.focus-card {
+  background: var(--card-bg-color);
+  box-shadow: var(--box-shadow);
+  border-bottom: 4px solid var(--second-color);
+  border-radius: 8px;
+  padding: var(--space-32);
+  transition: 0.3s ease;
+}
+
+.focus-card h4 {
+  font-size: var(--text-24);
+  font-weight: 600;
+  margin-bottom: var(--space-16);
+}
+
+.focus-card p {
+  color: var(--third-color);
+  line-height: 1.75;
+}
+
+.focus-quote {
+  max-width: 880px;
+  margin: 0;
+  padding: var(--space-32);
+  border-left: 4px solid var(--second-color);
+  background: oklch(1 0 0 / 0.03);
+  border-radius: 8px;
+}
+
+.focus-quote p {
+  color: var(--first-color);
+  font-size: var(--text-20);
+  line-height: 1.8;
+  margin-bottom: var(--space-16);
+}
+
+.focus-quote footer {
+  color: var(--third-color);
+  font-size: var(--text-16);
+  font-weight: 600;
 }
 
 .portfolio .container .content {
@@ -1466,8 +1537,9 @@ footer a {
   }
 
   .skills-summary-grid,
-  .experience-grid,
-  .capabilities-grid {
+  .capabilities-grid,
+  .data-project-grid,
+  .focus-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1605,8 +1677,10 @@ footer a {
   }
 
   .skills-panel,
-  .experience-card,
-  .capability-card {
+  .capability-card,
+  .data-project-card,
+  .focus-card,
+  .focus-quote {
     padding: var(--space-24);
   }
 
@@ -1644,6 +1718,10 @@ footer a {
   .carousel-control-next {
     width: 44px;
     height: 44px;
+  }
+
+  .focus-quote p {
+    font-size: var(--text-16);
   }
 
   .get-in-touch .contact-card {

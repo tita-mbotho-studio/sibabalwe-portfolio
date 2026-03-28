@@ -7,44 +7,105 @@
 
   const capabilities = [
     {
-      title: 'Data Pipeline Engineering',
+      title: 'Data Engineering',
       description:
-        'Design and delivery of production ETL and ELT pipelines across SFTP, AWS, and warehouse environments, with validation and reliability built in.',
+        'Production-focused pipeline design and delivery across Python, SQL, Airflow, AWS, and warehouse environments.',
       bullets: [
-        'End-to-end ingestion and transformation design',
-        'Data validation, reconciliation, and error handling',
-        'Performance optimisation for recurring high-volume loads'
+        'ETL and ELT workflow design',
+        'Data validation, reconciliation, and reliability',
+        'Recurring high-volume pipeline optimisation'
       ]
     },
     {
-      title: 'Workflow Orchestration',
+      title: 'Workflow Automation',
       description:
-        'Airflow-based scheduling and orchestration for dependable data movement, repeatable execution, and clearer operational control.',
+        'Dependable orchestration for repeatable execution, cleaner operations, and less manual effort across data tasks.',
       bullets: [
-        'DAG design, dependency management, and retries',
+        'DAG design and dependency management',
         'Monitoring, alerting, and production debugging',
-        'Improved pipeline stability across scheduled workloads'
+        'Operational efficiency through automation'
       ]
     },
     {
-      title: 'Cloud & Data Infrastructure',
+      title: 'Cloud Systems',
       description:
-        'Practical cloud integration for storage, compute, and database-backed workflows, with a focus on maintainability and efficient access patterns.',
+        'Practical cloud integration for compute, storage, and database-backed workflows, with maintainability and access design in mind.',
       bullets: [
-        'AWS S3, EC2, and RDS integration',
+        'AWS S3, EC2, RDS, and Aurora exposure',
         'Secure movement of data between systems',
-        'Storage structure and cost-aware access design'
+        'Cost-aware infrastructure thinking'
       ]
     },
     {
       title: 'Web Design & Development',
       description:
-        'Design and development of modern, responsive websites with clean layouts, strong visual hierarchy, and production-ready front-end structure.',
+        'Modern website design and front-end implementation focused on clarity, structure, responsiveness, and polished presentation.',
       bullets: [
-        'Responsive website design for desktop and mobile',
-        'Clean UI structure with modern typography and spacing',
-        'Front-end implementation focused on clarity and maintainability'
+        'Responsive website design',
+        'Clean visual hierarchy and layout',
+        'Front-end implementation with maintainable structure'
       ]
+    }
+  ];
+
+  const dataProjects = [
+    {
+      title: 'Aurora Cluster Resize DAG',
+      summary:
+        'Built an Airflow DAG to resize Aurora clusters on schedule, helping balance performance needs and infrastructure cost across recurring workloads.',
+      highlights: [
+        'Automated routine cluster scaling',
+        'Supported cost-aware cloud operations',
+        'Reduced repetitive manual intervention'
+      ]
+    },
+    {
+      title: 'Airflow Log Management System',
+      summary:
+        'Developed an automated maintenance workflow for Airflow logs, improving storage usage and helping keep the production environment cleaner and more stable.',
+      highlights: [
+        'Optimised storage footprint',
+        'Improved operational housekeeping',
+        'Supported healthier production performance'
+      ]
+    },
+    {
+      title: 'Database Archiving Solution',
+      summary:
+        'Implemented an in-database archiving process that improved query responsiveness while reducing unnecessary storage pressure on active systems.',
+      highlights: [
+        'Improved database performance',
+        'Reduced storage overhead',
+        'Strengthened long-term data handling'
+      ]
+    },
+    {
+      title: 'S3 Data Migration Pipeline',
+      summary:
+        'Designed and executed a pipeline to move large archived datasets into S3, improving long-term access and supporting more scalable storage strategy.',
+      highlights: [
+        'Migrated large historical datasets',
+        'Improved access to archived records',
+        'Supported lower-cost storage patterns'
+      ]
+    }
+  ];
+
+  const currentFocus = [
+    {
+      title: 'Data systems',
+      description:
+        'Improving pipeline design, orchestration quality, and reliability across practical production-style workflows.'
+    },
+    {
+      title: 'Web skills',
+      description:
+        'Sharpening modern front-end execution, cleaner interface structure, and stronger presentation across responsive websites.'
+    },
+    {
+      title: 'Cloud growth',
+      description:
+        'Expanding cloud capability across AWS services and infrastructure patterns that support scalable, maintainable systems.'
     }
   ];
 
@@ -53,14 +114,14 @@
       name: 'BOSS B',
       image:
         'https://ik.imagekit.io/kw8awoqvwi/personal-portfolio/bossb-logo.webp',
-      alt: 'Woman using a laptop in a modern office',
+      alt: 'Boss B brand logo',
       quote: 'Clean, modern, and professional from start to finish.'
     },
     {
       name: 'CTRA GROUP',
       image:
         'https://ik.imagekit.io/kw8awoqvwi/personal-portfolio/ctra-logo.webp',
-      alt: 'Smiling woman sitting by desk with laptop',
+      alt: 'CTRA Group brand logo',
       quote: 'The final website felt polished and much stronger visually.'
     }
   ];
@@ -83,8 +144,9 @@
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
-    { id: 'services', label: 'Services' },
-    { id: 'clients', label: 'Clients' },
+    { id: 'services', label: 'Capabilities' },
+    { id: 'work', label: 'Work' },
+    { id: 'focus', label: 'Current Focus' },
     { id: 'contact', label: 'Contact' }
   ];
 
@@ -231,14 +293,14 @@
       interval: 200
     });
     srWindow.ScrollReveal().reveal(
-      '.skills-description, .services-description, .clients-description, .contact-left h2',
+      '.skills-description, .services-description, .work-description, .focus-description, .contact-left h2',
       {
         delay: 700,
         origin: 'left'
       }
     );
     srWindow.ScrollReveal().reveal(
-      '.skills-panel, .experience-card, .capability-card, .carousel, .contact-cta',
+      '.skills-panel, .capability-card, .data-project-card, .carousel, .focus-card, .focus-quote, .contact-cta',
       {
         delay: 800,
         origin: 'bottom',
@@ -277,10 +339,10 @@
 </script>
 
 <svelte:head>
-  <title>Sibabalwe — Data Engineer Portfolio</title>
+  <title>Sibabalwe | Professional Brand</title>
   <meta
     name="description"
-    content="Remote Data Engineer in Pretoria, South Africa. Python, SQL, Airflow, AWS, ETL, ELT, workflow automation and portfolio projects."
+    content="Sibabalwe Sinyaniso builds across data systems, workflow automation, web development, and growing cloud capability."
   />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -382,12 +444,13 @@
           <h1>Hi, I am Sibabalwe</h1>
         </div>
         <div class="home-copy-row">
-          <h3>Remote Data Engineer — Pretoria, South Africa</h3>
+          <h3>Building across data systems, web development, and cloud growth</h3>
         </div>
         <div class="home-copy-row">
           <p>
-            I build scalable data pipelines and automation with Python, SQL, Airflow, and AWS-making
-            data reliable and accessible across cloud and on-prem.
+            I build reliable data workflows, thoughtful automation, and modern websites with a clean,
+            practical approach. My focus is on improving both data and web skills while continuing to
+            grow deeper cloud capability.
           </p>
         </div>
         <div class="home-copy-row home-actions">
@@ -401,7 +464,7 @@
         <div class="home-img">
           <img
             src={`${base}/img/images/main-img.png`}
-            alt="Sibabalwe — Data Engineer portrait"
+            alt="Sibabalwe portrait"
             loading="eager"
             decoding="async"
           />
@@ -433,12 +496,12 @@
         <div class="about-info">
           <div class="description">
             <h3>I'm Sibabalwe</h3>
-            <h4>A <span>Data Engineer</span> based in <span>Pretoria, South Africa</span></h4>
+            <h4>A <span>technical professional</span> based in <span>Pretoria, South Africa</span></h4>
             <p>
-              I design and develop scalable data pipelines and automation solutions using Python,
-              SQL, Apache Airflow, and AWS. My work focuses on improving data reliability,
-              accuracy, and accessibility across cloud and on-premise environments. My passion is
-              to simplify complex data systems through automation and thoughtful engineering.
+              I work across data systems, workflow automation, and web development, with a practical
+              mindset shaped by real delivery work. I enjoy building things that are useful, reliable,
+              and clear, whether that means improving a pipeline, refining a process, or presenting an
+              idea well through a modern website.
             </p>
           </div>
 
@@ -446,7 +509,7 @@
             <li class="list-item">
               <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
               <h3>3+</h3>
-              <span>Years of<br />Experience</span>
+              <span>Years of<br />Hands-on Experience</span>
             </li>
           </ul>
 
@@ -471,10 +534,10 @@
 
       <div class="content">
         <div class="skills-description">
-          <h3>Education, certifications, and core capabilities</h3>
+          <h3>Technical range with practical depth</h3>
           <p>
-            I build reliable data workflows across Python, SQL, Airflow, and AWS, with a focus on
-            maintainability, data quality, and production-ready delivery.
+            My toolkit sits across data engineering, web development, automation, and growing cloud
+            capability, with an emphasis on clarity, maintainability, and real-world usefulness.
           </p>
         </div>
 
@@ -487,7 +550,7 @@
 
             <div class="skills-panel-body">
               <div class="skills-entry">
-                <span class="skills-entry-year">2019 – 2023</span>
+                <span class="skills-entry-year">2019 - 2023</span>
                 <p class="skills-entry-title">Advanced Diploma in Information Technology</p>
                 <p class="skills-entry-meta">Cape Peninsula University of Technology, Cape Town</p>
               </div>
@@ -496,41 +559,34 @@
 
           <article class="skills-panel">
             <div class="skills-panel-heading">
-              <span class="skills-panel-label">Professional</span>
-              <h4>Certifications</h4>
+              <span class="skills-panel-label">Range</span>
+              <h4>Technical areas</h4>
             </div>
 
             <div class="skills-panel-body">
-              <div class="skills-entry">
-                <span class="skills-entry-year">2025</span>
-                <p class="skills-entry-title">AWS Partner: Accreditation (Technical)</p>
-                <p class="skills-entry-meta">Amazon Web Services</p>
-              </div>
+              <div class="skills-stack">
+                <div class="skills-stack-row">
+                  <span class="skills-stack-term">Data</span>
+                  <span class="skills-stack-desc">ETL, ELT, validation, data movement, workflow automation</span>
+                </div>
 
-              <div class="skills-entry">
-                <span class="skills-entry-year">2025</span>
-                <p class="skills-entry-title">Python Database Mastery: SQLAlchemy &amp; Alembic</p>
-                <p class="skills-entry-meta">Udemy</p>
-              </div>
+                <div class="skills-stack-row">
+                  <span class="skills-stack-term">Web</span>
+                  <span class="skills-stack-desc">Responsive design, front-end structure, UI clarity, implementation</span>
+                </div>
 
-              <div class="skills-entry">
-                <span class="skills-entry-year">2024</span>
-                <p class="skills-entry-title">ChatGPT Prompt Engineering for Developers</p>
-                <p class="skills-entry-meta">DeepLearning.AI</p>
-              </div>
-
-              <div class="skills-entry">
-                <span class="skills-entry-year">2022</span>
-                <p class="skills-entry-title">Data Analysis with Python: Zero to Pandas</p>
-                <p class="skills-entry-meta">Jovian</p>
+                <div class="skills-stack-row">
+                  <span class="skills-stack-term">Cloud</span>
+                  <span class="skills-stack-desc">AWS exposure across storage, compute, databases, and infrastructure patterns</span>
+                </div>
               </div>
             </div>
           </article>
 
           <article class="skills-panel">
             <div class="skills-panel-heading">
-              <span class="skills-panel-label">Execution</span>
-              <h4>Core skills</h4>
+              <span class="skills-panel-label">Toolkit</span>
+              <h4>Core stack</h4>
             </div>
 
             <div class="skills-panel-body">
@@ -541,23 +597,13 @@
                 </div>
 
                 <div class="skills-stack-row">
-                  <span class="skills-stack-term">Data</span>
-                  <span class="skills-stack-desc">ETL, ELT, workflow automation, data validation</span>
-                </div>
-
-                <div class="skills-stack-row">
                   <span class="skills-stack-term">Orchestration</span>
-                  <span class="skills-stack-desc">Apache Airflow, scheduled pipelines, monitoring</span>
-                </div>
-
-                <div class="skills-stack-row">
-                  <span class="skills-stack-term">Cloud</span>
-                  <span class="skills-stack-desc">AWS S3, EC2, RDS</span>
+                  <span class="skills-stack-desc">Apache Airflow, scheduled workflows, monitoring</span>
                 </div>
 
                 <div class="skills-stack-row">
                   <span class="skills-stack-term">Databases</span>
-                  <span class="skills-stack-desc">MySQL, PostgreSQL, Vertica</span>
+                  <span class="skills-stack-desc">MySQL, PostgreSQL, Vertica, Aurora exposure</span>
                 </div>
 
                 <div class="skills-stack-row">
@@ -568,61 +614,11 @@
             </div>
           </article>
         </div>
-
-        <div class="skills-description">
-          <h3>Experience</h3>
-          <p>
-            Recent roles focused on delivery across ingestion, orchestration, optimisation, and
-            cross-team support.
-          </p>
-        </div>
-
-        <div class="experience-grid">
-          <article class="experience-card">
-            <div class="upper">
-              <h3>Junior Data Engineer</h3>
-              <h5>Full Time | Hybrid</h5>
-              <span>February 2023 – Present</span>
-            </div>
-
-            <div class="hr"></div>
-
-            <h4>Eighty20 Consulting, Cape Town</h4>
-
-            <ul class="experience-list">
-              <li>Designed and optimised 15+ ETL pipelines across AWS and SFTP-driven workflows.</li>
-              <li>Built and maintained 25+ Airflow DAGs for scheduled data movement and monitoring.</li>
-              <li>Automated recurring SQL reporting workflows, reducing manual effort by about 20 hours per week.</li>
-              <li>Implemented validation checks that improved delivery quality and reduced downstream issues.</li>
-              <li>Contributed to cross-team data initiatives and documented processes for smoother onboarding.</li>
-            </ul>
-          </article>
-
-          <article class="experience-card">
-            <div class="upper">
-              <h3>Junior Developer</h3>
-              <h5>Contract | Office</h5>
-              <span>July 2022 – January 2023</span>
-            </div>
-
-            <div class="hr"></div>
-
-            <h4>Eighty20 Consulting, Cape Town</h4>
-
-            <ul class="experience-list">
-              <li>Built ETL pipelines to process large daily survey datasets into MySQL-based delivery tables.</li>
-              <li>Refactored legacy R workflows into Python to improve maintainability and execution speed.</li>
-              <li>Improved processing efficiency using Pandas and SQL across repeated transformation steps.</li>
-              <li>Worked within a small delivery team to support stable and reliable data operations.</li>
-              <li>Helped standardise implementation patterns that made future pipeline work easier to extend.</li>
-            </ul>
-          </article>
-        </div>
       </div>
     </div>
   </section>
 
-  <section class="services section" id="services" aria-label="Services">
+  <section class="services section" id="services" aria-label="Capabilities">
     <div class="container flex-centre">
       <h2 class="section-title">Capabilities</h2>
 
@@ -630,8 +626,9 @@
         <div class="services-description">
           <h3>What I build and improve</h3>
           <p>
-            I focus on practical engineering work across data platforms, workflow automation, cloud
-            infrastructure, and modern website design and development.
+            My work sits at the intersection of data, automation, web execution, and growing cloud
+            systems, with a strong preference for practical solutions that are easier to operate and
+            easier to trust.
           </p>
         </div>
 
@@ -654,71 +651,139 @@
     </div>
   </section>
 
-  <section class="clients section" id="clients" aria-label="Clients">
+  <section class="work section" id="work" aria-label="Selected Work">
     <div class="container flex-centre">
-      <h2 class="section-title">Clients</h2>
+      <h2 class="section-title">Selected Work</h2>
 
       <div class="content">
-        <div class="clients-description">
-          <h3>Selected web design work</h3>
-          <p>A simple visual showcase with client feedback.</p>
+        <div class="work-description">
+          <h3>Balanced proof across data systems and web clients</h3>
+          <p>
+            A curated view of the kind of work I enjoy most: practical data systems, workflow
+            automation, and polished web delivery.
+          </p>
         </div>
 
-        <div id="clientsCarousel" class="carousel slide">
-          <div class="carousel-indicators">
-            {#each clientSlides as _, index}
-              <button
-                type="button"
-                class:active={activeClientIndex === index}
-                aria-label={`Slide ${index + 1}`}
-                aria-current={activeClientIndex === index ? 'true' : undefined}
-                on:click={() => goToClient(index)}
-              ></button>
+        <div class="work-block">
+          <div class="work-block-header">
+            <h3>Data Systems</h3>
+            <p>Selected data and automation projects focused on reliability, efficiency, and scale.</p>
+          </div>
+
+          <div class="data-project-grid">
+            {#each dataProjects as project}
+              <article class="data-project-card">
+                <div class="data-project-accent" aria-hidden="true"></div>
+                <h4>{project.title}</h4>
+                <p>{project.summary}</p>
+
+                <ul class="data-project-list">
+                  {#each project.highlights as highlight}
+                    <li>{highlight}</li>
+                  {/each}
+                </ul>
+              </article>
             {/each}
           </div>
+        </div>
 
-          <div class="carousel-inner">
-            <div
-              class="carousel-track"
-              style={`transform: translateX(-${carouselIndex * 100}%); transition: ${carouselAnimate ? 'transform 0.55s ease' : 'none'};`}
-              on:transitionend={handleCarouselTransitionEnd}
-            >
-              {#each carouselSlides as client}
-                <div class="carousel-item">
-                  <img src={client.image} class="d-block w-100" alt={client.alt} />
-                  <div class="carousel-caption">
-                    <h5>{client.name}</h5>
-                    <p>{client.quote}</p>
-                  </div>
-                </div>
-              {/each}
-            </div>
+        <div class="work-block web-work-block">
+          <div class="work-block-header">
+            <h3>Web Clients</h3>
+            <p>Selected client-facing web work presented through a clean visual showcase.</p>
           </div>
 
-          <button
-            class="carousel-control-prev"
-            type="button"
-            aria-label="Previous slide"
-            on:click={prevClient}
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true">
-              <i class="fa-solid fa-chevron-left"></i>
-            </span>
-            <span class="visually-hidden">Previous</span>
-          </button>
+          <div id="clientsCarousel" class="carousel slide">
+            <div class="carousel-indicators">
+              {#each clientSlides as _, index}
+                <button
+                  type="button"
+                  class:active={activeClientIndex === index}
+                  aria-label={`Slide ${index + 1}`}
+                  aria-current={activeClientIndex === index ? 'true' : undefined}
+                  on:click={() => goToClient(index)}
+                ></button>
+              {/each}
+            </div>
 
-          <button
-            class="carousel-control-next"
-            type="button"
-            aria-label="Next slide"
-            on:click={nextClient}
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true">
-              <i class="fa-solid fa-chevron-right"></i>
-            </span>
-            <span class="visually-hidden">Next</span>
-          </button>
+            <div class="carousel-inner">
+              <div
+                class="carousel-track"
+                style={`transform: translateX(-${carouselIndex * 100}%); transition: ${carouselAnimate ? 'transform 0.55s ease' : 'none'};`}
+                on:transitionend={handleCarouselTransitionEnd}
+              >
+                {#each carouselSlides as client}
+                  <div class="carousel-item">
+                    <img src={client.image} class="d-block w-100" alt={client.alt} />
+                    <div class="carousel-caption">
+                      <h5>{client.name}</h5>
+                      <p>{client.quote}</p>
+                    </div>
+                  </div>
+                {/each}
+              </div>
+            </div>
+
+            <button
+              class="carousel-control-prev"
+              type="button"
+              aria-label="Previous slide"
+              on:click={prevClient}
+            >
+              <span class="carousel-control-prev-icon" aria-hidden="true">
+                <i class="fa-solid fa-chevron-left"></i>
+              </span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button
+              class="carousel-control-next"
+              type="button"
+              aria-label="Next slide"
+              on:click={nextClient}
+            >
+              <span class="carousel-control-next-icon" aria-hidden="true">
+                <i class="fa-solid fa-chevron-right"></i>
+              </span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="focus section" id="focus" aria-label="Current Focus">
+    <div class="container flex-centre">
+      <h2 class="section-title">Current Focus</h2>
+
+      <div class="content">
+        <div class="focus-description">
+          <h3>Growing with intention</h3>
+          <p>
+            Right now I am deliberately improving across the areas that matter most to my long-term
+            professional growth: stronger data systems, better web execution, and deeper cloud
+            understanding.
+          </p>
+        </div>
+
+        <div class="focus-grid">
+          {#each currentFocus as item}
+            <article class="focus-card">
+              <h4>{item.title}</h4>
+              <p>{item.description}</p>
+            </article>
+          {/each}
+        </div>
+
+        <blockquote class="focus-quote">
+          <p>
+            "The happiest people spend much time in a state of flow - the state in which people are
+            so involved in an activity that nothing else seems to matter; the experience itself is so
+            enjoyable that people will do it even at great cost, for the sheer sake of doing it."
+          </p>
+          <footer>Mihaly Csikszentmihalyi</footer>
+        </blockquote>
       </div>
     </div>
   </section>
@@ -752,8 +817,8 @@
 
         <div class="contact-right">
           <p>
-            I'm always open to discussing <br />
-            <span>data projects, workflow automation, collaborations, or creating websites.</span>
+            I'm open to conversations around <br />
+            <span>data systems, workflow automation, web projects, and professional collaborations.</span>
           </p>
 
           <div class="contact-cta">
@@ -771,7 +836,7 @@
   <div class="footer-container">
     <div class="about group">
       <h2>Sibabalwe</h2>
-      <p>Front-end and Backend Developer</p>
+      <p>Data, web, and cloud-focused technical professional</p>
       <a href="#about">About Me</a>
     </div>
 
@@ -782,7 +847,8 @@
       <ul>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#services">Capabilities</a></li>
-        <li><a href="#clients">Clients</a></li>
+        <li><a href="#work">Selected Work</a></li>
+        <li><a href="#focus">Current Focus</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -804,7 +870,7 @@
         </li>
         <li>
           <a
-            href="https://www.tiktok.com/"
+            href="https://www.tiktok.com/@sibabalwe_sinyaniso?is_from_webapp=1&sender_device=pc"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="TikTok"
