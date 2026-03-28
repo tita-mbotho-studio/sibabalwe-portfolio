@@ -803,17 +803,18 @@ header.sticky .nav-bar {
 
 .carousel {
   position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid var(--transparent-color-01);
-  box-shadow: var(--box-shadow);
-  background: var(--card-bg-color);
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   transition: 0.3s ease;
 }
 
 .carousel-inner {
   overflow: hidden;
   width: 100%;
+  background: transparent;
 }
 
 .carousel-track {
@@ -825,6 +826,7 @@ header.sticky .nav-bar {
   position: relative;
   flex: 0 0 100%;
   min-width: 100%;
+  background: transparent;
 }
 
 .carousel-item img {
@@ -838,7 +840,7 @@ header.sticky .nav-bar {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, oklch(0.06 0 0 / 0.82), oklch(0.06 0 0 / 0.08));
+  background: linear-gradient(to top, oklch(0.06 0 0 / 0.78), oklch(0.06 0 0 / 0.04));
   pointer-events: none;
 }
 
@@ -900,7 +902,7 @@ header.sticky .nav-bar {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background: oklch(0.12 0 0 / 0.45);
+  background: oklch(0.12 0 0 / 0.42);
   color: var(--first-color);
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
@@ -908,7 +910,7 @@ header.sticky .nav-bar {
 
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
-  background: oklch(0.12 0 0 / 0.7);
+  background: oklch(0.12 0 0 / 0.65);
 }
 
 .carousel-control-prev {
@@ -1568,7 +1570,7 @@ footer a {
   }
 
   .carousel-item img {
-    height: 320px;
+    height: 480px;
   }
 
   .carousel-caption {
@@ -1620,7 +1622,7 @@ footer a {
   }
 
   .carousel-item img {
-    height: 260px;
+    height: 480px;
   }
 
   .carousel-caption h5 {

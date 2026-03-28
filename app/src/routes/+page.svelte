@@ -386,7 +386,7 @@
         </div>
         <div class="home-copy-row">
           <p>
-            I build scalable data pipelines and automation with Python, SQL, Airflow, and AWS—making
+            I build scalable data pipelines and automation with Python, SQL, Airflow, and AWS-making
             data reliable and accessible across cloud and on-prem.
           </p>
         </div>
