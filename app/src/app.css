@@ -827,20 +827,26 @@ header.sticky .nav-bar {
   flex: 0 0 100%;
   min-width: 100%;
   background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .carousel-item img {
-  width: 100%;
-  height: 480px;
-  object-fit: cover;
   display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: contain;
+  margin: 0 auto;
 }
 
 .carousel-item::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, oklch(0.06 0 0 / 0.78), oklch(0.06 0 0 / 0.04));
+  background: linear-gradient(to top, oklch(0.06 0 0 / 0.62), oklch(0.06 0 0 / 0));
   pointer-events: none;
 }
 
@@ -1570,7 +1576,7 @@ footer a {
   }
 
   .carousel-item img {
-    height: 480px;
+    max-height: 420px;
   }
 
   .carousel-caption {
@@ -1622,7 +1628,7 @@ footer a {
   }
 
   .carousel-item img {
-    height: 480px;
+    max-height: 320px;
   }
 
   .carousel-caption h5 {
