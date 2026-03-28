@@ -597,6 +597,11 @@
                 </div>
 
                 <div class="skills-stack-row">
+                  <span class="skills-stack-term">Frameworks</span>
+                  <span class="skills-stack-desc">Flask</span>
+                </div>
+
+                <div class="skills-stack-row">
                   <span class="skills-stack-term">Orchestration</span>
                   <span class="skills-stack-desc">Apache Airflow, scheduled workflows, monitoring</span>
                 </div>
