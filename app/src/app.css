@@ -747,7 +747,6 @@ header.sticky .nav-bar {
 .skills-panel:hover,
 .experience-card:hover,
 .capability-card:hover,
-.carousel:hover,
 .contact-cta:hover {
   transform: translateY(-4px);
 }
@@ -823,6 +822,7 @@ header.sticky .nav-bar {
   border-radius: 0;
   box-shadow: none;
   transition: 0.3s ease;
+  padding-bottom: var(--space-56);
 }
 
 .carousel-inner {
@@ -842,6 +842,7 @@ header.sticky .nav-bar {
   min-width: 100%;
   background: transparent;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -854,24 +855,20 @@ header.sticky .nav-bar {
   max-height: 480px;
   object-fit: contain;
   margin: 0 auto;
-}
-
-.carousel-item::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, oklch(0.06 0 0 / 0.62), oklch(0.06 0 0 / 0));
-  pointer-events: none;
+  filter: none;
+  box-shadow: none;
 }
 
 .carousel-caption {
-  position: absolute;
-  left: 50%;
+  position: static;
+  left: auto;
   right: auto;
-  bottom: var(--space-28);
+  bottom: auto;
   z-index: 2;
-  transform: translateX(-50%);
-  width: min(100% - 64px, 720px);
+  transform: none;
+  width: min(100%, 720px);
+  margin-top: var(--space-24);
+  padding: 0 var(--space-24);
   text-align: center;
 }
 
@@ -886,7 +883,7 @@ header.sticky .nav-bar {
 .carousel-caption p {
   max-width: 600px;
   margin: 0 auto;
-  color: oklch(0.9 0 0);
+  color: var(--third-color);
   font-size: var(--text-16);
   line-height: 1.7;
   text-align: center;
@@ -895,31 +892,38 @@ header.sticky .nav-bar {
 .carousel-indicators {
   position: absolute;
   left: 50%;
-  bottom: var(--space-16);
+  bottom: 0;
   transform: translateX(-50%);
   display: flex;
-  gap: var(--space-8);
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-12);
   z-index: 3;
+  margin-top: 0;
 }
 
 .carousel-indicators button {
-  width: 10px;
-  height: 10px;
+  width: 40px;
+  height: 4px;
   border-radius: 999px;
   background: oklch(1 0 0 / 0.45);
   cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-indicators button:hover {
+  background: oklch(1 0 0 / 0.7);
 }
 
 .carousel-indicators button.active {
   background: var(--first-color);
-  transform: scale(1.15);
+  transform: scaleX(1.02);
 }
 
 .carousel-control-prev,
 .carousel-control-next {
   position: absolute;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
   z-index: 3;
   width: 52px;
@@ -1606,13 +1610,18 @@ footer a {
     padding: var(--space-24);
   }
 
+  .carousel {
+    padding-bottom: var(--space-48);
+  }
+
   .carousel-item img {
     max-height: 420px;
   }
 
   .carousel-caption {
-    width: min(100% - 40px, 640px);
-    bottom: var(--space-24);
+    width: min(100%, 640px);
+    margin-top: var(--space-20);
+    padding: 0 var(--space-16);
   }
 
   .carousel-caption h5 {
@@ -1621,6 +1630,14 @@ footer a {
 
   .carousel-caption p {
     font-size: 14px;
+  }
+
+  .carousel-indicators {
+    gap: var(--space-8);
+  }
+
+  .carousel-indicators button {
+    width: 32px;
   }
 
   .carousel-control-prev,
@@ -1657,12 +1674,17 @@ footer a {
     max-width: 320px;
   }
 
+  .carousel {
+    padding-bottom: var(--space-40);
+  }
+
   .carousel-item img {
     max-height: 320px;
   }
 
   .carousel-caption {
-    width: min(100% - 32px, 100%);
+    width: 100%;
+    padding: 0 var(--space-12);
   }
 
   .carousel-caption h5 {
@@ -1672,6 +1694,11 @@ footer a {
   .carousel-caption p {
     font-size: 13px;
     line-height: 1.6;
+  }
+
+  .carousel-indicators button {
+    width: 24px;
+    height: 4px;
   }
 
   .carousel-control-prev,
