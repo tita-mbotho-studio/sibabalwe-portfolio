@@ -6,6 +6,69 @@
   type Cleanup = () => void;
 
   const currentYear = new Date().getFullYear();
+  const externalRel = 'noopener noreferrer';
+  const sectionOffset = 50;
+
+  const navLinks = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'services', label: 'Capabilities' },
+    { id: 'work', label: 'Work' },
+    { id: 'focus', label: 'Current Focus' },
+    { id: 'contact', label: 'Contact' }
+  ];
+
+  const footerExploreLinks = navLinks.filter((link) =>
+    ['skills', 'services', 'work', 'focus', 'contact'].includes(link.id)
+  );
+
+  const socialLinks = [
+    {
+      href: 'https://wa.me/27722117731',
+      label: 'WhatsApp',
+      icon: 'fa-brands fa-whatsapp'
+    },
+    {
+      href: 'https://www.linkedin.com/in/sibabalwe-sinyaniso',
+      label: 'LinkedIn',
+      icon: 'fa-brands fa-linkedin'
+    },
+    {
+      href: 'https://medium.com/@sibabalwesinyaniso',
+      label: 'Medium',
+      icon: 'fa-brands fa-medium'
+    },
+    {
+      href: 'https://www.tiktok.com/@sibabalwe_sinyaniso?is_from_webapp=1&sender_device=pc',
+      label: 'TikTok',
+      icon: 'fa-brands fa-tiktok'
+    },
+    {
+      href: 'https://www.facebook.com/share/19MJHuJnRk/',
+      label: 'Facebook',
+      icon: 'fa-brands fa-facebook-f'
+    }
+  ];
+
+  const contactItems = [
+    {
+      title: 'Phone',
+      icon: 'fa-solid fa-phone',
+      text: '+27 72 211 7731'
+    },
+    {
+      title: 'Email Address',
+      icon: 'fa-solid fa-envelope',
+      text: 's.sibabalwee1@gmail.com',
+      href: 'mailto:s.sibabalwee1@gmail.com'
+    },
+    {
+      title: 'Location',
+      icon: 'fa-solid fa-location-dot',
+      text: 'Pretoria, South Africa'
+    }
+  ];
 
   const capabilities = [
     {
@@ -134,33 +197,27 @@
     clientSlides[0]
   ];
 
+  const firstCarouselIndex = 1;
+  const lastCarouselIndex = clientSlides.length;
+
   let navOpen = false;
   let isSticky = false;
   let showScrollTop = false;
   let activeSection = 'home';
 
-  let carouselIndex = 1;
+  let carouselIndex = firstCarouselIndex;
   let carouselAnimate = true;
 
-  const navLinks = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'services', label: 'Capabilities' },
-    { id: 'work', label: 'Work' },
-    { id: 'focus', label: 'Current Focus' },
-    { id: 'contact', label: 'Contact' }
-  ];
-
   $: activeClientIndex =
-    carouselIndex === 0
-      ? clientSlides.length - 1
-      : carouselIndex === carouselSlides.length - 1
-        ? 0
-        : carouselIndex - 1;
+    ((carouselIndex - firstCarouselIndex + clientSlides.length) % clientSlides.length + clientSlides.length) %
+    clientSlides.length;
 
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function closeNav() {
+    navOpen = false;
   }
 
   function syncScrollState() {
@@ -169,13 +226,14 @@
     showScrollTop = scrollY > 500;
 
     const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
+    const currentScroll = scrollY + sectionOffset;
 
     for (const section of sections) {
-      const sectionHeight = section.offsetHeight;
-      const sectionTop = section.offsetTop - 50;
-      const id = section.getAttribute('id') ?? '';
+      const top = section.offsetTop;
+      const bottom = top + section.offsetHeight;
+      const id = section.getAttribute('id');
 
-      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+      if (id && currentScroll >= top && currentScroll < bottom) {
         activeSection = id;
       }
     }
@@ -183,7 +241,7 @@
 
   function closeOnEscape(event: KeyboardEvent) {
     if (event.key === 'Escape') {
-      navOpen = false;
+      closeNav();
     }
   }
 
@@ -196,26 +254,26 @@
   }
 
   function goToClient(index: number) {
-    carouselIndex = index + 1;
+    carouselIndex = index + firstCarouselIndex;
+  }
+
+  async function resetCarouselPosition(index: number) {
+    carouselAnimate = false;
+    carouselIndex = index;
+    await tick();
+    requestAnimationFrame(() => {
+      carouselAnimate = true;
+    });
   }
 
   async function handleCarouselTransitionEnd() {
     if (carouselIndex === 0) {
-      carouselAnimate = false;
-      carouselIndex = clientSlides.length;
-      await tick();
-      requestAnimationFrame(() => {
-        carouselAnimate = true;
-      });
+      await resetCarouselPosition(lastCarouselIndex);
+      return;
     }
 
     if (carouselIndex === carouselSlides.length - 1) {
-      carouselAnimate = false;
-      carouselIndex = 1;
-      await tick();
-      requestAnimationFrame(() => {
-        carouselAnimate = true;
-      });
+      await resetCarouselPosition(firstCarouselIndex);
     }
   }
 
@@ -379,14 +437,14 @@
           type="button"
           class="nav-close-btn"
           aria-label="Close menu"
-          on:click={() => (navOpen = false)}
+          on:click={closeNav}
         ></button>
 
         {#each navLinks as link}
           <a
             href={`#${link.id}`}
             class:active={activeSection === link.id}
-            on:click={() => (navOpen = false)}
+            on:click={closeNav}
           >
             {link.label}
           </a>
@@ -407,46 +465,16 @@
   <section class="home flex-centre" id="home" aria-label="Home">
     <div class="home-container">
       <div class="media-icons">
-        <a
-          href="https://wa.me/27722117731"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="WhatsApp"
-        >
-          <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-        </a>
-        <a
-          href="https://www.linkedin.com/in/sibabalwe-sinyaniso"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-        >
-          <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
-        </a>
-        <a
-          href="https://medium.com/@sibabalwesinyaniso"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Medium"
-        >
-          <i class="fa-brands fa-medium" aria-hidden="true"></i>
-        </a>
-        <a
-          href="https://www.tiktok.com/@sibabalwe_sinyaniso?is_from_webapp=1&sender_device=pc"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="TikTok"
-        >
-          <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
-        </a>
-        <a
-          href="https://www.facebook.com/share/19MJHuJnRk/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Facebook"
-        >
-          <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
-        </a>
+        {#each socialLinks as social}
+          <a
+            href={social.href}
+            target="_blank"
+            rel={externalRel}
+            aria-label={social.label}
+          >
+            <i class={social.icon} aria-hidden="true"></i>
+          </a>
+        {/each}
       </div>
 
       <div class="home-copy">
@@ -802,22 +830,21 @@
         <div class="contact-left">
           <h2>Let's discuss your project</h2>
           <ul class="contact-list">
-            <li>
-              <h3 class="item-title"><i class="fa-solid fa-phone" aria-hidden="true"></i> Phone</h3>
-              <span>+27 72 211 7731</span>
-            </li>
-            <li>
-              <h3 class="item-title">
-                <i class="fa-solid fa-envelope" aria-hidden="true"></i> Email Address
-              </h3>
-              <span><a href="mailto:s.sibabalwee1@gmail.com">s.sibabalwee1@gmail.com</a></span>
-            </li>
-            <li>
-              <h3 class="item-title">
-                <i class="fa-solid fa-location-dot" aria-hidden="true"></i> Location
-              </h3>
-              <span>Pretoria, South Africa</span>
-            </li>
+            {#each contactItems as item}
+              <li>
+                <h3 class="item-title">
+                  <i class={item.icon} aria-hidden="true"></i> {item.title}
+                </h3>
+
+                <span>
+                  {#if item.href}
+                    <a href={item.href}>{item.text}</a>
+                  {:else}
+                    {item.text}
+                  {/if}
+                </span>
+              </li>
+            {/each}
           </ul>
         </div>
 
@@ -831,7 +858,7 @@
             <a
               href="https://wa.me/27722117731"
               target="_blank"
-              rel="noopener noreferrer"
+              rel={externalRel}
               class="btn"
             >
               Get In Touch <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
@@ -856,11 +883,9 @@
     <div class="info group">
       <h3>Explore</h3>
       <ul>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#services">Capabilities</a></li>
-        <li><a href="#work">Selected Work</a></li>
-        <li><a href="#focus">Current Focus</a></li>
-        <li><a href="#contact">Contact</a></li>
+        {#each footerExploreLinks as link}
+          <li><a href={`#${link.id}`}>{link.label}</a></li>
+        {/each}
       </ul>
     </div>
 
@@ -869,56 +894,18 @@
     <div class="follow group">
       <h3>Connect</h3>
       <ul>
-        <li>
-          <a
-            href="https://wa.me/27722117731"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp"
-          >
-            <i class="fa-brands fa-whatsapp"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.linkedin.com/in/sibabalwe-sinyaniso"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          >
-            <i class="fa-brands fa-linkedin"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://medium.com/@sibabalwesinyaniso"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Medium"
-          >
-            <i class="fa-brands fa-medium"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.tiktok.com/@sibabalwe_sinyaniso?is_from_webapp=1&sender_device=pc"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="TikTok"
-          >
-            <i class="fa-brands fa-tiktok"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.facebook.com/share/19MJHuJnRk/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-          >
-            <i class="fa-brands fa-facebook-f"></i>
-          </a>
-        </li>
+        {#each socialLinks as social}
+          <li>
+            <a
+              href={social.href}
+              target="_blank"
+              rel={externalRel}
+              aria-label={social.label}
+            >
+              <i class={social.icon}></i>
+            </a>
+          </li>
+        {/each}
       </ul>
     </div>
   </div>
