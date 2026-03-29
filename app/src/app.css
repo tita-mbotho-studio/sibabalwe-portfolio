@@ -1797,6 +1797,21 @@ footer a {
 }
 
 @media screen and (max-width: 730px) {
+  html,
+  body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollToTop-btn {
+    display: none !important;
+  }
+
   body {
     margin: var(--space-72) 0 0 0;
   }
