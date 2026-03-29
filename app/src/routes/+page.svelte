@@ -828,8 +828,13 @@
           </p>
 
           <div class="contact-cta">
-            <a href="mailto:s.sibabalwee1@gmail.com" class="btn">
-              Get In Touch <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            <a
+              href="https://wa.me/27722117731"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn"
+            >
+              Get In Touch <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
             </a>
           </div>
         </div>
