@@ -5,6 +5,8 @@
 
   type Cleanup = () => void;
 
+  const currentYear = new Date().getFullYear();
+
   const capabilities = [
     {
       title: 'Data Engineering',
@@ -300,7 +302,7 @@
       }
     );
     srWindow.ScrollReveal().reveal(
-      '.skills-panel, .capability-card, .data-project-card, .carousel, .focus-card, .focus-quote, .contact-cta',
+      '.skills-panel, .capability-card, .data-project-card, .carousel, .focus-card, .contact-cta',
       {
         delay: 800,
         origin: 'bottom',
@@ -406,20 +408,20 @@
     <div class="home-container">
       <div class="media-icons">
         <a
-          href="https://www.facebook.com/share/19MJHuJnRk/"
+          href="https://wa.me/27722117731"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Facebook"
+          aria-label="WhatsApp"
         >
-          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+          <i class="fab fa-whatsapp" aria-hidden="true"></i>
         </a>
         <a
-          href="https://www.tiktok.com/@sibabalwe_sinyaniso?is_from_webapp=1&sender_device=pc"
+          href="https://www.linkedin.com/in/sibabalwe-sinyaniso"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="TikTok"
+          aria-label="LinkedIn"
         >
-          <i class="fab fa-tiktok" aria-hidden="true"></i>
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
         </a>
         <a
           href="https://medium.com/@sibabalwesinyaniso"
@@ -430,12 +432,20 @@
           <i class="fab fa-medium" aria-hidden="true"></i>
         </a>
         <a
-          href="https://www.linkedin.com/in/sibabalwe-sinyaniso"
+          href="https://www.tiktok.com/@sibabalwe_sinyaniso?is_from_webapp=1&sender_device=pc"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="LinkedIn"
+          aria-label="TikTok"
         >
-          <i class="fab fa-linkedin" aria-hidden="true"></i>
+          <i class="fab fa-tiktok" aria-hidden="true"></i>
+        </a>
+        <a
+          href="https://www.facebook.com/share/19MJHuJnRk/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <i class="fab fa-facebook-f" aria-hidden="true"></i>
         </a>
       </div>
 
@@ -839,7 +849,7 @@
     <div class="hr" aria-hidden="true"></div>
 
     <div class="info group">
-      <h3>More</h3>
+      <h3>Explore</h3>
       <ul>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#services">Capabilities</a></li>
@@ -852,26 +862,26 @@
     <div class="hr" aria-hidden="true"></div>
 
     <div class="follow group">
-      <h3>Follow</h3>
+      <h3>Connect</h3>
       <ul>
         <li>
           <a
-            href="https://www.facebook.com/share/19MJHuJnRk/"
+            href="https://wa.me/27722117731"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Facebook"
+            aria-label="WhatsApp"
           >
-            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-whatsapp"></i>
           </a>
         </li>
         <li>
           <a
-            href="https://www.tiktok.com/@sibabalwe_sinyaniso?is_from_webapp=1&sender_device=pc"
+            href="https://www.linkedin.com/in/sibabalwe-sinyaniso"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="TikTok"
+            aria-label="LinkedIn"
           >
-            <i class="fab fa-tiktok"></i>
+            <i class="fab fa-linkedin"></i>
           </a>
         </li>
         <li>
@@ -886,12 +896,22 @@
         </li>
         <li>
           <a
-            href="https://www.linkedin.com/in/sibabalwe-sinyaniso"
+            href="https://www.tiktok.com/@sibabalwe_sinyaniso?is_from_webapp=1&sender_device=pc"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="LinkedIn"
+            aria-label="TikTok"
           >
-            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.facebook.com/share/19MJHuJnRk/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
+            <i class="fab fa-facebook-f"></i>
           </a>
         </li>
       </ul>
@@ -899,6 +919,6 @@
   </div>
 
   <div class="footer-copyright group">
-    <p>© 2026 by Sibabalwe Sinyaniso. All rights reserved.</p>
+    <p>© {currentYear} by Sibabalwe Sinyaniso. All rights reserved.</p>
   </div>
 </footer>
