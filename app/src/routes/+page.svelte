@@ -339,7 +339,7 @@
       origin: 'left',
       interval: 150
     });
-    srWindow.ScrollReveal().reveal('.home-image-wrap, .about-img', {
+    srWindow.ScrollReveal().reveal('.home-image-wrap, .about-img, .about-img-mobile', {
       delay: 500,
       origin: 'bottom'
     });
@@ -541,6 +541,15 @@
               and clear, whether that means improving a pipeline, refining a process, or presenting an
               idea well through a modern website.
             </p>
+          </div>
+
+          <div class="about-img-mobile">
+            <img
+              src={`${base}/img/images/about-img.png`}
+              alt="Working at a laptop"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
 
           <ul class="professional-list">
