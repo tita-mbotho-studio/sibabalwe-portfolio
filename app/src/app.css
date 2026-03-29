@@ -1427,11 +1427,12 @@ footer a {
 
 .footer-container {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   gap: var(--space-48);
   width: 100%;
   max-width: var(--content-max-width);
+  text-align: center;
 }
 
 .footer-container .about,
@@ -1439,7 +1440,11 @@ footer a {
 .footer-container .follow {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: var(--footer-group-gap);
+  text-align: center;
+  flex: 1;
 }
 
 .footer-container .about h2 {
@@ -1458,6 +1463,7 @@ footer a {
   margin-bottom: 0;
   color: var(--muted-text-color);
   line-height: 1.75;
+  text-align: center;
 }
 
 .footer-container .info h3,
@@ -1465,18 +1471,22 @@ footer a {
   font-size: var(--text-20);
   font-weight: 500;
   margin-bottom: 0;
+  text-align: center;
 }
 
 .footer-container .info ul,
 .footer-container .follow ul {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: var(--footer-link-gap);
 }
 
 .footer-container .info li,
 .footer-container .follow li {
   display: flex;
+  justify-content: center;
 }
 
 .footer-container .info a,
@@ -1488,11 +1498,19 @@ footer a {
   font-size: var(--text-24);
 }
 
+.footer-container .hr {
+  width: 1px;
+  align-self: stretch;
+  background: var(--line-color);
+  opacity: 1;
+}
+
 .footer-copyright p {
   font-size: var(--normal-font-size);
   font-weight: 300;
   margin-top: var(--space-48);
   color: var(--muted-text-color);
+  text-align: center;
 }
 
 @media screen and (max-width: 1070px) {
