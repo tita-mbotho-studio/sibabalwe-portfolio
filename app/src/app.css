@@ -65,6 +65,9 @@
   --content-max-width: 1152px;
   --text-content-max-width: 720px;
   --copy-max-width: 560px;
+  --section-heading-max-width: 720px;
+  --section-content-top-gap: var(--space-48);
+  --section-description-gap: var(--space-32);
 
   /* strict spacing system */
   --section-padding-y: var(--space-64);
@@ -80,12 +83,15 @@
   /* component sizing system */
   --button-height: 60px;
   --button-padding-x: var(--space-32);
+  --button-min-width: 220px;
   --accent-width: 56px;
   --accent-height: 4px;
   --panel-border-width: 4px;
   --footer-group-gap: var(--space-24);
   --footer-link-gap: var(--space-20);
   --contact-item-gap: var(--space-32);
+  --carousel-control-size: 52px;
+  --carousel-control-offset: var(--space-16);
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -350,6 +356,7 @@ header.sticky .nav-bar {
 }
 
 .btn {
+  min-width: var(--button-min-width);
   min-height: var(--button-height);
   background: var(--button-bg-color);
   color: oklch(0.98 0 0);
@@ -364,6 +371,7 @@ header.sticky .nav-bar {
   letter-spacing: 1px;
   border-radius: var(--radius-sm);
   transition: 0.3s ease;
+  text-align: center;
 }
 
 .btn:hover {
@@ -462,6 +470,7 @@ header.sticky .nav-bar {
 
 .about-header {
   width: 100%;
+  max-width: var(--section-heading-max-width);
   margin-bottom: 0;
 }
 
@@ -592,8 +601,8 @@ header.sticky .nav-bar {
 .services-description,
 .work-description,
 .focus-description {
-  max-width: var(--text-content-max-width);
-  margin-bottom: var(--section-stack-gap);
+  max-width: var(--section-heading-max-width);
+  margin-bottom: var(--section-description-gap);
 }
 
 .skills-description h3,
@@ -795,8 +804,8 @@ header.sticky .nav-bar {
 }
 
 .work-block-header {
-  max-width: var(--text-content-max-width);
-  margin-bottom: var(--content-stack-gap);
+  max-width: var(--section-heading-max-width);
+  margin-bottom: var(--section-description-gap);
 }
 
 .work-block-header h3 {
@@ -924,7 +933,7 @@ header.sticky .nav-bar {
   bottom: auto;
   z-index: 2;
   transform: none;
-  width: min(100%, var(--text-content-max-width));
+  width: min(100%, var(--section-heading-max-width));
   margin-top: var(--space-24);
   padding: 0 var(--space-24);
   text-align: center;
@@ -984,8 +993,8 @@ header.sticky .nav-bar {
   top: 40%;
   transform: translateY(-50%);
   z-index: 3;
-  width: 52px;
-  height: 52px;
+  width: var(--carousel-control-size);
+  height: var(--carousel-control-size);
   border-radius: 999px;
   display: inline-flex;
   justify-content: center;
@@ -1002,11 +1011,11 @@ header.sticky .nav-bar {
 }
 
 .carousel-control-prev {
-  left: var(--item-gap);
+  left: var(--carousel-control-offset);
 }
 
 .carousel-control-next {
-  right: var(--item-gap);
+  right: var(--carousel-control-offset);
 }
 
 .carousel-control-prev-icon,
@@ -1243,6 +1252,7 @@ header.sticky .nav-bar {
 }
 
 .contact-left h2 {
+  max-width: var(--section-heading-max-width);
   font-size: var(--text-32);
   font-weight: 800;
   margin-bottom: var(--space-32);
@@ -1301,6 +1311,7 @@ header.sticky .nav-bar {
 }
 
 .contact-right p {
+  max-width: var(--section-heading-max-width);
   color: var(--third-color);
   font-size: var(--text-32);
   margin-bottom: 0;
@@ -1733,6 +1744,7 @@ footer a {
   }
 
   .btn {
+    min-width: 200px;
     min-height: 56px;
     padding: 0 var(--space-24);
   }
@@ -1849,6 +1861,10 @@ footer a {
   .carousel-control-next {
     width: 40px;
     height: 40px;
+  }
+
+  .btn {
+    min-width: 100%;
   }
 }
 
