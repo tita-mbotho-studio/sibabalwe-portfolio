@@ -25,8 +25,6 @@
   --muted-text-color: oklch(0.8 0 0);
   --muted-text-strong: oklch(0.86 0 0);
 
-  --color-filter: invert(1);
-
   --shadow-card: 0 12px 32px oklch(0 0 0 / 0.14);
   --shadow-card-hover: 0 18px 36px oklch(0 0 0 / 0.18);
   --shadow-overlay: 0 24px 48px oklch(0 0 0 / 0.24);
@@ -245,6 +243,7 @@ header.sticky .nav-bar {
   color: var(--first-color);
   font-size: var(--text-24);
   font-weight: 600;
+  line-height: 1;
 }
 
 .nav-items {
@@ -1493,6 +1492,11 @@ footer a {
 }
 
 @media screen and (max-width: 1070px) {
+  .nav-bar .logo {
+    font-size: var(--text-20);
+    font-weight: 600;
+  }
+
   .navigation {
     position: fixed;
     inset: 0;
@@ -1549,29 +1553,66 @@ footer a {
     border-bottom: 1px solid var(--transparent-color-01);
   }
 
+  .nav-menu-btn,
   .nav-close-btn {
-    position: absolute;
-    background: url("../img/images/close-btn.png") no-repeat;
-    filter: var(--color-filter);
-    background-size: 12px;
-    background-position: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     width: var(--space-40);
     height: var(--space-40);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+  }
+
+  .nav-menu-btn:hover,
+  .nav-close-btn:hover {
+    background: oklch(1 0 0 / 0.06);
+  }
+
+  .nav-menu-btn span {
+    position: absolute;
+    left: 8px;
+    width: 24px;
+    height: 2px;
+    border-radius: 999px;
+    background: oklch(0.98 0 0);
+  }
+
+  .nav-menu-btn span:nth-child(1) {
+    top: 11px;
+  }
+
+  .nav-menu-btn span:nth-child(2) {
+    top: 19px;
+  }
+
+  .nav-menu-btn span:nth-child(3) {
+    top: 27px;
+  }
+
+  .nav-close-btn {
+    position: absolute;
     top: 0;
     right: 0;
     margin: var(--space-8);
-    cursor: pointer;
   }
 
-  .nav-menu-btn {
-    background: url("../img/images/menu-btn.png") no-repeat;
-    filter: var(--color-filter);
-    background-size: 28px;
-    background-position: center;
-    width: var(--space-40);
-    height: var(--space-40);
-    cursor: pointer;
-    display: block;
+  .nav-close-btn span {
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    border-radius: 999px;
+    background: oklch(0.98 0 0);
+  }
+
+  .nav-close-btn span:nth-child(1) {
+    transform: rotate(45deg);
+  }
+
+  .nav-close-btn span:nth-child(2) {
+    transform: rotate(-45deg);
   }
 
   .home .home-container {
@@ -1714,6 +1755,19 @@ footer a {
 @media screen and (max-width: 730px) {
   body {
     margin: var(--space-72) 0 0 0;
+  }
+
+  .nav-bar {
+    height: 72px;
+    padding: 0 var(--space-16);
+  }
+
+  header.sticky .nav-bar {
+    height: 56px;
+  }
+
+  .nav-bar .logo {
+    font-size: var(--text-20);
   }
 
   .section,
@@ -2108,6 +2162,47 @@ footer a {
 @media (max-width: 480px) {
   body {
     margin: var(--space-64) 0 0 0;
+  }
+
+  .nav-bar {
+    height: 68px;
+    padding: 0 var(--space-16);
+  }
+
+  header.sticky .nav-bar {
+    height: 56px;
+  }
+
+  .nav-bar .logo {
+    font-size: var(--text-16);
+    font-weight: 600;
+  }
+
+  .nav-menu-btn,
+  .nav-close-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-menu-btn span {
+    left: 7px;
+    width: 22px;
+  }
+
+  .nav-menu-btn span:nth-child(1) {
+    top: 10px;
+  }
+
+  .nav-menu-btn span:nth-child(2) {
+    top: 17px;
+  }
+
+  .nav-menu-btn span:nth-child(3) {
+    top: 24px;
+  }
+
+  .nav-close-btn span {
+    width: 18px;
   }
 
   .section,

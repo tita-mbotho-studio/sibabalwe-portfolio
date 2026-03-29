@@ -322,6 +322,13 @@
       delay: 0
     });
 
+    srWindow.ScrollReveal({
+      reset: false,
+      distance: '24px',
+      duration: 800,
+      delay: 0
+    });
+
     srWindow.ScrollReveal().reveal('.home-copy h1, .section-title', {
       delay: 500,
       origin: 'left'
@@ -438,7 +445,10 @@
           class="nav-close-btn"
           aria-label="Close menu"
           on:click={closeNav}
-        ></button>
+        >
+          <span></span>
+          <span></span>
+        </button>
 
         {#each navLinks as link}
           <a
@@ -456,8 +466,14 @@
       type="button"
       class="nav-menu-btn"
       aria-label="Open menu"
+      aria-expanded={navOpen}
+      aria-controls="primary-menu"
       on:click={() => (navOpen = true)}
-    ></button>
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </header>
 
