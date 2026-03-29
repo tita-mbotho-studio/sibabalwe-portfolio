@@ -672,7 +672,7 @@
         <div class="work-block">
           <div class="work-block-header">
             <h3>Data Systems</h3>
-            <p>Web projects focused on clean design, structure, and strong visual presentation.</p>
+            <p>Data projects focused on building reliable, practical systems that solve real problems.</p>
           </div>
 
           <div class="data-project-grid">
@@ -695,7 +695,7 @@
         <div class="work-block web-work-block">
           <div class="work-block-header">
             <h3>Web Clients</h3>
-            <p>Selected client-facing web work presented through a clean visual showcase.</p>
+            <p>Web projects focused on clean design, structure, and strong visual presentation.</p>
           </div>
 
           <div id="clientsCarousel" class="carousel slide">
