@@ -1744,8 +1744,8 @@ footer a {
     grid-template-columns: 1fr;
     row-gap: var(--space-16);
     width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
   }
 
   .home-image-wrap {
@@ -1756,8 +1756,8 @@ footer a {
   }
 
   .home-container .home-img {
-    width: 100%;
-    max-width: 280px;
+    width: min(100%, 320px);
+    max-width: none;
     height: auto;
     aspect-ratio: auto;
   }
@@ -1788,19 +1788,19 @@ footer a {
   .home-copy h2 {
     font-size: var(--text-40);
     line-height: 1.08;
-    max-width: 11ch;
+    max-width: 13ch;
     margin: 0 auto;
   }
 
   .home-copy h3 {
     font-size: var(--text-20);
     line-height: 1.45;
-    max-width: 20ch;
+    max-width: 28ch;
     margin: 0 auto;
   }
 
   .home-copy p {
-    max-width: 31ch;
+    max-width: 42ch;
     font-size: 15px;
     line-height: 1.7;
     margin: 0 auto;
@@ -2135,11 +2135,12 @@ footer a {
 
   .home .home-container {
     row-gap: var(--space-12);
-    max-width: 360px;
+    max-width: none;
   }
 
   .home-container .home-img {
-    max-width: 240px;
+    width: min(100%, 260px);
+    max-width: none;
   }
 
   .home-copy {
@@ -2150,19 +2151,19 @@ footer a {
   .home-copy h2 {
     font-size: var(--text-32);
     line-height: 1.08;
-    max-width: 10ch;
+    max-width: 12ch;
   }
 
   .home-copy h3 {
     font-size: var(--text-16);
     line-height: 1.45;
-    max-width: 19ch;
+    max-width: 24ch;
   }
 
   .home-copy p {
     font-size: 14px;
     line-height: 1.65;
-    max-width: 28ch;
+    max-width: 32ch;
   }
 
   .btn {
