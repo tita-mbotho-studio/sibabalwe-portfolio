@@ -413,7 +413,7 @@
           rel="noopener noreferrer"
           aria-label="WhatsApp"
         >
-          <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
         </a>
         <a
           href="https://www.linkedin.com/in/sibabalwe-sinyaniso"
@@ -421,7 +421,7 @@
           rel="noopener noreferrer"
           aria-label="LinkedIn"
         >
-          <i class="fab fa-linkedin" aria-hidden="true"></i>
+          <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
         </a>
         <a
           href="https://medium.com/@sibabalwesinyaniso"
@@ -429,7 +429,7 @@
           rel="noopener noreferrer"
           aria-label="Medium"
         >
-          <i class="fab fa-medium" aria-hidden="true"></i>
+          <i class="fa-brands fa-medium" aria-hidden="true"></i>
         </a>
         <a
           href="https://www.tiktok.com/@sibabalwe_sinyaniso?is_from_webapp=1&sender_device=pc"
@@ -437,7 +437,7 @@
           rel="noopener noreferrer"
           aria-label="TikTok"
         >
-          <i class="fab fa-tiktok" aria-hidden="true"></i>
+          <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
         </a>
         <a
           href="https://www.facebook.com/share/19MJHuJnRk/"
@@ -445,7 +445,7 @@
           rel="noopener noreferrer"
           aria-label="Facebook"
         >
-          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+          <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
         </a>
       </div>
 
@@ -871,7 +871,7 @@
             rel="noopener noreferrer"
             aria-label="WhatsApp"
           >
-            <i class="fab fa-whatsapp"></i>
+            <i class="fa-brands fa-whatsapp"></i>
           </a>
         </li>
         <li>
@@ -881,7 +881,7 @@
             rel="noopener noreferrer"
             aria-label="LinkedIn"
           >
-            <i class="fab fa-linkedin"></i>
+            <i class="fa-brands fa-linkedin"></i>
           </a>
         </li>
         <li>
@@ -891,7 +891,7 @@
             rel="noopener noreferrer"
             aria-label="Medium"
           >
-            <i class="fab fa-medium"></i>
+            <i class="fa-brands fa-medium"></i>
           </a>
         </li>
         <li>
@@ -901,7 +901,7 @@
             rel="noopener noreferrer"
             aria-label="TikTok"
           >
-            <i class="fab fa-tiktok"></i>
+            <i class="fa-brands fa-tiktok"></i>
           </a>
         </li>
         <li>
@@ -911,7 +911,7 @@
             rel="noopener noreferrer"
             aria-label="Facebook"
           >
-            <i class="fab fa-facebook-f"></i>
+            <i class="fa-brands fa-facebook-f"></i>
           </a>
         </li>
       </ul>
