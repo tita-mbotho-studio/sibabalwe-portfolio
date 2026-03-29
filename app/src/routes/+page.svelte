@@ -220,6 +220,10 @@
     navOpen = false;
   }
 
+  function toggleNav() {
+    navOpen = !navOpen;
+  }
+
   function syncScrollState() {
     const scrollY = window.scrollY;
     isSticky = scrollY > 0;
@@ -438,18 +442,8 @@
   <div class="nav-bar">
     <a href="#home" class="logo">Sibabalwe</a>
 
-    <nav class="navigation {navOpen ? 'active' : ''}" aria-label="Primary">
+    <nav class="navigation {navOpen ? 'active' : ''}" aria-label="Primary" aria-hidden={!navOpen}>
       <div class="nav-items" id="primary-menu">
-        <button
-          type="button"
-          class="nav-close-btn"
-          aria-label="Close menu"
-          on:click={closeNav}
-        >
-          <span></span>
-          <span></span>
-        </button>
-
         {#each navLinks as link}
           <a
             href={`#${link.id}`}
@@ -464,11 +458,11 @@
 
     <button
       type="button"
-      class="nav-menu-btn"
-      aria-label="Open menu"
+      class="nav-menu-btn {navOpen ? 'active' : ''}"
+      aria-label={navOpen ? 'Close menu' : 'Open menu'}
       aria-expanded={navOpen}
       aria-controls="primary-menu"
-      on:click={() => (navOpen = true)}
+      on:click={toggleNav}
     >
       <span></span>
       <span></span>

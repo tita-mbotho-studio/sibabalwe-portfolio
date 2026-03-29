@@ -125,6 +125,10 @@ body {
   transition: 0.5s ease;
 }
 
+body.nav-open {
+  overflow: hidden;
+}
+
 a {
   text-decoration: none;
 }
@@ -1502,36 +1506,45 @@ footer a {
     inset: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
-    background: oklch(0.08 0 0 / 0.2);
+    align-items: flex-start;
+    padding: calc(80px + var(--space-16)) var(--space-16) var(--space-16);
+    background: oklch(0.08 0 0 / 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     visibility: hidden;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  header.sticky .navigation {
+    padding-top: calc(56px + var(--space-16));
   }
 
   .navigation.active {
     visibility: visible;
     opacity: 1;
+    pointer-events: auto;
   }
 
   .nav-items {
     position: relative;
-    width: min(600px, calc(100% - var(--space-40)));
+    width: min(560px, 100%);
+    max-height: calc(100dvh - 112px);
     display: flex;
-    align-items: stretch;
     flex-direction: column;
+    align-items: stretch;
     gap: var(--space-12);
-    margin: var(--space-20);
-    padding: var(--space-40);
-    background: oklch(0.16 0 0 / 0.72);
+    margin: 0;
+    padding: var(--space-24);
+    overflow-y: auto;
+    background: oklch(0.16 0 0 / 0.9);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--transparent-color-01);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-overlay);
-    transform: translateY(-48px) scale(0.98);
+    transform: translateY(-24px) scale(0.98);
     transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
   }
 
@@ -1542,6 +1555,7 @@ footer a {
   .nav-items a {
     width: 100%;
     margin: 0;
+    padding: var(--space-16) var(--space-20);
     border-radius: var(--radius-sm);
     border: 1px solid transparent;
     text-align: center;
@@ -1549,12 +1563,11 @@ footer a {
 
   .nav-items a.active {
     color: var(--second-color);
-    background: oklch(0.16 0 0 / 0.72);
-    border-bottom: 1px solid var(--transparent-color-01);
+    background: oklch(0.2 0 0 / 0.88);
+    border: 1px solid var(--transparent-color-01);
   }
 
-  .nav-menu-btn,
-  .nav-close-btn {
+  .nav-menu-btn {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -1564,10 +1577,10 @@ footer a {
     cursor: pointer;
     border-radius: var(--radius-sm);
     flex-shrink: 0;
+    z-index: 100000;
   }
 
-  .nav-menu-btn:hover,
-  .nav-close-btn:hover {
+  .nav-menu-btn:hover {
     background: oklch(1 0 0 / 0.06);
   }
 
@@ -1578,6 +1591,7 @@ footer a {
     height: 2px;
     border-radius: 999px;
     background: oklch(0.98 0 0);
+    transition: transform 0.25s ease, opacity 0.25s ease, top 0.25s ease;
   }
 
   .nav-menu-btn span:nth-child(1) {
@@ -1592,26 +1606,17 @@ footer a {
     top: 27px;
   }
 
-  .nav-close-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: var(--space-8);
-  }
-
-  .nav-close-btn span {
-    position: absolute;
-    width: 20px;
-    height: 2px;
-    border-radius: 999px;
-    background: oklch(0.98 0 0);
-  }
-
-  .nav-close-btn span:nth-child(1) {
+  .nav-menu-btn.active span:nth-child(1) {
+    top: 19px;
     transform: rotate(45deg);
   }
 
-  .nav-close-btn span:nth-child(2) {
+  .nav-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-menu-btn.active span:nth-child(3) {
+    top: 19px;
     transform: rotate(-45deg);
   }
 
@@ -1766,8 +1771,22 @@ footer a {
     height: 56px;
   }
 
+  header.sticky .navigation {
+    padding-top: calc(56px + var(--space-12));
+  }
+
+  .navigation {
+    padding: calc(72px + var(--space-12)) var(--space-12) var(--space-12);
+  }
+
   .nav-bar .logo {
     font-size: var(--text-20);
+  }
+
+  .nav-items {
+    max-height: calc(100dvh - 96px);
+    padding: var(--space-20);
+    gap: var(--space-8);
   }
 
   .section,
@@ -2178,8 +2197,11 @@ footer a {
     font-weight: 600;
   }
 
-  .nav-menu-btn,
-  .nav-close-btn {
+  .navigation {
+    padding: calc(68px + var(--space-12)) var(--space-12) var(--space-12);
+  }
+
+  .nav-menu-btn {
     width: 36px;
     height: 36px;
   }
@@ -2201,8 +2223,9 @@ footer a {
     top: 24px;
   }
 
-  .nav-close-btn span {
-    width: 18px;
+  .nav-menu-btn.active span:nth-child(1),
+  .nav-menu-btn.active span:nth-child(3) {
+    top: 17px;
   }
 
   .section,
