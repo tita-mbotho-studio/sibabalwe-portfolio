@@ -7,7 +7,6 @@
 
   const currentYear = new Date().getFullYear();
   const externalRel = 'noopener noreferrer';
-  const sectionOffset = 50;
 
   const navLinks = [
     { id: 'home', label: 'Home' },
@@ -204,6 +203,7 @@
   let isSticky = false;
   let showScrollTop = false;
   let activeSection = 'home';
+  let sectionOffset = 96;
 
   let carouselIndex = firstCarouselIndex;
   let carouselAnimate = true;
@@ -224,13 +224,22 @@
     navOpen = !navOpen;
   }
 
+  function updateHeaderOffset() {
+    const header = document.querySelector<HTMLElement>('header');
+    const navBar = document.querySelector<HTMLElement>('.nav-bar');
+    const measuredHeight = navBar?.offsetHeight ?? header?.offsetHeight ?? 72;
+
+    sectionOffset = measuredHeight - 48;
+    document.documentElement.style.setProperty('--header-offset', `${sectionOffset}px`);
+  }
+
   function syncScrollState() {
     const scrollY = window.scrollY;
     isSticky = scrollY > 0;
     showScrollTop = scrollY > 500;
 
     const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
-    const currentScroll = scrollY + sectionOffset;
+    const currentScroll = scrollY + sectionOffset + 1;
 
     for (const section of sections) {
       const top = section.offsetTop;
@@ -388,15 +397,22 @@
   onMount(() => {
     const cleanupFns: Cleanup[] = [];
 
+    updateHeaderOffset();
     syncScrollState();
 
     const onScroll = () => syncScrollState();
+    const onResize = () => {
+      updateHeaderOffset();
+      syncScrollState();
+    };
     const onKeydown = (event: KeyboardEvent) => closeOnEscape(event);
 
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize, { passive: true });
     window.addEventListener('keydown', onKeydown);
 
     cleanupFns.push(() => window.removeEventListener('scroll', onScroll));
+    cleanupFns.push(() => window.removeEventListener('resize', onResize));
     cleanupFns.push(() => window.removeEventListener('keydown', onKeydown));
 
     loadScrollReveal().then(() => {
