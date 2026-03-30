@@ -1,4 +1,3 @@
-<!-- app/src/routes/+page.svelte -->
 <script lang="ts">
   import { onMount, tick } from 'svelte';
   import { base } from '$app/paths';
@@ -199,11 +198,16 @@
   const firstCarouselIndex = 1;
   const lastCarouselIndex = clientSlides.length;
 
+  const anchorOffsetAdjustment = 48;
+  const activeOffsetAdjustment = 24;
+
   let navOpen = false;
   let isSticky = false;
   let showScrollTop = false;
   let activeSection = 'home';
-  let sectionOffset = 96;
+
+  let sectionOffset = 0;
+  let activeSectionOffset = 0;
 
   let carouselIndex = firstCarouselIndex;
   let carouselAnimate = true;
@@ -224,12 +228,13 @@
     navOpen = !navOpen;
   }
 
-  function updateHeaderOffset() {
-    const header = document.querySelector<HTMLElement>('header');
+  function updateHeaderOffsets() {
     const navBar = document.querySelector<HTMLElement>('.nav-bar');
-    const measuredHeight = navBar?.offsetHeight ?? header?.offsetHeight ?? 72;
+    const measuredHeight = navBar?.offsetHeight ?? 72;
 
-    sectionOffset = measuredHeight - 48;
+    sectionOffset = Math.max(measuredHeight - anchorOffsetAdjustment, 0);
+    activeSectionOffset = Math.max(measuredHeight - activeOffsetAdjustment, 0);
+
     document.documentElement.style.setProperty('--header-offset', `${sectionOffset}px`);
   }
 
@@ -239,7 +244,7 @@
     showScrollTop = scrollY > 500;
 
     const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
-    const currentScroll = scrollY + sectionOffset + 1;
+    const currentScroll = scrollY + activeSectionOffset + 1;
 
     for (const section of sections) {
       const top = section.offsetTop;
@@ -397,12 +402,12 @@
   onMount(() => {
     const cleanupFns: Cleanup[] = [];
 
-    updateHeaderOffset();
+    updateHeaderOffsets();
     syncScrollState();
 
     const onScroll = () => syncScrollState();
     const onResize = () => {
-      updateHeaderOffset();
+      updateHeaderOffsets();
       syncScrollState();
     };
     const onKeydown = (event: KeyboardEvent) => closeOnEscape(event);
