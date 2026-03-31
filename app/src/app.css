@@ -1905,39 +1905,48 @@ footer a {
   .home-copy {
     grid-column: 1;
     grid-row: 2;
+    display: block;
     min-height: auto;
-    row-gap: var(--space-16);
-    justify-items: center;
-    text-align: center;
     width: 100%;
+    max-width: none;
+    text-align: center;
   }
 
   .home-copy-row {
-    display: flex;
-    justify-content: center;
+    display: block;
     width: 100%;
+  }
+
+  .home-copy-row:not(:last-child) {
+    margin-bottom: var(--space-16);
   }
 
   .home-copy h1,
   .home-copy h2 {
     font-size: clamp(40px, 8vw, 52px);
     line-height: 1.08;
-    max-width: 15ch;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
   }
 
   .home-copy h3 {
+    color: var(--muted-text-strong);
     font-size: var(--text-20);
+    font-weight: 500;
     line-height: 1.5;
-    max-width: 38ch;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
   }
 
   .home-copy p {
-    max-width: 56ch;
+    color: var(--muted-text-color);
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
     font-size: var(--text-16);
     line-height: 1.75;
-    margin: 0 auto;
   }
 
   .home-actions {
@@ -1945,6 +1954,11 @@ footer a {
     margin-top: var(--space-12);
     display: flex;
     justify-content: center;
+    align-items: center;
+  }
+
+  .home-actions .btn {
+    margin-top: 0;
   }
 
   .home-container .media-icons {
@@ -2336,26 +2350,48 @@ footer a {
   }
 
   .home-copy {
-    row-gap: var(--space-12);
+    display: block;
+    width: 100%;
+    max-width: none;
+    text-align: center;
+  }
+
+  .home-copy-row {
+    display: block;
+    width: 100%;
+  }
+
+  .home-copy-row:not(:last-child) {
+    margin-bottom: var(--space-12);
   }
 
   .home-copy h1,
   .home-copy h2 {
     font-size: clamp(32px, 9vw, 40px);
     line-height: 1.08;
-    max-width: 13ch;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
   }
 
   .home-copy h3 {
     font-size: 18px;
     line-height: 1.5;
-    max-width: 24ch;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
   }
 
   .home-copy p {
     font-size: 15px;
     line-height: 1.7;
-    max-width: 34ch;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .home-actions {
+    justify-content: center;
   }
 
   .btn {
@@ -2363,6 +2399,10 @@ footer a {
     min-height: 48px;
     padding: 0 var(--space-20);
     font-size: 14px;
+  }
+
+  .home-container .media-icons {
+    justify-content: center;
   }
 
   .home-container .media-icons a {
