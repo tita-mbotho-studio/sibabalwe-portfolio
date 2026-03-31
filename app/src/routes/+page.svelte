@@ -7,6 +7,11 @@
   const currentYear = new Date().getFullYear();
   const externalRel = 'noopener noreferrer';
 
+  const pageTitle =
+    'Sibabalwe Sinyaniso | Technical Professional in Pretoria, South Africa';
+  const metaDescription =
+    'Sibabalwe Sinyaniso is a technical professional in Pretoria, South Africa building across data systems, workflow automation, web development, and cloud growth.';
+
   const navLinks = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
@@ -53,7 +58,8 @@
     {
       title: 'Phone',
       icon: 'fa-solid fa-phone',
-      text: '+27 72 211 7731'
+      text: '+27 72 211 7731',
+      href: 'tel:+27722117731'
     },
     {
       title: 'Email Address',
@@ -200,6 +206,27 @@
 
   const anchorOffsetAdjustment = 48;
   const activeOffsetAdjustment = 24;
+
+  const structuredData = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Sibabalwe Sinyaniso',
+    description: metaDescription,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Pretoria',
+      addressCountry: 'South Africa'
+    },
+    sameAs: socialLinks.map((social) => social.href),
+    knowsAbout: [
+      'Data Systems',
+      'Workflow Automation',
+      'Python',
+      'SQL',
+      'Cloud Systems',
+      'Web Development'
+    ]
+  });
 
   let navOpen = false;
   let isSticky = false;
@@ -431,12 +458,23 @@
 </script>
 
 <svelte:head>
-  <title>Sibabalwe | Professional Brand</title>
-  <meta
-    name="description"
-    content="Sibabalwe Sinyaniso builds across data systems, workflow automation, web development, and growing cloud capability."
-  />
+  <title>{pageTitle}</title>
+  <meta name="description" content={metaDescription} />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Sibabalwe Sinyaniso" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#141414" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={metaDescription} />
+  <meta property="og:site_name" content="Sibabalwe Sinyaniso" />
+  <meta property="og:locale" content="en_ZA" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={metaDescription} />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
   <link
@@ -447,9 +485,13 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
   />
+
+  <script type="application/ld+json">
+    {structuredData}
+  </script>
 </svelte:head>
 
-<a href="#home" class="visually-hidden">Skip to content</a>
+<a href="#main-content" class="visually-hidden">Skip to main content</a>
 
 <div
   class="scrollToTop-btn flex-centre {showScrollTop ? 'active' : ''}"
@@ -492,7 +534,7 @@
   </div>
 </header>
 
-<main>
+<main id="main-content">
   <section class="home flex-centre" id="home" aria-label="Home">
     <div class="home-container">
       <div class="media-icons">
@@ -533,7 +575,7 @@
         <div class="home-img">
           <img
             src={`${base}/img/images/main-img.png`}
-            alt="Sibabalwe portrait"
+            alt="Portrait of Sibabalwe Sinyaniso"
             loading="eager"
             decoding="async"
           />
@@ -556,7 +598,7 @@
         <div class="about-img">
           <img
             src={`${base}/img/images/about-img.png`}
-            alt="Working at a laptop"
+            alt="Sibabalwe Sinyaniso working at a laptop"
             loading="lazy"
             decoding="async"
           />
@@ -577,7 +619,7 @@
           <div class="about-img-mobile">
             <img
               src={`${base}/img/images/about-img.png`}
-              alt="Working at a laptop"
+              alt="Sibabalwe Sinyaniso working at a laptop"
               loading="lazy"
               decoding="async"
             />
@@ -797,7 +839,13 @@
               >
                 {#each carouselSlides as client}
                   <div class="carousel-item">
-                    <img src={client.image} class="d-block w-100" alt={client.alt} />
+                    <img
+                      src={client.image}
+                      class="d-block w-100"
+                      alt={client.alt}
+                      loading="lazy"
+                      decoding="async"
+                    />
                     <div class="carousel-caption">
                       <h5>{client.name}</h5>
                       <p>{client.quote}</p>

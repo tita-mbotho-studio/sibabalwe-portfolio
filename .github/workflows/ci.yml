@@ -39,6 +39,8 @@ jobs:
 
       - name: Build
         working-directory: app
+        env:
+          BASE_PATH: /sibabalwe-portfolio
         run: npm run build
 
       - name: Upload artifact
