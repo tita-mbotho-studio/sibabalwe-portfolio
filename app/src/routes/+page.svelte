@@ -574,14 +574,14 @@
       <div class="home-image-wrap">
         <div class="home-img">
           <img
-            src={`${base}/img/images/main-img.png`}
+            src="https://ik.imagekit.io/kw8awoqvwi/personal-portfolio/main-img.webp"
             alt="Portrait of Sibabalwe Sinyaniso"
             loading="eager"
             decoding="async"
           />
         </div>
       </div>
-    </div>
+    </div>,
 
     <a href="#about" class="scroll-down">
       Scroll Down <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
@@ -597,7 +597,7 @@
       <div class="content">
         <div class="about-img">
           <img
-            src={`${base}/img/images/about-img.png`}
+            src="https://ik.imagekit.io/kw8awoqvwi/personal-portfolio/about-img.webp"
             alt="Sibabalwe Sinyaniso working at a laptop"
             loading="lazy"
             decoding="async"
@@ -618,7 +618,7 @@
 
           <div class="about-img-mobile">
             <img
-              src={`${base}/img/images/about-img.png`}
+              src="https://ik.imagekit.io/kw8awoqvwi/personal-portfolio/about-img.webp"
               alt="Sibabalwe Sinyaniso working at a laptop"
               loading="lazy"
               decoding="async"
