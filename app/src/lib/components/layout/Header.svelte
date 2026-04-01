@@ -1,97 +1,112 @@
 <script lang="ts">
-  import MobileNav from './MobileNav.svelte';
-  import { siteConfig } from '$lib/config/site';
-</script>
+  import { onMount } from 'svelte';
+  import type { NavLink } from '$lib/config/site';
 
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="#top">
-      <span class="brand-mark">SS</span>
-      <span class="brand-text">{siteConfig.siteName}</span>
-    </a>
+  export let navLinks: NavLink[] = [];
 
-    <nav class="desktop-nav" aria-label="Primary">
-      {#each siteConfig.navItems as item}
-        <a href={item.href}>{item.label}</a>
-      {/each}
-    </nav>
+  const anchorOffsetAdjustment = 48;
+  const activeOffsetAdjustment = 24;
 
-    <div class="desktop-actions">
-      <a class="button button-secondary" href={siteConfig.cvUrl} target="_blank" rel="noreferrer">
-        CV
-      </a>
-    </div>
+  let navOpen = false;
+  let isSticky = false;
+  let activeSection = 'home';
+  let sectionOffset = 0;
+  let activeSectionOffset = 0;
 
-    <MobileNav />
-  </div>
-</header>
-
-<style>
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    backdrop-filter: blur(14px);
-    background: oklch(0.14 0.03 255 / 0.72);
-    border-bottom: 1px solid var(--border);
+  function closeNav() {
+    navOpen = false;
   }
 
-  .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 76px;
-    gap: 1rem;
+  function toggleNav() {
+    navOpen = !navOpen;
   }
 
-  .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    min-width: 0;
+  function updateHeaderOffsets() {
+    const navBar = document.querySelector<HTMLElement>('.nav-bar');
+    const measuredHeight = navBar?.offsetHeight ?? 72;
+
+    sectionOffset = Math.max(measuredHeight - anchorOffsetAdjustment, 0);
+    activeSectionOffset = Math.max(measuredHeight - activeOffsetAdjustment, 0);
+
+    document.documentElement.style.setProperty('--header-offset', `${sectionOffset}px`);
   }
 
-  .brand-mark {
-    display: grid;
-    place-items: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: oklch(0.17 0.03 255);
-    font-weight: 800;
-  }
+  function syncScrollState() {
+    const scrollY = window.scrollY;
+    isSticky = scrollY > 0;
 
-  .brand-text {
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
+    const currentScroll = scrollY + activeSectionOffset + 1;
 
-  .desktop-nav {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-  }
+    for (const section of sections) {
+      const top = section.offsetTop;
+      const bottom = top + section.offsetHeight;
+      const id = section.getAttribute('id');
 
-  .desktop-nav a {
-    color: var(--text-muted);
-    transition: color 0.2s ease;
-  }
-
-  .desktop-nav a:hover {
-    color: var(--text);
-  }
-
-  .desktop-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  @media (max-width: 860px) {
-    .desktop-nav,
-    .desktop-actions {
-      display: none;
+      if (id && currentScroll >= top && currentScroll < bottom) {
+        activeSection = id;
+      }
     }
   }
-</style>
+
+  function closeOnEscape(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      closeNav();
+    }
+  }
+
+  onMount(() => {
+    updateHeaderOffsets();
+    syncScrollState();
+
+    const onScroll = () => syncScrollState();
+    const onResize = () => {
+      updateHeaderOffsets();
+      syncScrollState();
+    };
+    const onKeydown = (event: KeyboardEvent) => closeOnEscape(event);
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize, { passive: true });
+    window.addEventListener('keydown', onKeydown);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('keydown', onKeydown);
+    };
+  });
+</script>
+
+<header class:sticky={isSticky}>
+  <div class="nav-bar">
+    <a href="#home" class="logo">Sibabalwe</a>
+
+    <nav class="navigation {navOpen ? 'active' : ''}" aria-label="Primary" aria-hidden={!navOpen}>
+      <div class="nav-items" id="primary-menu">
+        {#each navLinks as link}
+          <a
+            href={`#${link.id}`}
+            class:active={activeSection === link.id}
+            on:click={closeNav}
+          >
+            {link.label}
+          </a>
+        {/each}
+      </div>
+    </nav>
+
+    <button
+      type="button"
+      class="nav-menu-btn {navOpen ? 'active' : ''}"
+      aria-label={navOpen ? 'Close menu' : 'Open menu'}
+      aria-expanded={navOpen}
+      aria-controls="primary-menu"
+      on:click={toggleNav}
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
