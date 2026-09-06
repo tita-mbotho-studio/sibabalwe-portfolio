@@ -74,7 +74,7 @@
     <div class="home-image-wrap">
       <div class="home-img">
         <img
-          src="https://ik.imagekit.io/kw8awoqvwi/personal-portfolio/main-img-1.webp"
+          src="https://ik.imagekit.io/kw8awoqvwi/personal-portfolio/main-img-2.webp"
           alt="Portrait of Sibabalwe Sinyaniso"
           loading="eager"
           decoding="async"
