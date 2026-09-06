@@ -11,7 +11,7 @@
     <div class="content">
       <div class="about-img">
         <img
-          src="https://ik.imagekit.io/kw8awoqvwi/personal-portfolio/about-img.webp"
+          src="https://ik.imagekit.io/kw8awoqvwi/personal-portfolio/about-img-1.webp"
           alt="Sibabalwe Sinyaniso working at a laptop"
           loading="lazy"
           decoding="async"
@@ -32,7 +32,7 @@
 
         <div class="about-img-mobile">
           <img
-            src="https://ik.imagekit.io/kw8awoqvwi/personal-portfolio/about-img.webp"
+            src="https://ik.imagekit.io/kw8awoqvwi/personal-portfolio/about-img-1.webp"
             alt="Sibabalwe Sinyaniso working at a laptop"
             loading="lazy"
             decoding="async"
